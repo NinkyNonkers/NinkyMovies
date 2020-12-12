@@ -829,9 +829,10 @@ io.sockets.on('connection', function(socket) {
 
     // Get host data
     socket.on('get host data', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            var roomnum = data.room
-            var host = io.sockets.adapter.rooms['room-' + roomnum].host
+        const room = io.sockets.adapter.rooms['room-' + roomnum];
+        if (room !== undefined) {
+            const roomnum = data.room;
+            const host = room.host;
 
             // Broadcast to current host and set false
             // Call back not supported when broadcasting
