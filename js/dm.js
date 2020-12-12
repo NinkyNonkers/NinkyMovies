@@ -86,7 +86,7 @@ setTimeout(function() {
     //     player.pause();
     // });
 
-}, 1000);
+}, 200);
 
 // Play/pause function for dailymotion
 function dailyPlay() {
