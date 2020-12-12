@@ -379,12 +379,14 @@ io.sockets.on('connection', function(socket) {
 
     // Sync video
     socket.on('sync video', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
+        const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
+        if (room !== undefined) {
+
             var roomnum = data.room
             var currTime = data.time
             var state = data.state
             var videoId = data.videoId
-            var playerId = io.sockets.adapter.rooms['room-' + roomnum].currPlayer
+            var playerId = room.currPlayer
             // var videoId = io.sockets.adapter.rooms['room-'+roomnum].currVideo
             io.sockets.in("room-" + roomnum).emit('syncVideoClient', {
                 time: currTime,
