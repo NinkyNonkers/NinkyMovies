@@ -9,6 +9,8 @@ Vynchronize currently supports YouTube, Daily Motion, Vimeo, and essentially any
 
 [![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](http://forthebadge.com)
 
+[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)](https://forthebadge.com)
+
 [![Build Status](https://travis-ci.org/kyle8998/Vynchronize.svg?branch=master)](https://travis-ci.org/kyle8998/Vynchronize)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 <a href="https://github.com/kyle8998/Vynchronize/commits/master"> <img src="https://img.shields.io/github/last-commit/kyle8998/Vynchronize.svg?label=last%20deployed" alt="last deployed"></a>
