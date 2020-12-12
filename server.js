@@ -680,7 +680,8 @@ io.sockets.on('connection', function(socket) {
 
     // Change video player
     socket.on('change player', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
+        const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
+        if (room !== undefined) {
             var roomnum = data.room
             var playerId = data.playerId
 
@@ -704,11 +705,11 @@ io.sockets.on('connection', function(socket) {
             }
 
             // This changes the room variable to the player id
-            io.sockets.adapter.rooms['room-' + roomnum].currPlayer = playerId
+            room.currPlayer = playerId
             // console.log(io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
 
             // This syncs the host whenever the player changes
-            host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
+            host = room.host
             socket.broadcast.to(host).emit('getData')
         }
 
