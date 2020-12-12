@@ -93,7 +93,7 @@ socket.on('createYoutube', function(data) {
 
         var you = document.getElementById('playerArea');
         you.style.display = 'block';
-        currPlayer = 3
+        currPlayer = 0
 
         // The visual queue
 
@@ -139,7 +139,7 @@ socket.on('createDaily', function(data) {
 
         var daily = document.getElementById('dailyArea');
         daily.style.display = 'block';
-        currPlayer = 3
+        currPlayer = 1
 
         // disable for dm/vimeo
         document.getElementById('enqueueButton').style.display = 'none'
@@ -174,7 +174,7 @@ socket.on('createVimeo', function(data) {
 
         var vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'block';
-        currPlayer = 3
+        currPlayer = 2
 
         // disable for dm/vimeo
         document.getElementById('enqueueButton').style.display = 'none'
