@@ -386,7 +386,7 @@ io.sockets.on('connection', function(socket) {
             var currTime = data.time
             var state = data.state
             var videoId = data.videoId
-            var playerId = room.currPlayer
+            var playerId = 3
             // var videoId = io.sockets.adapter.rooms['room-'+roomnum].currVideo
             io.sockets.in("room-" + roomnum).emit('syncVideoClient', {
                 time: currTime,
@@ -718,7 +718,7 @@ io.sockets.on('connection', function(socket) {
     // Change video player
     socket.on('change single player', function(data) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            var playerId = data.playerId
+            var playerId = 3
 
             switch (playerId) {
                 case 0:
@@ -949,7 +949,7 @@ io.sockets.on('connection', function(socket) {
     function updateQueueVideos() {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
             var vidlist = io.sockets.adapter.rooms['room-' + socket.roomnum].queue
-            var currPlayer = io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer
+            var currPlayer = 3
             io.sockets.in("room-" + socket.roomnum).emit('get vidlist', {
                 vidlist: vidlist,
                 currPlayer: currPlayer,

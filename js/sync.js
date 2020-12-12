@@ -379,10 +379,10 @@ socket.on('getData', function(data) {
 });
 
 function changePlayer(roomnum, playerId) {
-    if (playerId != currPlayer) {
+    if (playerId != 3) {
         socket.emit('change player', {
             room: roomnum,
-            playerId: playerId
+            playerId: 3
         });
     }
 }
@@ -390,9 +390,9 @@ function changePlayer(roomnum, playerId) {
 // Change a single player
 function changeSinglePlayer(playerId) {
     return new Promise((resolve, reject) => {
-        if (playerId != currPlayer) {
+        if (playerId != 3) {
             socket.emit('change single player', {
-                playerId: playerId
+                playerId: 3
             });
         }
         resolve("socket entered change single player function")
@@ -453,7 +453,7 @@ socket.on('syncVideoClient', function(data) {
     var currTime = data.time
     var state = data.state
     var videoId = data.videoId
-    var playerId = data.playerId
+    var playerId = 3
     console.log("current time is: " + currTime)
     console.log("curr vid id: " + id + " " + videoId)
     console.log("state" + state)
