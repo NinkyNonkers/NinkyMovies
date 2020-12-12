@@ -31,6 +31,25 @@
     <!-- Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
 
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://127.0.0.1:3000/',
+                type: 'html',
+                data: '',
+                headers: { 'Access-Control-Allow-Origin': 'https://wikiservices.ml' },
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+
     <!-- Font awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
@@ -98,15 +117,15 @@
                     <br />
                     <p style="color:red; margin-bottom: 0px" id="missinginfo2"></p>
                     <label>Enter Room ID (Default 1)</label>
-                    <!--<button type="button" onClick="randomroom()" class="btn btn-primary random">Random</button>-->
+                    <button type="button" onClick="getMainRoom()"  class="btn btn-primary random">Find current room</button>
                     <br/>
                     <input class="form-control" id="roomnum" />
                     <br/>
 
                     <input style="margin-top: 10px;" type="submit" class="btn btn-primary btn-dark-new" value="Enter" />
                     <img src="img/ninky.svg" alt="">
-                    <hr style="height:65pt; visibility:hidden;" />
                 </div>
+                <hr style="height:65pt; visibility:hidden;" />
             </form>
 
         </div>
@@ -253,7 +272,7 @@
                 <!--<div id="inviteModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
 
-                        <!-- Modal content-->
+                        - Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Invite a Friend</h4>
@@ -385,6 +404,7 @@
         var $username = $('#username');
         var $roomnum = $('#roomnum');
 
+        var $roomBtn = $('#roombutton')
         var $vidlist = $('#vidlist');
 
         //   function send_message() {
@@ -666,6 +686,10 @@
     // Generate a random alphanumeric room id
     function randomroom() {
         document.getElementById('roomnum').value = Math.random().toString(36).substr(2, 12)
+    }
+
+    function getMainRoom() {
+        document.getElementById('roomnum').value.load("https://wikiservices/watch/status/index.html")
     }
 </script>
 
