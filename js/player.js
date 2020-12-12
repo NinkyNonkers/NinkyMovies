@@ -1,4 +1,4 @@
-var currPlayer = 3;
+var currPlayer = 0
 
 // 0 - YouTube
 // 1 - Daily Motion
@@ -96,9 +96,7 @@ socket.on('createYoutube', function(data) {
         currPlayer = 0
 
         // The visual queue
-        document.getElementById('visual-queue').style.display = 'block'
-        document.getElementById('queue-arrows').style.display = 'block'
-        document.getElementById('beta-message').style.display = 'none'
+
         document.getElementById('enqueueButton').style.display = 'inline-block'
         document.getElementById('emptyButton').style.display = 'inline-block'
         document.getElementById('nextButton').style.display = 'inline-block'
@@ -144,9 +142,6 @@ socket.on('createDaily', function(data) {
         currPlayer = 1
 
         // disable for dm/vimeo
-        document.getElementById('visual-queue').style.display = 'none'
-        document.getElementById('queue-arrows').style.display = 'none'
-        document.getElementById('beta-message').style.display = 'block'
         document.getElementById('enqueueButton').style.display = 'none'
         document.getElementById('emptyButton').style.display = 'none'
         document.getElementById('nextButton').style.display = 'none'
@@ -182,9 +177,6 @@ socket.on('createVimeo', function(data) {
         currPlayer = 2
 
         // disable for dm/vimeo
-        document.getElementById('visual-queue').style.display = 'none'
-        document.getElementById('queue-arrows').style.display = 'none'
-        document.getElementById('beta-message').style.display = 'block'
         document.getElementById('enqueueButton').style.display = 'none'
         document.getElementById('emptyButton').style.display = 'none'
         document.getElementById('nextButton').style.display = 'none'
@@ -217,9 +209,6 @@ socket.on('createHTML5', function(data) {
         currPlayer = 3
 
 
-        document.getElementById('visual-queue').style.display = 'none'
-        document.getElementById('queue-arrows').style.display = 'none'
-        document.getElementById('beta-message').style.display = 'block'
         document.getElementById('enqueueButton').style.display = 'none'
         document.getElementById('emptyButton').style.display = 'none'
         document.getElementById('nextButton').style.display = 'none'
@@ -228,7 +217,8 @@ socket.on('createHTML5', function(data) {
         document.getElementById('inputVideoId').placeholder = 'Direct mp4/webm URL'
         // document.getElementById('html5-message').style.display = 'block'
 
-        betaAlert()
+        //TODO: restyle this
+        //betaAlert()
     }
 });
 
