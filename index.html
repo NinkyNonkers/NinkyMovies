@@ -117,7 +117,7 @@
                     <br />
                     <p style="color:red; margin-bottom: 0px" id="missinginfo2"></p>
                     <label>Enter Room ID (Default 1)</label>
-                    <button type="button" onClick="getMainRoom()"  class="btn btn-primary random">Find current room</button>
+                    <button type="button" style="margin-top: 2px; margin-bottom: 2px" onClick="getMainRoom()"  class="btn btn-primary btn-dark-new">Find current room</button>
                     <br/>
                     <input class="form-control" id="roomnum" />
                     <br/>
@@ -675,7 +675,7 @@
     }
 
     function getMainRoom() {
-        document.getElementById('roomnum').value.load("https://wikiservices/watch/status/index.html")
+        document.getElementById('roomnum').value = "main"
     }
 </script>
 
