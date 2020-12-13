@@ -52,13 +52,13 @@ function pauseOther(roomnum) {
 }
 
 socket.on('justPause', function(data) {
-    console.log("hiIamPausing!")
+    console.log("hiIamPausing!");
     switch (currPlayer) {
         case 0:
-            player.pauseVideo()
+            player.pauseVideo();
             break;
         case 1:
-            dailyPlayer.pause()
+            dailyPlayer.pause();
             break;
         case 2:
             vimeoPlayer.getPaused().then(function(paused) {
@@ -75,7 +75,7 @@ socket.on('justPause', function(data) {
             });
             break;
         case 3:
-            media.pause()
+            media.pause();
             break;
     }
     player.pauseVideo()
@@ -94,8 +94,8 @@ function seekOther(roomnum, currTime) {
 // It seeks on an buffer event
 // Only syncs if off by over .2 seconds
 socket.on('justSeek', function(data) {
-    console.log("Seeking Event!")
-    currTime = data.time
+    console.log("Seeking Event!");
+    currTime = data.time;
     switch (currPlayer) {
         case 0:
             var clientTime = player.getCurrentTime();
@@ -110,7 +110,7 @@ socket.on('justSeek', function(data) {
             if (clientTime < currTime - .2 || clientTime > currTime + .2) {
                 dailyPlayer.seek(currTime);
             }
-            playOther(roomnum)
+            playOther(roomnum);
             break;
         case 2:
             vimeoPlayer.getCurrentTime().then(function(seconds) {
@@ -138,7 +138,7 @@ socket.on('justSeek', function(data) {
 
             break;
         case 3:
-            var clientTime = media.currentTime
+            var clientTime = media.currentTime;
             if (clientTime < currTime - .2 || clientTime > currTime + .2) {
                 media.currentTime = currTime
             }
@@ -150,7 +150,7 @@ socket.on('justSeek', function(data) {
 // Needs to grab the next video id and change the video
 function playNext(roomnum) {
     socket.emit('play next', {}, function(data) {
-        var videoId = data.videoId
+        var videoId = data.videoId;
 
         // IF queue is empty do not try to change
         if (videoId !== "QUEUE IS EMPTY") {

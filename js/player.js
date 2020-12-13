@@ -7,13 +7,15 @@ var currPlayer = 0
 
 // Gets all the player data
 socket.on('getPlayerData', function(data) {
-    var roomnum = data.room
-    var caller = data.caller
+    var roomnum = data.room;
+    var caller = data.caller;
 
+    let currTime;
+    let state;
     switch (currPlayer) {
         case 0:
-            var currTime = player.getCurrentTime()
-            var state = playerStatus
+            currTime = player.getCurrentTime();
+            state = playerStatus;
             socket.emit('get host data', {
                 room: roomnum,
                 currTime: currTime,
@@ -22,8 +24,8 @@ socket.on('getPlayerData', function(data) {
             });
             break;
         case 1:
-            var currTime = dailyPlayer.currentTime
-            var state = dailyPlayer.paused;
+            currTime = dailyPlayer.currentTime;
+            state = dailyPlayer.paused;
             socket.emit('get host data', {
                 room: roomnum,
                 currTime: currTime,
@@ -34,12 +36,12 @@ socket.on('getPlayerData', function(data) {
         case 2:
             vimeoPlayer.getCurrentTime().then(function(seconds) {
                 // seconds = the current playback position
-                var currTime = seconds
+                const currTime = seconds;
 
                 // Need to nest async functions
                 vimeoPlayer.getPaused().then(function(paused) {
                     // paused = whether or not the player is paused
-                    var state = paused
+                    const state = paused;
 
                     socket.emit('get host data', {
                         room: roomnum,
@@ -60,8 +62,8 @@ socket.on('getPlayerData', function(data) {
 
             break;
         case 3:
-            var currTime = media.currentTime
-            var state = media.paused
+            currTime = media.currentTime;
+            state = media.paused;
             socket.emit('get host data', {
                 room: roomnum,
                 currTime: currTime,
@@ -82,27 +84,27 @@ socket.on('createYoutube', function(data) {
         // playerIn.innerHTML = "<iframe id=\"player\"allowfullscreen=\"0\"width=\"640\" height=\"360\"src=\"https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1\"frameborder=\"0\"style=\"border: solid 4px #37474F\"></iframe>"
         // onYouTubeIframeAPIReady()
 
-        var daily = document.getElementById('dailyArea');
+        const daily = document.getElementById('dailyArea');
         daily.style.display = 'none';
 
-        var vimeo = document.getElementById('vimeoArea');
+        const vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'none';
 
-        var html5 = document.getElementById('HTML5Area');
+        const html5 = document.getElementById('HTML5Area');
         html5.style.display = 'none';
 
-        var you = document.getElementById('playerArea');
+        const you = document.getElementById('playerArea');
         you.style.display = 'block';
-        currPlayer = 0
+        currPlayer = 0;
 
         // The visual queue
 
-        document.getElementById('enqueueButton').style.display = 'inline-block'
-        document.getElementById('emptyButton').style.display = 'inline-block'
-        document.getElementById('nextButton').style.display = 'inline-block'
-        document.getElementById('loveButton').style.display = 'inline-block'
+        document.getElementById('enqueueButton').style.display = 'inline-block';
+        document.getElementById('emptyButton').style.display = 'inline-block';
+        document.getElementById('nextButton').style.display = 'inline-block';
+        document.getElementById('loveButton').style.display = 'inline-block';
         // document.getElementById('html5-input').style.display = 'none'
-        document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
+        document.getElementById('inputVideoId').placeholder = 'Video ID / URL';
         // document.getElementById('html5-message').style.display = 'none'
 
         console.log("Player state: " + playerStatus)
@@ -121,33 +123,33 @@ socket.on('createYoutube', function(data) {
 
 // Create Daily Motion Player
 socket.on('createDaily', function(data) {
-    console.log("i am in create daily")
+    console.log("i am in create daily");
     // player.destroy()
     if (currPlayer != 1) {
         //     var playerIn = document.getElementById("playerArea")
         //     console.log(playerIn.innerHTML)
         //     playerIn.innerHTML = "<iframe id=\"player-daily\" frameborder=\"0\" width=\"640\" height=\"360\"src=\"//www.dailymotion.com/embed/video/x26m1j4\"allowfullscreen allow=\"autoplay\"></iframe>"
 
-        var you = document.getElementById('playerArea');
+        const you = document.getElementById('playerArea');
         you.style.display = 'none';
 
-        var vimeo = document.getElementById('vimeoArea');
+        const vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'none';
 
-        var html5 = document.getElementById('HTML5Area');
+        const html5 = document.getElementById('HTML5Area');
         html5.style.display = 'none';
 
-        var daily = document.getElementById('dailyArea');
+        const daily = document.getElementById('dailyArea');
         daily.style.display = 'block';
-        currPlayer = 1
+        currPlayer = 1;
 
         // disable for dm/vimeo
-        document.getElementById('enqueueButton').style.display = 'none'
-        document.getElementById('emptyButton').style.display = 'none'
-        document.getElementById('nextButton').style.display = 'none'
-        document.getElementById('loveButton').style.display = 'none'
+        document.getElementById('enqueueButton').style.display = 'none';
+        document.getElementById('emptyButton').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('loveButton').style.display = 'none';
         // document.getElementById('html5-input').style.display = 'none'
-        document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
+        document.getElementById('inputVideoId').placeholder = 'Video ID / URL';
         // document.getElementById('html5-message').style.display = 'none'
 
         // Special call to pause youtube player
@@ -163,26 +165,26 @@ socket.on('createVimeo', function(data) {
         //     console.log(playerIn.innerHTML)
         //     playerIn.innerHTML = "<iframe id=\"player-daily\" frameborder=\"0\" width=\"640\" height=\"360\"src=\"//www.dailymotion.com/embed/video/x26m1j4\"allowfullscreen allow=\"autoplay\"></iframe>"
 
-        var you = document.getElementById('playerArea');
+        const you = document.getElementById('playerArea');
         you.style.display = 'none';
 
-        var daily = document.getElementById('dailyArea');
+        const daily = document.getElementById('dailyArea');
         daily.style.display = 'none';
 
-        var html5 = document.getElementById('HTML5Area');
+        const html5 = document.getElementById('HTML5Area');
         html5.style.display = 'none';
 
-        var vimeo = document.getElementById('vimeoArea');
+        const vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'block';
-        currPlayer = 2
+        currPlayer = 2;
 
         // disable for dm/vimeo
-        document.getElementById('enqueueButton').style.display = 'none'
-        document.getElementById('emptyButton').style.display = 'none'
-        document.getElementById('nextButton').style.display = 'none'
-        document.getElementById('loveButton').style.display = 'none'
+        document.getElementById('enqueueButton').style.display = 'none';
+        document.getElementById('emptyButton').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('loveButton').style.display = 'none';
         // document.getElementById('html5-input').style.display = 'none'
-        document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
+        document.getElementById('inputVideoId').placeholder = 'Video ID / URL';
         // document.getElementById('html5-message').style.display = 'none'
 
         // Special call to pause youtube player
@@ -209,10 +211,10 @@ socket.on('createHTML5', function(data) {
         currPlayer = 3
 
 
-        document.getElementById('enqueueButton').style.display = 'none'
-        document.getElementById('emptyButton').style.display = 'none'
-        document.getElementById('nextButton').style.display = 'none'
-        document.getElementById('loveButton').style.display = 'none'
+        document.getElementById('enqueueButton').style.display = 'none';
+        document.getElementById('emptyButton').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'none';
+        document.getElementById('loveButton').style.display = 'none';
         // document.getElementById('html5-input').style.display = 'block'
         document.getElementById('inputVideoId').placeholder = 'Direct mp4/webm URL'
         // document.getElementById('html5-message').style.display = 'block'
