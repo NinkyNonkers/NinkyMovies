@@ -168,24 +168,25 @@ io.sockets.on('connection', function(socket) {
         }
 
         // Actually join the room
-        console.log(socket.username + " connected to room-" + socket.roomnum)
+        console.log(socket.username + " connected to room-" + socket.roomnum);
         socket.join("room-" + socket.roomnum);
 
         // Sets the default values when first initializing
         if (init) {
+            const joinedRoom =  io.sockets.adapter.rooms['room-' + socket.roomnum];
             // Sets the host
-            room.host = host;
+            joinedRoom.host = host;
             // Default Player
-            room.currPlayer = 0;
+            joinedRoom.currPlayer = 0;
             // Default video
-            room.currVideo = {
+            joinedRoom.currVideo = {
                 yt: 'M7lc1UVf-VE',
                 dm: 'x26m1j4',
                 vimeo: '76979871',
                 html5: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
             };
             // Previous Video
-            room.prevVideo = {
+            joinedRoom.prevVideo = {
                 yt: {
                     id: 'M7lc1UVf-VE',
                     time: 0
@@ -204,11 +205,11 @@ io.sockets.on('connection', function(socket) {
                 }
             };
             // Host username
-            room.hostName = socket.username;
+            joinedRoom.hostName = socket.username;
             // Keep list of online users
-            room.users = [socket.username];
+            joinedRoom.users = [socket.username];
             // Set an empty queue
-            room.queue = {
+            joinedRoom.queue = {
                 yt: [],
                 dm: [],
                 vimeo: [],
