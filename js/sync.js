@@ -1,9 +1,9 @@
 // Calls the play video function on the server
-function playVideo(roomnum) {
+function playVideo(rm) {
     // dailyPlayer.play();
     //vimeoPlayer.play()
     socket.emit('play video', {
-        room: roomnum
+        room: rm
     });
 
     // Doesn't work well unless called in server

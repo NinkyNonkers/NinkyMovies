@@ -111,17 +111,16 @@
             <h2> Join a Room! </h2>
             <form id="userForm">
                 <div class="form-group">
-                    <p style="color:red; margin-bottom: 0px" id="missinginfo"></p>
+                    <p style="color:red; margin-bottom: 0" id="missinginfo"></p>
                     <label>Enter Name</label>
                     <input class="form-control" id="username" />
                     <br />
-                    <p style="color:red; margin-bottom: 0px" id="missinginfo2"></p>
+                    <p style="color:red; margin-bottom: 0" id="missinginfo2"></p>
                     <label>Enter Room ID (Default 1)</label>
                     <button type="button" style="margin-top: 2px; margin-bottom: 2px" onClick="getMainRoom()"  class="btn btn-primary btn-dark-new">Find current room</button>
                     <br/>
                     <input class="form-control" id="roomnum" />
                     <br/>
-
                     <input style="margin-top: 10px;" type="submit" class="btn btn-primary btn-dark-new" value="Enter" />
                     <img src="img/ninky.svg" alt="">
                     <hr style="height:65pt; visibility:hidden;" />
@@ -134,7 +133,7 @@
 
     <div id="roomArea">
         <!-- Heading Row -->
-        <div class="row my-4" style="margin-top: 0px !important;">
+        <div class="row my-4" style="margin-top: 0 !important;">
             <div class="col-lg-7">
 
                 <div class="nonmobile-hide"><b>Note: </b>Only the host can control the video using the native video player controls </div>
@@ -244,7 +243,7 @@
                 <!-- <div class="col-md-4"> -->
                 <!-- <div id="onlineArea" class="row"> -->
                 <h5 class="right-header">Online Users</h5>
-                <hr style="height:0pt; visibility:hidden;" />
+                <hr style="height:0; visibility:hidden;" />
 
                 <!-- <br/> -->
                 <div class="col-md-13">
@@ -325,27 +324,27 @@
 </footer>
 
 <script>
-    var socket = io.connect();
-    var roomnum = 1
-    var id = "M7lc1UVf-VE"
-    var username = ""
+    const socket = io.connect();
+    let roomnum = 1;
+    let id = "M7lc1UVf-VE";
+    let username = "";
     // Don't allow trailing or leading whitespace!
-    var nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
+    const nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
 
     // Chat stuff
     $(function() {
-        var $messageForm = $('#messageForm');
-        var $message = $('#message');
-        var $chat = $('#chat');
-        var $roomArea = $('#roomArea');
-        var $userFormArea = $('#userFormArea');
-        var $userForm = $('#userForm');
-        var $users = $('#users');
-        var $username = $('#username');
-        var $roomnum = $('#roomnum');
+        const $messageForm = $('#messageForm');
+        const $message = $('#message');
+        const $chat = $('#chat');
+        const $roomArea = $('#roomArea');
+        const $userFormArea = $('#userFormArea');
+        const $userForm = $('#userForm');
+        const $users = $('#users');
+        const $username = $('#username');
+        const $roomnum = $('#roomnum');
 
-        var $roomBtn = $('#roombutton')
-        var $vidlist = $('#vidlist');
+        const $roomBtn = $('#roombutton');
+        const $vidlist = $('#vidlist');
 
         //   function send_message() {
         //       socket.emit('send message', $message.val());
@@ -369,17 +368,17 @@
         });
 
         socket.on('new message', function(data) {
-            var last_div = $('.chat > div:last')[0]
+            var last_div = $('.chat > div:last')[0];
 
             // This checks for the last user
             // If you are the last user, attach the message instead of creating a new div
             if (last_div !== undefined) {
-                var myRegex = /.*<strong>(.+)<\/strong>.*/g
-                var match = myRegex.exec(last_div.innerHTML)
+                var myRegex = /.*<strong>(.+)<\/strong>.*/g;
+                var match = myRegex.exec(last_div.innerHTML);
                 console.log(last_div.innerHTML)
-                var last_user = ""
+                var last_user = "";
                 if (match != null) {
-                    console.log("found the user!" + match[1])
+                    console.log("found the user!" + match[1]);
                     last_user = match[1]
                 }
             }
@@ -399,6 +398,7 @@
 
         // Submit user form
         $userForm.submit(function(e) {
+            let noname;
             e.preventDefault();
             // console.log("Submitted");
             // New User
@@ -408,32 +408,32 @@
 
             // If name not entered
             if ($username.val() == "") {
-                console.log("ENTER A NAME")
-                var noname = document.getElementById('missinginfo')
+                console.log("ENTER A NAME");
+                noname = document.getElementById('missinginfo');
                 noname.innerHTML = "Surely you have a name right? Enter it below!"
             }
             // If name is too long
             else if ($username.val().length > 30) {
-                console.log("NAME IS TOO LONG")
-                var noname = document.getElementById('missinginfo')
+                console.log("NAME IS TOO LONG");
+                noname = document.getElementById('missinginfo');
                 noname.innerHTML = "Your name can't possibly be over 30 characters!"
             }
             // If roomnate
             else if ($roomnum.val().length > 50) {
-                console.log("ROOM NAME IS TOO LONG")
-                var noname = document.getElementById('missinginfo')
+                console.log("ROOM NAME IS TOO LONG");
+                noname = document.getElementById('missinginfo');
                 noname.innerHTML = "How are you going to remember a room code that has more than 50 characters?"
             }
                 // If Room contains symbols
             // Can only be reached if the user decided to be sneaky and paste them!
             else if (!nosymbols.test($roomnum.val())) {
-                console.log("ENTER A PROPER ROOMNUMBER")
-                var noname = document.getElementById('missinginfo')
-                noname.innerHTML = ""
-                var noname2 = document.getElementById('missinginfo2')
+                console.log("ENTER A PROPER ROOMNUMBER");
+                noname = document.getElementById('missinginfo');
+                noname.innerHTML = "";
+                const noname2 = document.getElementById('missinginfo2');
                 noname2.innerHTML = "Please enter a room ID without symbols or leading/trailing whitespace!"
             } else {
-                username = $username.val()
+                username = $username.val();
                 socket.emit('new user', $username.val(), function(data) {
                     if (data) {
                         $userFormArea.hide();
@@ -463,7 +463,7 @@
                 socket.emit('new room', $roomnum.val(), function(data) {
                     // This should only call back if the client is the host
                     if (data) {
-                        console.log("Host is syncing the new socket!")
+                        console.log("Host is syncing the new socket!");
                         syncVideo(roomnum)
                     }
                 });
@@ -473,7 +473,7 @@
         });
 
         socket.on('get users', function(data) {
-            var html = '';
+            let html = '';
             for (i = 0; i < data.length; i++) {
                 html += '<li style="padding-right: 10em;" class="list-group-item chat-users">' + data[i] + '</li>';
                 // html += '<div class="well well-sm message-well">' + data[i] + '</div>';
@@ -486,9 +486,9 @@
         // Updates the queue
         // Parameters - vidlist, currPlayer, videoId
         socket.on('get vidlist', function(data) {
-            console.log("i am updating the queue")
-            var yt = data.vidlist.yt
-            var html = ''
+            console.log("i am updating the queue");
+            const yt = data.vidlist.yt;
+            let html = '';
             if (yt.length > 0) {
                 for (i = 0; i < yt.length; i++) {
                     html += '<li class="vid-item"><div class="thumb"><a href="javascript: removeAt(' + i + ')" class="ghost-button-full-color"><i class="far fa-times-circle"></i></a><a href="javascript: playAt(' + i +
@@ -506,8 +506,8 @@
         $('#roomnum').on('keypress', function(event) {
             var nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
             var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            console.log(key)
-            console.log(event.keyCode)
+            console.log(key);
+            console.log(event.keyCode);
             // Allow enters and spaces to be used still
             if ($roomnum.val().length > 50 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
                 event.preventDefault();
@@ -539,7 +539,7 @@
         socket.emit('play at', {
             idx: idx
         }, function(data) {
-            var videoId = data.videoId
+            var videoId = data.videoId;
 
             // Change the video
             socket.emit('change video', {
@@ -590,7 +590,7 @@
     socket.on('set id', function(data) {
         // Ensure no valid id too
         if (data.id != "" && nosymbols.test(data.id)) {
-            document.getElementById('roomnum').value = data.id
+            document.getElementById('roomnum').value = data.id;
             // Probably should not force it to be readonly
             // document.getElementById('roomnum').readOnly = true
             console.log("You are joining room: " + data.id)
@@ -603,7 +603,7 @@
     function copyInvite() {
         /* Get the text field */
         var copyText = document.getElementById("inv_input");
-        console.log(copyText)
+        console.log(copyText);
         /* Select the text field */
         copyText.select();
         /* Copy the text inside the text field */
