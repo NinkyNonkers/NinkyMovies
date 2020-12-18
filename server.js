@@ -852,7 +852,7 @@ io.sockets.on('connection', function(socket) {
 
     // Get host data
     socket.on('get host data', function(data) {
-        const room = io.sockets.adapter.rooms['room-' + roomnum];
+        const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
         if (room !== undefined) {
             const roomnum = data.room;
             const host = room.host;
