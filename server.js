@@ -216,16 +216,16 @@ io.sockets.on('connection', function(socket) {
                 html5: []
             }
         }
+        const aRoom = io.sockets.adapter.rooms['room-' + socket.roomnum];
 
         // Set Host label
         io.sockets.in("room-" + socket.roomnum).emit('changeHostLabel', {
-            username: room.hostName
+            username: aRoom.hostName
         });
 
         // Set Queue
         updateQueueVideos();
 
-        const aRoom = io.sockets.adapter.rooms['room-' + socket.roomnum];
 
 
 
