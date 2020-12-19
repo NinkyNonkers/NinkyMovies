@@ -132,14 +132,14 @@ io.sockets.on('connection', function(socket) {
         socket.roomnum = data;
 
         // This stores the room data for all sockets
-        userrooms[socket.id] = data;
+        userrooms[socket.id] = data
 
         let host = null;
         let init = false;
 
         // Sets default room value to 1
         if (socket.roomnum == null || socket.roomnum == "") {
-            socket.roomnum = '1';
+            socket.roomnum = '1'
             userrooms[socket.id] = '1'
         }
 
@@ -153,7 +153,7 @@ io.sockets.on('connection', function(socket) {
 
         const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
 
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] === undefined) {
+        if (room === undefined) {
             socket.send(socket.id);
             // Sets the first socket to join as the host
             host = socket.id;
