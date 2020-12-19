@@ -535,10 +535,6 @@
         })
     }
 
-    function redoneChangedPlayer(roomnum, playerId) {
-        changePlayer(roomnum, playerId)
-    }
-
     function playAt(idx) {
         socket.emit('play at', {
             idx: idx
