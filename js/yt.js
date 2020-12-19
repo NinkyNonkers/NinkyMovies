@@ -64,7 +64,7 @@ function onPlayerStateChange(event) {
             }
             break;
         case 1:
-            console.log(host);
+            console.log(host)
             if (host) {
                 playOther(roomnum)
             } else {
@@ -77,7 +77,7 @@ function onPlayerStateChange(event) {
             }
             break;
         case 3:
-            const currTime = player.getCurrentTime();
+            var currTime = player.getCurrentTime();
             if (host) {
                 seekOther(roomnum, currTime)
                 // syncVideo(roomnum)
@@ -96,8 +96,8 @@ function play() {
 }
 
 socket.on('get title', function(data, callback) {
-    const videoId = data.videoId;
-    const user = data.user;
+    var videoId = data.videoId
+    var user = data.user
 
     $.get(
         "https://www.googleapis.com/youtube/v3/videos", {
@@ -111,7 +111,7 @@ socket.on('get title', function(data, callback) {
                 alert: 0,
                 user: user,
                 title: data.items[0].snippet.title
-            });
+            })
             // Does a callback and returns title
             callback({
                 videoId: videoId,
@@ -119,11 +119,11 @@ socket.on('get title', function(data, callback) {
             })
         }
     )
-});
+})
 
 socket.on('get playlist videos', function(data) {
-    const playlistId = data.playlistId;
-    const user = data.user;
+    var playlistId = data.playlistId
+    var user = data.user
 
     $.get(
         "https://www.googleapis.com/youtube/v3/playlistItems", {
@@ -139,4 +139,4 @@ socket.on('get playlist videos', function(data) {
           }
         }
     )
-});
+})

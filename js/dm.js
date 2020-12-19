@@ -1,4 +1,4 @@
-var dailyPlayer;
+var dailyPlayer
 
 setTimeout(function() {
     DM.init({

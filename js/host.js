@@ -1,23 +1,23 @@
 //-----------------------------------------------------------------------------
-// Host stuff;
-let host = false;
-let notifyfix = false;
+// Host stuff
+var host = false
+var notifyfix = false
 
 // Sets the host for the room
 socket.on('setHost', function(data) {
-    notifyfix = true;
-    console.log("You are the new host!");
+    notifyfix = true
+    console.log("You are the new host!")
     host = true
 });
 // Unsets the host
 socket.on('unSetHost', function(data) {
-    console.log("Unsetting host");
+    console.log("Unsetting host")
     host = false
 });
 
 // This grabs data and calls sync FROM the host
 socket.on('getData', function(data) {
-    console.log("Hi im the host, you called?");
+    console.log("Hi im the host, you called?")
     socket.emit('sync host', {});
 });
 // Calls sync
@@ -39,9 +39,9 @@ function changeHost(roomnum) {
 }
 // Change the host label
 socket.on('changeHostLabel', function(data) {
-    const user = data.username;
+    var user = data.username
     // Change label
-    const hostlabel = document.getElementById('hostlabel');
+    var hostlabel = document.getElementById('hostlabel')
     hostlabel.innerHTML = "<i class=\"fas fa-user\"></i> Current Host: " + user
 
     // Generate notify alert
@@ -50,12 +50,12 @@ socket.on('changeHostLabel', function(data) {
     //     alert: 1,
     //     user: user
     // })
-});
+})
 
 // When the host leaves, the server calls this function on the next socket
 socket.on('autoHost', function(data) {
     changeHost(data.roomnum)
-});
+})
 
 // If user gets disconnected from the host, give warning!
 function disconnected() {
@@ -77,27 +77,27 @@ function getHostData(roomnum) {
 // Uses the host data to compare
 socket.on('compareHost', function(data) {
     // The host data
-    const hostTime = data.currTime;
-    const hostState = data.state;
+    var hostTime = data.currTime
+    var hostState = data.state
 
     switch (currPlayer) {
         case 0:
-            var currTime = player.getCurrentTime();
-            var state = playerStatus;
+            var currTime = player.getCurrentTime()
+            var state = playerStatus
 
             // If out of sync
-            console.log("curr: " + currTime + " Host: " + hostTime);
+            console.log("curr: " + currTime + " Host: " + hostTime)
             if (currTime < hostTime - 2 || currTime > hostTime + 2) {
                 disconnected()
             }
 
             break;
         case 1:
-            var currTime = dailyPlayer.currentTime;
+            var currTime = dailyPlayer.currentTime
             var state = dailyPlayer.paused;
 
             // If out of sync
-            console.log("curr: " + currTime + " Host: " + hostTime);
+            console.log("curr: " + currTime + " Host: " + hostTime)
             if (currTime < hostTime - 2 || currTime > hostTime + 2) {
                 disconnected()
             }
@@ -106,12 +106,12 @@ socket.on('compareHost', function(data) {
         case 2:
             vimeoPlayer.getCurrentTime().then(function(seconds) {
                 // seconds = the current playback position
-                var currTime = seconds;
+                var currTime = seconds
 
                 // Need to nest async functions
                 vimeoPlayer.getPaused().then(function(paused) {
                     // paused = whether or not the player is paused
-                    var state = paused;
+                    var state = paused
 
                     // If out of sync
                     console.log("curr: " + currTime + " Host: " + hostTime)
@@ -131,11 +131,11 @@ socket.on('compareHost', function(data) {
 
             break;
         case 3:
-            var currTime = media.currentTime;
-            var state = media.paused;
+            var currTime = media.currentTime
+            var state = media.paused
 
             // If out of sync
-            console.log("curr: " + currTime + " Host: " + hostTime);
+            console.log("curr: " + currTime + " Host: " + hostTime)
             if (currTime < hostTime - 2 || currTime > hostTime + 2) {
                 disconnected()
             }
