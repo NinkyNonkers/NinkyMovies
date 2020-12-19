@@ -1,4 +1,4 @@
-var currPlayer = 3
+var currPlayer = 0
 
 // 0 - YouTube
 // 1 - Daily Motion
