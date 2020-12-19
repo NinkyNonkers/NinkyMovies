@@ -11,7 +11,7 @@ function playVideo(rm) {
 }
 
 // Calls the sync function on the server
-function syncVideo(rm) {
+function syncVideo(roomnum) {
     var currTime = 0;
     var state;
     var videoId = id;
@@ -41,7 +41,7 @@ function syncVideo(rm) {
                     state = paused;
                     console.log("state=" + state);
                     socket.emit('sync video', {
-                        room: rm,
+                        room: roomnum,
                         time: currTime,
                         state: state,
                         videoId: videoId
@@ -217,25 +217,25 @@ function playlistParse(videoId) {
     return "invalid"
 }
 
-function enqueueVideoParse(rm) {
+function enqueueVideoParse(roomnum) {
   var videoId = document.getElementById("inputVideoId").value;
-  enqueueVideo(rm, videoId)
+  enqueueVideo(roomnum, videoId)
 }
 
 // QueueVideo
-function enqueueVideo(rm, rawId) {
+function enqueueVideo(roomnum, rawId) {
     videoId = idParse(rawId)
     playlistId = playlistParse(rawId);
 
     if (playlistId != "invalid") {
       socket.emit('enqueue playlist', {
-          room: rm,
+          room: roomnum,
           playlistId: playlistId,
           user: username
       })
     } else if (videoId != "invalid") {
         socket.emit('enqueue video', {
-            room: rm,
+            room: roomnum,
             videoId: videoId,
             user: username
         })
@@ -246,11 +246,11 @@ function enqueueVideo(rm, rawId) {
 }
 
 // Empty Queue
-function emptyQueue(rm) {
+function emptyQueue(roomnum) {
 
     // Empty the queue
     socket.emit('empty queue', {
-        room: rm
+        room: roomnum
     });
     // Notify
     socket.emit('notify alerts', {
@@ -259,13 +259,13 @@ function emptyQueue(rm) {
     })
 }
 
-function changeVideoParse(rm) {
+function changeVideoParse(roomnum) {
   var videoId = document.getElementById("inputVideoId").value;
-  changeVideo(rm, videoId)
+  changeVideo(roomnum, videoId)
 }
 
 // Change playVideo
-function changeVideo(rm, rawId) {
+function changeVideo(roomnum, rawId) {
     var videoId = idParse(rawId);
 
     if (videoId != "invalid") {
@@ -273,7 +273,7 @@ function changeVideo(rm, rawId) {
         console.log("The time is this man: " + time);
         // Actually change the video!
         socket.emit('change video', {
-            room: rm,
+            room: roomnum,
             videoId: videoId,
             time: time
         });
@@ -285,27 +285,27 @@ function changeVideo(rm, rawId) {
 }
 
 // Does this even work?
-function changeVideoId(rm, id) {
+function changeVideoId(roomnum, id) {
     //var videoId = 'sjk7DiH0JhQ';
     document.getElementById("inputVideoId").innerHTML = id;
     socket.emit('change video', {
-        room: rm,
+        room: roomnum,
         videoId: id
     });
     //player.loadVideoById(videoId);
 }
 
 // Change to previous video
-function prevVideo(rm) {
+function prevVideo(roomnum) {
     // This gets the previous video
     socket.emit('change previous video', {
-        room: rm
+        room: roomnum
     }, function(data) {
         // Actually change the video!
         var prevTime = data.time;
         var time = getTime();
         socket.emit('change video', {
-            room: rm,
+            room: roomnum,
             videoId: data.videoId,
             time: time,
             prev: true
@@ -318,7 +318,7 @@ function prevVideo(rm) {
     });
 }
 
-function loveLive(rm) {
+function loveLive(roomnum) {
     var time = getTime();
     // love live, love4eva, why, gee, what is love, stay, starlight, bad boy
     // likey, spring love, palette, roller coaster, DNA, I, peekaboo, wee woo
@@ -354,7 +354,7 @@ function loveLive(rm) {
     var random = Math.floor(Math.random() * (69));
     // Only for YouTube testing
     socket.emit('change video', {
-        room: rm,
+        room: roomnum,
         videoId: video_roulette[random],
         time: time
     })
@@ -378,10 +378,10 @@ socket.on('getData', function(data) {
     //socket.emit('change video', { time: time });
 });
 
-function changePlayer(rm, playerId) {
+function changePlayer(roomnum, playerId) {
     if (playerId != currPlayer) {
         socket.emit('change player', {
-            room: rm,
+            room: roomnum,
             playerId: playerId
         });
     }
@@ -403,10 +403,7 @@ function changeSinglePlayer(playerId) {
 
 //------------------------------//
 // Client Synchronization Stuff //
-//------------------------------
-//
-
-
+//------------------------------//
 
 let roomnum = 1;
 let id = "M7lc1UVf-VE";
