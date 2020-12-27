@@ -830,7 +830,7 @@ io.sockets.on('connection', function(socket) {
 
     // Get host data
     socket.on('get host data', function(data) {
-        if (roomnum == undefined)
+        if (roomnum === null || roomnum === undefined)
             return;
         const room = io.sockets.adapter.rooms['room-' + roomnum];
         if (room !== undefined) {
