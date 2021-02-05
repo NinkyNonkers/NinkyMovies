@@ -97,9 +97,8 @@ socket.on('createYoutube', function(data) {
 
         // The visual queue
 
-        document.getElementById('enqueueButton').style.display = 'inline-block'
+
         document.getElementById('emptyButton').style.display = 'inline-block'
-        document.getElementById('nextButton').style.display = 'inline-block'
         document.getElementById('loveButton').style.display = 'inline-block'
         // document.getElementById('html5-input').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
@@ -142,9 +141,8 @@ socket.on('createDaily', function(data) {
         currPlayer = 1
 
         // disable for dm/vimeo
-        document.getElementById('enqueueButton').style.display = 'none'
+
         document.getElementById('emptyButton').style.display = 'none'
-        document.getElementById('nextButton').style.display = 'none'
         document.getElementById('loveButton').style.display = 'none'
         // document.getElementById('html5-input').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
@@ -177,9 +175,7 @@ socket.on('createVimeo', function(data) {
         currPlayer = 2
 
         // disable for dm/vimeo
-        document.getElementById('enqueueButton').style.display = 'none'
         document.getElementById('emptyButton').style.display = 'none'
-        document.getElementById('nextButton').style.display = 'none'
         document.getElementById('loveButton').style.display = 'none'
         // document.getElementById('html5-input').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
@@ -209,7 +205,7 @@ socket.on('createHTML5', function(data) {
         currPlayer = 3
 
 
-        document.getElementById('enqueueButton').style.display = 'none'
+
         document.getElementById('emptyButton').style.display = 'none'
         document.getElementById('nextButton').style.display = 'none'
         document.getElementById('loveButton').style.display = 'none'
