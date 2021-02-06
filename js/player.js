@@ -207,7 +207,6 @@ socket.on('createHTML5', function(data) {
 
 
         document.getElementById('emptyButton').style.display = 'none'
-        document.getElementById('nextButton').style.display = 'none'
         document.getElementById('loveButton').style.display = 'none'
         // document.getElementById('html5-input').style.display = 'block'
         document.getElementById('inputVideoId').placeholder = 'Direct mp4/webm URL'
