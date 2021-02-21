@@ -436,7 +436,7 @@
                         // initStuff.innerHTML = ""
 
                         // This sets the room number on the client
-                        if ($roomnum.val() != "") {
+                        if ($roomnum.val() !== "") {
                             roomnum = $roomnum.val()
                         }
 
@@ -588,6 +588,7 @@
         socket.emit('reset url')
     });
 
+
     function copyInvite() {
         /* Get the text field */
         var copyText = document.getElementById("inv_input");
@@ -615,6 +616,55 @@
     function getMainRoom() {
         document.getElementById('roomnum').value = "main"
     }
+
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get("room");
+        if (roomId === undefined)
+            return;
+        let userName = urlParams.get("username");
+        if (userName === undefined)
+            userName = "discordUser!";
+
+
+        const $roomArea = $('#roomArea');
+        const $userFormArea = $('#userFormArea');
+        const $roomnum = $('#roomnum');
+
+
+        socket.emit('new user', userName, function(data) {
+            if (data) {
+                $userFormArea.hide();
+                $roomArea.show();
+
+                // Move footer to correct position
+                document.getElementById('footer').style.position = 'relative';
+
+                // No longer using initarea
+                // var initStuff = document.getElementById("initArea")
+                // initStuff.innerHTML = ""
+
+                // This sets the room number on the client
+                if ($roomnum.val() !== "") {
+                    roomnum = $roomnum.val()
+                }
+
+                history.pushState('', 'Vynchronize', roomnum);
+
+            }
+        });
+        // Join room
+        socket.emit('new room', $roomnum.val(), function(data) {
+            // This should only call back if the client is the host
+            if (data) {
+                console.log("Host is syncing the new socket!")
+                syncVideo(roomnum)
+            }
+        });
+
+    });
+
+
 </script>
 
 <!-- Bootstrap core JavaScript -->
