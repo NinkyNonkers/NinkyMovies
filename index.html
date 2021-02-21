@@ -620,11 +620,11 @@
     $(document).ready(function() {
         const urlParams = new URLSearchParams(window.location.search);
         const roomId = urlParams.get("room");
-        if (roomId === undefined)
+        if (roomId === undefined || roomId === "")
             return;
         let userName = urlParams.get("username");
-        if (userName === undefined)
-            userName = "discordUser!";
+        if (userName === undefined || userName === "")
+            userName = "random discord user!";
 
 
         const $roomArea = $('#roomArea');
@@ -650,7 +650,6 @@
                 }
 
                 history.pushState('', 'Vynchronize', roomnum);
-
             }
         });
         // Join room
