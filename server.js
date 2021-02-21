@@ -757,10 +757,9 @@ io.sockets.on('connection', function(socket) {
     socket.on('new user', function(data, callback) {
         callback(true);
         // Data is username
-        if (data === undefined)
+        if (data === undefined || data == null)
             return;
-        var encodedUser = data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        socket.username = encodedUser;
+        socket.username = data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         //console.log(socket.username)
         users.push(socket.username);
         updateUsernames();

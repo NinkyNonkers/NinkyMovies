@@ -441,8 +441,6 @@
                         }
 
                         // Sets the invite link (roomnum)
-                        // document.getElementById('invite').innerHTML = "vynchronize.herokuapp.com/" + roomnum
-                        document.getElementById("inv_input").value = "vynchronize.herokuapp.com/" + roomnum
                         history.pushState('', 'Vynchronize', roomnum);
 
                     }
@@ -620,10 +618,10 @@
     $(document).ready(function() {
         const urlParams = new URLSearchParams(window.location.search);
         const roomId = urlParams.get("room");
-        if (roomId === undefined || roomId === "")
+        if (roomId === undefined || roomId === "" || roomId == null)
             return;
         let userName = urlParams.get("username");
-        if (userName === undefined || userName === "")
+        if (userName === undefined || userName === "" || userName == null)
             userName = "random discord user!";
 
 
