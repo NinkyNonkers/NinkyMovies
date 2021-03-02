@@ -67,17 +67,19 @@ function changeVideoMode(newIndex) {
 // Load video
 function htmlLoadVideo(videoId) {
     console.log("changing video to: " + videoId);
+    const switchModeButton = document.getElementById("switchmode");
     if (isFolder(videoId)) {
         console.log("Video is a directory, going to prepare individual files!");
         videoModes[1] = videoId + "1.mp4";
         videoModes[2] = videoId + "2.mp4";
         videoModes[3] = videoId + "3.mp4";
         media.src = videoModes[currentMode];
-        const switchModeButton = document.getElementById("switchmode");
         if (switchModeButton !== undefined && switchModeButton != null)
             switchModeButton.style.display = "block";
         return;
     }
+    if (switchModeButton !== undefined && switchModeButton != null)
+        switchModeButton.style.display = "none";
     media.src = videoId
 }
 
