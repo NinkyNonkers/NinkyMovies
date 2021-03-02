@@ -1,4 +1,4 @@
-var currPlayer = 0
+let currPlayer = 0
 
 // 0 - YouTube
 // 1 - Daily Motion
@@ -7,39 +7,39 @@ var currPlayer = 0
 
 // Gets all the player data
 socket.on('getPlayerData', function(data) {
-    var roomnum = data.room
-    var caller = data.caller
+    const roomnum = data.room
+    const caller = data.caller
 
     switch (currPlayer) {
         case 0:
-            var currTime = player.getCurrentTime()
-            var state = playerStatus
+            const curreTime = player.getCurrentTime()
+            const st = playerStatus
             socket.emit('get host data', {
                 room: roomnum,
-                currTime: currTime,
-                state: state,
+                currTime: curreTime,
+                state: st,
                 caller: caller
             });
             break;
         case 1:
-            var currTime = dailyPlayer.currentTime
-            var state = dailyPlayer.paused;
+            const ct = dailyPlayer.currentTime
+            const s = dailyPlayer.paused;
             socket.emit('get host data', {
                 room: roomnum,
-                currTime: currTime,
-                state: state,
+                currTime: ct,
+                state: s,
                 caller: caller
             });
             break;
         case 2:
             vimeoPlayer.getCurrentTime().then(function(seconds) {
                 // seconds = the current playback position
-                var currTime = seconds
+                const currTime = seconds
 
                 // Need to nest async functions
                 vimeoPlayer.getPaused().then(function(paused) {
                     // paused = whether or not the player is paused
-                    var state = paused
+                    const state = paused
 
                     socket.emit('get host data', {
                         room: roomnum,
@@ -60,8 +60,8 @@ socket.on('getPlayerData', function(data) {
 
             break;
         case 3:
-            var currTime = media.currentTime
-            var state = media.paused
+            const currTime = media.currentTime
+            const state = media.paused
             socket.emit('get host data', {
                 room: roomnum,
                 currTime: currTime,
@@ -76,22 +76,22 @@ socket.on('getPlayerData', function(data) {
 
 // Create Youtube Player
 socket.on('createYoutube', function(data) {
-    if (currPlayer != 0) {
+    if (currPlayer !== 0) {
         // var playerIn = document.getElementById("playerArea")
         // console.log(playerIn.innerHTML)
         // playerIn.innerHTML = "<iframe id=\"player\"allowfullscreen=\"0\"width=\"640\" height=\"360\"src=\"https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1\"frameborder=\"0\"style=\"border: solid 4px #37474F\"></iframe>"
         // onYouTubeIframeAPIReady()
 
-        var daily = document.getElementById('dailyArea');
+        const daily = document.getElementById('dailyArea');
         daily.style.display = 'none';
 
-        var vimeo = document.getElementById('vimeoArea');
+        const vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'none';
 
-        var html5 = document.getElementById('HTML5Area');
+        const html5 = document.getElementById('HTML5Area');
         html5.style.display = 'none';
 
-        var you = document.getElementById('playerArea');
+        const you = document.getElementById('playerArea');
         you.style.display = 'block';
         currPlayer = 0
 
@@ -105,7 +105,7 @@ socket.on('createYoutube', function(data) {
 
         console.log("Player state: " + playerStatus)
         // If it is -1, there was an error and needs to resync to host
-        if (playerStatus == -1) {
+        if (playerStatus === -1) {
             socket.emit('get video', function(id) {
                 player.loadVideoById(id);
                 // Auto sync with host after 1000ms of changing video
@@ -121,21 +121,21 @@ socket.on('createYoutube', function(data) {
 socket.on('createDaily', function(data) {
     console.log("i am in create daily")
     // player.destroy()
-    if (currPlayer != 1) {
+    if (currPlayer !== 1) {
         //     var playerIn = document.getElementById("playerArea")
         //     console.log(playerIn.innerHTML)
         //     playerIn.innerHTML = "<iframe id=\"player-daily\" frameborder=\"0\" width=\"640\" height=\"360\"src=\"//www.dailymotion.com/embed/video/x26m1j4\"allowfullscreen allow=\"autoplay\"></iframe>"
 
-        var you = document.getElementById('playerArea');
+        const you = document.getElementById('playerArea');
         you.style.display = 'none';
 
-        var vimeo = document.getElementById('vimeoArea');
+        const vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'none';
 
-        var html5 = document.getElementById('HTML5Area');
+        const html5 = document.getElementById('HTML5Area');
         html5.style.display = 'none';
 
-        var daily = document.getElementById('dailyArea');
+        const daily = document.getElementById('dailyArea');
         daily.style.display = 'block';
         currPlayer = 1
 
