@@ -84,5 +84,5 @@ function htmlLoadVideo(videoId) {
 }
 
 function isFolder(videoId) {
-    return !videoId.contains(".mp4") && videoId[videoId.length - 1] === '/';
+    return videoId.indexOf(".mp4") === -1 && videoId[videoId.length - 1] === '/';
 }
