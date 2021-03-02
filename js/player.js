@@ -98,7 +98,6 @@ socket.on('createYoutube', function(data) {
         // The visual queue
 
 
-        document.getElementById('emptyButton').style.display = 'inline-block'
         document.getElementById('loveButton').style.display = 'inline-block'
         // document.getElementById('html5-input').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
@@ -142,7 +141,6 @@ socket.on('createDaily', function(data) {
 
         // disable for dm/vimeo
 
-        document.getElementById('emptyButton').style.display = 'none'
         document.getElementById('loveButton').style.display = 'none'
         // document.getElementById('html5-input').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
@@ -175,7 +173,6 @@ socket.on('createVimeo', function(data) {
         currPlayer = 2
 
         // disable for dm/vimeo
-        document.getElementById('emptyButton').style.display = 'none'
         document.getElementById('loveButton').style.display = 'none'
         // document.getElementById('html5-input').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
@@ -206,7 +203,6 @@ socket.on('createHTML5', function(data) {
 
 
 
-        document.getElementById('emptyButton').style.display = 'none'
         document.getElementById('loveButton').style.display = 'none'
         // document.getElementById('html5-input').style.display = 'block'
         document.getElementById('inputVideoId').placeholder = 'Direct mp4/webm URL'
