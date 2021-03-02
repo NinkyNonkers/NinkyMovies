@@ -10,15 +10,18 @@
 //     }
 // }
 
-var media = document.querySelector('video');
+const media = document.querySelector('video');
 
 let currentMode = 1;
 
 let videoModes = {
-    1: null,
-    2: null,
-    3: null
+    1: "Pontipines",
+    2: "Tittifers",
+    3: "Og-pog",
+    4: "Hahoos"
 };
+
+let modeRootDir = undefined;
 
 // Event listeners
 media.addEventListener("play", function(e) {
@@ -50,7 +53,7 @@ function html5Play() {
 }
 
 function changeMode() {
-    if (currentMode >= 3)
+    if (currentMode >= 4)
         currentMode = 1;
     else
         currentMode++;
@@ -61,7 +64,10 @@ function changeMode() {
 function changeVideoMode(newIndex) {
     if (newIndex > videoModes.length - 1)
         return;
-    media.src = videoModes[newIndex];
+    const switchModeButton = document.getElementById("switchmode");
+    if (switchModeButton !== undefined && switchModeButton != null)
+        switchModeButton.innerText = videoModes[newIndex] + " mode";
+    media.src = videoId + videoModes[newIndex] + ".mp4";
 }
 
 // Load video
@@ -70,10 +76,8 @@ function htmlLoadVideo(videoId) {
     const switchModeButton = document.getElementById("switchmode");
     if (isFolder(videoId)) {
         console.log("Video is a directory, going to prepare individual files!");
-        videoModes[1] = videoId + "1.mp4";
-        videoModes[2] = videoId + "2.mp4";
-        videoModes[3] = videoId + "3.mp4";
-        media.src = videoModes[currentMode];
+        modeRootDir = videoId;
+        media.src = videoId + videoModes[currentMode] + ".mp4";
         if (switchModeButton !== undefined && switchModeButton != null)
             switchModeButton.style.display = "block";
         return;
