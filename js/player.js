@@ -154,7 +154,7 @@ socket.on('createDaily', function(data) {
 
 // Create Vimeo Player
 socket.on('createVimeo', function(data) {
-    if (currPlayer != 2) {
+    if (currPlayer !== 2) {
         //     var playerIn = document.getElementById("playerArea")
         //     console.log(playerIn.innerHTML)
         //     playerIn.innerHTML = "<iframe id=\"player-daily\" frameborder=\"0\" width=\"640\" height=\"360\"src=\"//www.dailymotion.com/embed/video/x26m1j4\"allowfullscreen allow=\"autoplay\"></iframe>"

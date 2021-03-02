@@ -21,6 +21,13 @@ let videoModes = {
     4: "Hahoos"
 };
 
+let videoModeDescriptions = {
+    1: "tiny",
+    2: "small",
+    3: "decent",
+    4: "thiccccc"
+}
+
 let modeRootDir = undefined;
 
 // Event listeners
@@ -66,7 +73,7 @@ function changeVideoMode(newIndex) {
         return;
     const switchModeButton = document.getElementById("switchmode");
     if (switchModeButton !== undefined && switchModeButton != null)
-        switchModeButton.innerText = videoModes[newIndex] + " mode";
+        switchModeButton.innerText = videoModes[newIndex] + " mode" + "(" + videoModeDescriptions[newIndex] + ")";
     media.src = modeRootDir + videoModes[newIndex] + ".mp4";
 }
 
