@@ -67,7 +67,7 @@ function changeVideoMode(newIndex) {
     const switchModeButton = document.getElementById("switchmode");
     if (switchModeButton !== undefined && switchModeButton != null)
         switchModeButton.innerText = videoModes[newIndex] + " mode";
-    media.src = videoId + videoModes[newIndex] + ".mp4";
+    media.src = modeRootDir + videoModes[newIndex] + ".mp4";
 }
 
 // Load video

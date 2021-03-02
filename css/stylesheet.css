@@ -11,3 +11,8 @@
 .charlie-gray {
 	background-color: #BBD0FF;
 }
+
+.sidenote {
+	margin-top: 15px;
+	font-style: italic;
+}
