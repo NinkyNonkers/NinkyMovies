@@ -12,9 +12,9 @@ function playVideo(roomnum) {
 
 // Calls the sync function on the server
 function syncVideo(roomnum) {
-    var currTime = 0
-    var state
-    var videoId = id
+    let currTime = 0
+    let state
+    let videoId = id
 
     // var syncText = document.getElementById("syncbutton")
     // console.log(syncText.innerHTML)
@@ -65,7 +65,7 @@ function syncVideo(roomnum) {
     }
 
     // Required due to vimeo asyncronous functionality
-    if (currPlayer != 2) {
+    if (currPlayer !== 2) {
         socket.emit('sync video', {
             room: roomnum,
             time: currTime,
@@ -97,7 +97,6 @@ function getTime() {
             break;
         case 3:
             return media.currentTime;
-            break;
         default:
             console.log("Error invalid player id")
     }
@@ -180,8 +179,7 @@ function idParse(videoId) {
                 videoId = "invalid"
                 break
             case 3:
-                return videoId
-                break
+                return videoId;
             default:
                 console.log("Error invalid videoId")
         }
@@ -196,16 +194,14 @@ function playlistParse(videoId) {
         // Do some string processing with regex
         switch (currPlayer) {
             case 0:
-                var myRegex = /.+&list=([A-Za-z0-9\-_]+)/g
-                var match = myRegex.exec(videoId)
+                const myRegex = /.+&list=([A-Za-z0-9\-_]+)/g
+                const match = myRegex.exec(videoId)
                 if (match != null) {
                     return match[1]
                 }
                 break;
-
             case 1:
                 break;
-
             case 2:
                 break;
             case 3:
@@ -218,7 +214,7 @@ function playlistParse(videoId) {
 }
 
 function enqueueVideoParse(roomnum) {
-  var videoId = document.getElementById("inputVideoId").value;
+  const videoId = document.getElementById("inputVideoId").value;
   enqueueVideo(roomnum, videoId)
 }
 
@@ -227,13 +223,13 @@ function enqueueVideo(roomnum, rawId) {
     videoId = idParse(rawId)
     playlistId = playlistParse(rawId)
 
-    if (playlistId != "invalid") {
+    if (playlistId !== "invalid") {
       socket.emit('enqueue playlist', {
           room: roomnum,
           playlistId: playlistId,
           user: username
       })
-    } else if (videoId != "invalid") {
+    } else if (videoId !== "invalid") {
         socket.emit('enqueue video', {
             room: roomnum,
             videoId: videoId,
@@ -260,16 +256,16 @@ function emptyQueue(roomnum) {
 }
 
 function changeVideoParse(roomnum) {
-  var videoId = document.getElementById("inputVideoId").value
+  const videoId = document.getElementById("inputVideoId").value
   changeVideo(roomnum, videoId)
 }
 
 // Change playVideo
 function changeVideo(roomnum, rawId) {
-    var videoId = idParse(rawId)
+    const videoId = idParse(rawId)
 
-    if (videoId != "invalid") {
-        var time = getTime()
+    if (videoId !== "invalid") {
+        const time = getTime()
         console.log("The time is this man: " + time)
         // Actually change the video!
         socket.emit('change video', {
@@ -302,8 +298,8 @@ function prevVideo(roomnum) {
         room: roomnum
     }, function(data) {
         // Actually change the video!
-        var prevTime = data.time
-        var time = getTime()
+        const prevTime = data.time
+        const time = getTime()
         socket.emit('change video', {
             room: roomnum,
             videoId: data.videoId,
@@ -319,7 +315,7 @@ function prevVideo(roomnum) {
 }
 
 function loveLive(roomnum) {
-    var time = getTime()
+    const time = getTime()
     // love live, love4eva, why, gee, what is love, stay, starlight, bad boy
     // likey, spring love, palette, roller coaster, DNA, I, peekaboo, wee woo
     // rookie, russian roulette, i want you back, TT, whistle, ddu du ddu du, turtle, 24/7
@@ -329,7 +325,7 @@ function loveLive(roomnum) {
     // love scenario, dance the night away, solo, some, yes or yes, when the wind blows, hi high, don't forget,
     // Uh Oh!, Workaholic, 25, through the night, four seasons, bom, runaway, don't
     // psycho, fancy, feel special, leave (park bo young), blueming,
-    var video_roulette = [
+    const video_roulette = [
         '97uviVyw0_o', 'tIWpr3tHzII', 'WkdtmT8A2iY', 'U7mPqycQ0tQ',
         'i0p1bmr0EmE', 'FzVR_fymZw4', 'eNmL4JiGxZQ', 'J_CFBjAyPWE',
         'V2hlQkVJZhE', 'erErBFKPbMY', 'd9IxdwEFk1c', '900X9fDFLc4',
@@ -351,7 +347,7 @@ function loveLive(roomnum) {
     ]
 
     // Random number between 0 and 68 inclusive
-    var random = Math.floor(Math.random() * (69))
+    const random = Math.floor(Math.random() * (69))
     // Only for YouTube testing
     socket.emit('change video', {
         room: roomnum,
@@ -379,7 +375,7 @@ socket.on('getData', function(data) {
 });
 
 function changePlayer(roomnum, playerId) {
-    if (playerId != currPlayer) {
+    if (playerId !== currPlayer) {
         socket.emit('change player', {
             room: roomnum,
             playerId: playerId
@@ -390,7 +386,7 @@ function changePlayer(roomnum, playerId) {
 // Change a single player
 function changeSinglePlayer(playerId) {
     return new Promise((resolve, reject) => {
-        if (playerId != currPlayer) {
+        if (playerId !== currPlayer) {
             socket.emit('change single player', {
                 playerId: playerId
             });
@@ -405,8 +401,8 @@ function changeSinglePlayer(playerId) {
 // Client Synchronization Stuff //
 //------------------------------//
 
-var roomnum = 1
-var id = "M7lc1UVf-VE"
+let roomnum = 1
+let id = "M7lc1UVf-VE"
 
 // Calls the play/pause function
 socket.on('playVideoClient', function(data) {
@@ -450,10 +446,10 @@ socket.on('pauseVideoClient', function(data) {
 
 // Syncs the video client
 socket.on('syncVideoClient', function(data) {
-    var currTime = data.time
-    var state = data.state
-    var videoId = data.videoId
-    var playerId = data.playerId
+    const currTime = data.time
+    const state = data.state
+    const videoId = data.videoId
+    const playerId = data.playerId
     console.log("current time is: " + currTime)
     console.log("curr vid id: " + id + " " + videoId)
     console.log("state" + state)
@@ -473,23 +469,20 @@ socket.on('syncVideoClient', function(data) {
     // currPlayer = playerId
 
     // Change the player if necessary
-    if (currPlayer != playerId) {
+    if (currPlayer !== playerId) {
         // This changes the player then recalls sync afterwards on the host
         changeSinglePlayer(playerId)
     } else {
         // This syncs the time and state
         switch (currPlayer) {
             case 0:
-                var clientTime = player.getCurrentTime();
                 // Only seek if off by more than .1 seconds
                 // CURRENTLY ALL SET TO TRUE TO TO SYNCING ISSUES
-                if (true || clientTime < currTime - .1 || clientTime > currTime + .1) {
-                    player.seekTo(currTime);
-                }
+                player.seekTo(currTime);
                 // Sync player state
                 // IF parent player was paused
                 // If state is -1 (unstarted) the video will still start as intended
-                if (state == 2) {
+                if (state === 2) {
                     console.log("paused?")
                     player.pauseVideo();
                 }
@@ -500,11 +493,9 @@ socket.on('syncVideoClient', function(data) {
                 break;
 
             case 1:
-                var clientTime = dailyPlayer.currentTime;
+                const clientTime = dailyPlayer.currentTime;
                 // Only seek if off by more than .1 seconds
-                if (true || clientTime < currTime - .1 || clientTime > currTime + .1) {
-                    dailyPlayer.seek(currTime);
-                }
+                dailyPlayer.seek(currTime);
                 if (state) {
                     console.log("i pausing!")
                     dailyPlayer.pause()
@@ -516,27 +507,25 @@ socket.on('syncVideoClient', function(data) {
             case 2:
                 vimeoPlayer.getCurrentTime().then(function(seconds) {
                     // seconds = the current playback position
-                    if (true || seconds < currTime - .1 || seconds > currTime + .1) {
-                        vimeoPlayer.setCurrentTime(currTime).then(function(seconds) {
-                            if (state) {
-                                vimeoPlayer.pause()
-                            } else {
-                                vimeoPlayer.play()
-                            }
+                    vimeoPlayer.setCurrentTime(currTime).then(function (seconds) {
+                        if (state) {
+                            vimeoPlayer.pause()
+                        } else {
+                            vimeoPlayer.play()
+                        }
 
-                        }).catch(function(error) {
-                            switch (error.name) {
-                                case 'RangeError':
-                                    // the time was less than 0 or greater than the video’s duration
-                                    console.log("the time was less than 0 or greater than the video’s duration")
-                                    break;
+                    }).catch(function (error) {
+                        switch (error.name) {
+                            case 'RangeError':
+                                // the time was less than 0 or greater than the video’s duration
+                                console.log("the time was less than 0 or greater than the video’s duration")
+                                break;
 
-                                default:
-                                    // some other error occurred
-                                    break;
-                            }
-                        });
-                    }
+                            default:
+                                // some other error occurred
+                                break;
+                        }
+                    });
                 }).catch(function(error) {
                     // an error occurred
                     console.log("Error: Could not retrieve Vimeo player current time")
@@ -564,7 +553,7 @@ socket.on('syncVideoClient', function(data) {
 
 // Change video
 socket.on('changeVideoClient', function(data) {
-    var videoId = data.videoId;
+    let videoId = data.videoId;
     console.log("video id is: " + videoId)
 
     // Pause right before changing
@@ -630,6 +619,6 @@ socket.on('changeVideoClient', function(data) {
 
 // Change time
 socket.on('changeTime', function(data) {
-    var time = data.time
+    const time = data.time
     player.seekTo(time);
 });

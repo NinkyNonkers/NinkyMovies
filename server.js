@@ -1,9 +1,10 @@
 require('dotenv').config();
 
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
+
 users = [];
 connections = [];
 rooms = [];
@@ -14,7 +15,7 @@ YT3_API_KEY = process.env.YT3_API_KEY;
 DM_API_KEY = process.env.DM_API_KEY;
 
 // Set given room for url parameter
-var given_room = ""
+let given_room = ""
 
 app.use(express.static(__dirname + '/'));
 
@@ -50,7 +51,7 @@ io.on('connection', function(socket) {
    io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
 })*/
 
-var roomno = 1;
+let roomno = 1;
 
 io.sockets.on('connection', function(socket) {
     // Connect Socket
@@ -341,7 +342,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('play next', function(data, callback) {
-        var videoId = "QUEUE IS EMPTY"
+        let videoId = "QUEUE IS EMPTY"
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
                 case 0:
@@ -402,9 +403,9 @@ io.sockets.on('connection', function(socket) {
     socket.on('enqueue video', function(data) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
             test = false
-            var user = data.user
-            var videoId = data.videoId
-            var title = ""
+            let user = data.user
+            let videoId = data.videoId
+            let title = ""
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
                 case 0:
                     // See yt.js file
@@ -524,8 +525,8 @@ io.sockets.on('connection', function(socket) {
     // Play a specific video from queue
     socket.on('play at', function(data, callback) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            var idx = data.idx
-            var videoId = ""
+            let idx = data.idx
+            let videoId = ""
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
                 case 0:
                     videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt[idx].videoId
@@ -616,8 +617,8 @@ io.sockets.on('connection', function(socket) {
     // Change to previous video
     socket.on('change previous video', function(data, callback) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            var roomnum = data.room
-            var host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
+            const roomnum = data.room
+            const host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
 
             // This sets the videoId to the proper previous video
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
@@ -776,9 +777,9 @@ io.sockets.on('connection', function(socket) {
     socket.on('sync host', function(data) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
             //socket.broadcast.to(host).emit('syncVideoClient', { time: time, state: state, videoId: videoId });
-            var host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
+            const host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
             // If not host, recall it on host
-            if (socket.id != host) {
+            if (socket.id !== host) {
                 socket.broadcast.to(host).emit('getData')
             } else {
                 socket.emit('syncHost')
@@ -861,9 +862,9 @@ io.sockets.on('connection', function(socket) {
 
     // Calls notify functions
     socket.on('notify alerts', function(data) {
-        var alert = data.alert
+        let alert = data.alert
         console.log("entered notify alerts")
-        var encodedUser = ""
+        let encodedUser = ""
         if (data.user) {
             encodedUser = data.user.replace(/</g, "&lt;").replace(/>/g, "&gt;")
         }

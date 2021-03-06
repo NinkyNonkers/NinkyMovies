@@ -44,7 +44,7 @@ media.addEventListener("pause", function(e) {
     }
 })
 media.addEventListener("seeked", function(e) {
-    var currTime = media.currentTime
+    const currTime = media.currentTime
     if (host) {
         seekOther(roomnum, currTime)
     }
@@ -75,6 +75,20 @@ function changeVideoMode(newIndex) {
     if (switchModeButton !== undefined && switchModeButton != null)
         switchModeButton.innerText = videoModes[newIndex] + " mode" + "(" + videoModeDescriptions[newIndex] + ")";
     media.src = modeRootDir + videoModes[newIndex] + ".mp4";
+}
+
+function changeModeIndex(newIndex) {
+    if (newIndex > videoModes.length - 1)
+        return;
+    currentMode = newIndex;
+    media.src = modeRootDir + videoModes[newIndex] + ".mp4";
+}
+
+function setupModeDropdown() {
+    document.getElementById("mdd1").innerText =  videoModes[1] + " mode" + "(" + videoModeDescriptions[1] + ")";
+    document.getElementById("mdd2").innerText =  videoModes[2] + " mode" + "(" + videoModeDescriptions[2] + ")";
+    document.getElementById("mdd3").innerText =  videoModes[3] + " mode" + "(" + videoModeDescriptions[3] + ")";
+    document.getElementById("mdd4").innerText =  videoModes[4] + " mode" + "(" + videoModeDescriptions[4] + ")";
 }
 
 // Load video
