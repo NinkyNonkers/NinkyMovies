@@ -190,12 +190,7 @@
 
                     <button id="lightButton" style="margin-top:.5rem" class="btn btn-primary btn-dark-new switch"><i style="pointer-events:none;" class="fas fa-lightbulb"></i></button>
 
-                    <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
-                        <a id="mdd1" class="dropdown-item" onclick="changeModeIndex(1)"></a>
-                        <a id="mdd2" class="dropdown-item" onclick="changeModeIndex(2)"></a>
-                        <a id="mdd3" class="dropdown-item" onclick="changeModeIndex(3)"></a>
-                        <a id="mdd4" class="dropdown-item" onclick="changeModeIndex(4)"></a>
-                    </div>
+                    <button id="switchmode" onclick="changeMode(roomnum)" style="margin-top:.5rem; display: none" class="btn btn-primary btn-dark-new"><i class="fas"></i> Change video bitrate</button>
                     <p class="sidenote">Change the mode for a different bitrate and less stuttering</p>
                     <!-- Turn off the lights -->
                 </div>
@@ -681,7 +676,7 @@
 <script src="js/dependencies/jquery.easing.min.js"></script>
 
 
-<!-- Core client JS files -->
+<!-- My JS files -->
 <script src="js/sync.js"></script>
 <script src="js/player.js"></script>
 <script src="js/host.js"></script>

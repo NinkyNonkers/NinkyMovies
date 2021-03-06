@@ -1,12 +1,12 @@
-const tag = document.createElement('script');
+var tag = document.createElement('script');
 tag.id = 'iframe-demo';
 tag.src = 'https://www.youtube.com/iframe_api';
-const firstScriptTag = document.getElementsByTagName('script')[0];
+var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-let player;
+var player;
 
-let playerStatus = -1;
+var playerStatus = -1;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
@@ -30,7 +30,7 @@ function onPlayerReady(event) {
 }
 
 function changeBorderColor(playerStatus) {
-    let color;
+    var color;
     if (playerStatus === -1) {
         color = "#37474F"; // unstarted = gray
     } else if (playerStatus === 0) {
@@ -77,7 +77,7 @@ function onPlayerStateChange(event) {
             }
             break;
         case 3:
-            const currTime = player.getCurrentTime();
+            var currTime = player.getCurrentTime();
             if (host) {
                 seekOther(roomnum, currTime)
                 // syncVideo(roomnum)
@@ -96,8 +96,8 @@ function play() {
 }
 
 socket.on('get title', function(data, callback) {
-    const videoId = data.videoId
-    const user = data.user
+    var videoId = data.videoId
+    var user = data.user
 
     $.get(
         "https://www.googleapis.com/youtube/v3/videos", {
@@ -122,8 +122,8 @@ socket.on('get title', function(data, callback) {
 })
 
 socket.on('get playlist videos', function(data) {
-    const playlistId = data.playlistId
-    const user = data.user
+    var playlistId = data.playlistId
+    var user = data.user
 
     $.get(
         "https://www.googleapis.com/youtube/v3/playlistItems", {

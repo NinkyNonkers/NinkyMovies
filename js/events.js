@@ -13,7 +13,7 @@ socket.on('justPlay', function(data) {
     console.log("currPlayer")
     switch (currPlayer) {
         case 0:
-            if (playerStatus === -1 || playerStatus === 2) {
+            if (playerStatus == -1 || playerStatus == 2) {
                 player.playVideo()
             }
             break;
@@ -150,7 +150,7 @@ socket.on('justSeek', function(data) {
 // Needs to grab the next video id and change the video
 function playNext(roomnum) {
     socket.emit('play next', {}, function(data) {
-        const videoId = data.videoId
+        var videoId = data.videoId
 
         // IF queue is empty do not try to change
         if (videoId !== "QUEUE IS EMPTY") {

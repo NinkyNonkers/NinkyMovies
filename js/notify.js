@@ -6,8 +6,8 @@
 // Enqueue Notify (0)
 socket.on('enqueueNotify', function(data) {
     console.log("Enqueue Notify Alert")
-    const title = data.title
-    const user = data.user
+    var title = data.title
+    var user = data.user
     // Generate notify alert
     $.notify({
         title: '<strong>' + user + '</strong>',
@@ -33,7 +33,7 @@ socket.on('enqueueNotify', function(data) {
 // Change Host (1)
 socket.on('changeHostNotify', function(data) {
     console.log("Host Change Notify Alert")
-    const user = data.user
+    var user = data.user
 
     $.notify({
         title: '<strong>Host Changed: </strong>',
@@ -59,7 +59,7 @@ socket.on('changeHostNotify', function(data) {
 // Empty Queue (2)
 socket.on('emptyQueueNotify', function(data) {
     console.log("Empty Queue Notify Alert")
-    const user = data.user
+    var user = data.user
 
     $.notify({
         title: '<strong>' + user + '</strong>',

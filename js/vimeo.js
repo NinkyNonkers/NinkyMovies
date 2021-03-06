@@ -1,4 +1,4 @@
-const vimeoPlayer = new Vimeo.Player('player-vimeo');
+var vimeoPlayer = new Vimeo.Player('player-vimeo');
 
 
 vimeoPlayer.on('play', function() {

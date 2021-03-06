@@ -159,16 +159,16 @@ socket.on('createVimeo', function(data) {
         //     console.log(playerIn.innerHTML)
         //     playerIn.innerHTML = "<iframe id=\"player-daily\" frameborder=\"0\" width=\"640\" height=\"360\"src=\"//www.dailymotion.com/embed/video/x26m1j4\"allowfullscreen allow=\"autoplay\"></iframe>"
 
-        const you = document.getElementById('playerArea');
+        var you = document.getElementById('playerArea');
         you.style.display = 'none';
 
-        const daily = document.getElementById('dailyArea');
+        var daily = document.getElementById('dailyArea');
         daily.style.display = 'none';
 
-        const html5 = document.getElementById('HTML5Area');
+        var html5 = document.getElementById('HTML5Area');
         html5.style.display = 'none';
 
-        const vimeo = document.getElementById('vimeoArea');
+        var vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'block';
         currPlayer = 2
 
@@ -186,20 +186,21 @@ socket.on('createVimeo', function(data) {
 
 // Create HTML5 Player
 socket.on('createHTML5', function(data) {
-    if (currPlayer !== 3) {
+    if (currPlayer != 3) {
 
-        const you = document.getElementById('playerArea');
+        var you = document.getElementById('playerArea');
         you.style.display = 'none';
 
-        const daily = document.getElementById('dailyArea');
+        var daily = document.getElementById('dailyArea');
         daily.style.display = 'none';
 
-        const vimeo = document.getElementById('vimeoArea');
+        var vimeo = document.getElementById('vimeoArea');
         vimeo.style.display = 'none';
 
-        const html5 = document.getElementById('HTML5Area');
+        var html5 = document.getElementById('HTML5Area');
         html5.style.display = 'block';
         currPlayer = 3
+
 
 
         document.getElementById('loveButton').style.display = 'none'

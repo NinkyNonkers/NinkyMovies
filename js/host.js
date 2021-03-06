@@ -82,8 +82,8 @@ socket.on('compareHost', function(data) {
 
     switch (currPlayer) {
         case 0:
-            const currTime = player.getCurrentTime()
-            const state = playerStatus
+            var currTime = player.getCurrentTime()
+            var state = playerStatus
 
             // If out of sync
             console.log("curr: " + currTime + " Host: " + hostTime)
@@ -93,12 +93,12 @@ socket.on('compareHost', function(data) {
 
             break;
         case 1:
-            const curreTime = dailyPlayer.currentTime
-            const stat = dailyPlayer.paused;
+            var currTime = dailyPlayer.currentTime
+            var state = dailyPlayer.paused;
 
             // If out of sync
-            console.log("curr: " + curreTime + " Host: " + hostTime)
-            if (curreTime < hostTime - 2 || curreTime > hostTime + 2) {
+            console.log("curr: " + currTime + " Host: " + hostTime)
+            if (currTime < hostTime - 2 || currTime > hostTime + 2) {
                 disconnected()
             }
 
@@ -106,12 +106,12 @@ socket.on('compareHost', function(data) {
         case 2:
             vimeoPlayer.getCurrentTime().then(function(seconds) {
                 // seconds = the current playback position
-                const currTime = seconds
+                var currTime = seconds
 
                 // Need to nest async functions
                 vimeoPlayer.getPaused().then(function(paused) {
                     // paused = whether or not the player is paused
-                    const state = paused
+                    var state = paused
 
                     // If out of sync
                     console.log("curr: " + currTime + " Host: " + hostTime)
@@ -131,12 +131,12 @@ socket.on('compareHost', function(data) {
 
             break;
         case 3:
-            const currentTime = media.currentTime
-            const st = media.paused
+            var currTime = media.currentTime
+            var state = media.paused
 
             // If out of sync
-            console.log("curr: " + currentTime + " Host: " + hostTime)
-            if (currentTime < hostTime - 2 || currentTime > hostTime + 2) {
+            console.log("curr: " + currTime + " Host: " + hostTime)
+            if (currTime < hostTime - 2 || currTime > hostTime + 2) {
                 disconnected()
             }
 
