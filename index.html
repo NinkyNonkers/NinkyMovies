@@ -1,21 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121783460-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-121783460-1');
-    </script>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Movies">
@@ -37,7 +22,7 @@
     <script>
         $(document).ready(function(){
             $.ajax({
-                url: 'http://127.0.0.1:3000/',
+                url: 'http://127.0.0.1/',
                 type: 'html',
                 data: '',
                 headers: { 'Access-Control-Allow-Origin': 'https://wikiservices.ml' },
@@ -59,7 +44,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-
 </head>
   
 <!-- Div for lights off! -->
@@ -76,11 +60,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <!-- <li class="nav-item active">
-          <a class="nav-link js-scroll-trigger" href="#Home">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li> -->
                 <li class="nav-item">
                     <a target="_blank" rel="noopener noreferrer" class="nav-link js-scroll-trigger" href="https://github.com/NinkyNonkers">
                         <i class="fab fa-github"></i>
@@ -93,7 +72,6 @@
 
 <!-- Page Content -->
 <div class="container">
-
     <!-- Loading page -->
     <!-- Loader is currently dependent on the dailymotion api because it is the slowest -->
     <!-- User Form (First Page) -->
@@ -105,15 +83,14 @@
             <p>Showing at <span class="font-weight-bold"> 19:45</span></p>
             <p><em>The synchronization may not be perfect! It's a work in progress, blame archie if anything breaks&nbsp;</em></p>
 <hr style="height:20pt; visibility:hidden;" />
-
             <h2> Join a Room! </h2>
             <form id="userForm">
                 <div class="form-group">
-                    <p style="color:red; margin-bottom: 0px" id="missinginfo"></p>
+                    <p style="color:red; margin-bottom: 0" id="missinginfo"></p>
                     <label>Enter Name</label>
                     <input class="form-control" id="username" />
                     <br />
-                    <p style="color:red; margin-bottom: 0px" id="missinginfo2"></p>
+                    <p style="color:red; margin-bottom: 0" id="missinginfo2"></p>
                     <label>Enter Room ID (Default 1)</label>
                     <button type="button" style="margin-top: 2px; margin-bottom: 2px" onClick="getMainRoom()"  class="btn btn-primary btn-dark-new">Find current room</button>
                     <br/>
@@ -126,57 +103,42 @@
                 </div>
                 <hr style="height:65pt; visibility:hidden;" />
             </form>
-
         </div>
     </div>
 
     <div id="roomArea">
         <!-- Heading Row -->
-        <div class="row my-4" style="margin-top: 0px !important;">
+        <div class="row my-4" style="margin-top: 0 !important;">
             <div class="col-lg-7">
 
                 <div class="nonmobile-hide"><b>Note: </b>Only the host can control the video using the native video player controls </div>
                 <div class="mobile-hide"><b>Mobile User</b>, please play the video once manually to give the browser permission to control the video player. </div>
                 <!-- <hr style="height:0pt; visibility:hidden;" /> -->
 
-                <div style="margin: 10px; margin-right: 2px;" class="dropdown">
+                <div style="margin: 10px 2px 10px 10px;" class="dropdown">
                     <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-video"></i> Player
                     </button>
                     <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" onclick="changePlayer(roomnum, 0)"><i class="fab fa-youtube"></i> YouTube</a>
-                        <a class="dropdown-item" onclick="changePlayer(roomnum, 1)"><img width="14px" height="14px" src="img/dailymotion-logo.svg" alt="Daily Motion Logo"> Daily Motion</a>
-                        <a class="dropdown-item" onclick="changePlayer(roomnum, 2)"><i class="fab fa-vimeo"></i> Vimeo</a>
+                        <!---<a class="dropdown-item" onclick="changePlayer(roomnum, 1)"><img width="14px" height="14px" src="img/dailymotion-logo.svg" alt="Daily Motion Logo"> Daily Motion</a>-->
+                        <!---<a class="dropdown-item" onclick="changePlayer(roomnum, 2)"><i class="fab fa-vimeo"></i> Vimeo</a>-->
                         <a class="dropdown-item" onclick="changePlayer(roomnum, 3)"><i class="fas fa-file-video"></i> HTML5 Player (.mp4/.webm) (Beta)</a>
                     </div>
                 </div>
 
 
-
-                <!-- <br/> <b>Note:</b> Mobile web browsers do not support autoplay. Host can control player natively. -->
-
-                <!-- INVITE MOVED TO MODAL -->
-                <!-- <p id="invite">Invite a friend! Send them the link: vynchronize.herokuapp.com/ROOMNUM</p> -->
                 <h2><span id="hostlabel" class="label label-default"><i class="fas fa-user"></i> Current Host: Kyle </span></h2>
 
                 <!----------------------------------- PLAYER AREA ----------------------------------->
 
                 <div id='playerArea'>
                     <div class="video" id="player"></div>
-                    <!-- <iframe class="video" id="player" allowfullscreen="0" rel="0" width="640" height="360" src="https://www.youtube.com/embed/M7lc1UVf-VE?enablejsapi=1" frameborder="1" style="border: solid 4px #37474F"></iframe> -->
-                </div>
-                <div id='dailyArea'>
-                    <div class="video" id="player-daily"></div>
-                </div>
-                <div id='vimeoArea'>
-                    <iframe class="video" id="player-vimeo" src="https://player.vimeo.com/video/76979871" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 <div id='HTML5Area'>
                     <div class="html5player">
                         <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" width="640" height="360" class="video html5video" id="html5src" controls>
-                            <!-- <source src="video/sintel-short.mp4" type="video/mp4">
-                            <source src="video/sintel-short.webm" type="video/webm"> -->
-                            <!-- fallback content here -->
+
                         </video>
                     </div>
                 </div>
@@ -189,7 +151,7 @@
                     <button id="syncbutton" onclick="syncVideo(roomnum);syncAlert()" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fa fa-sync"></i> Sync</button>
 
                     <button id="loveButton" onclick="loveLive(roomnum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="far fa-heart"></i> Random K-pop</button>
-                    <!-- <br/> -->
+
                     <button id="hostbutton" onclick="changeHost(roomnum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fas fa-users"></i> Make me the host!</button>
 
                     <button id="lightButton" style="margin-top:.5rem" class="btn btn-primary btn-dark-new switch"><i style="pointer-events:none;" class="fas fa-lightbulb"></i></button>
@@ -211,108 +173,39 @@
                     <input type="Video" style="max-width: 400px; margin-right: .5rem; margin-bottom: .5rem; float: left;" class="form-control" id="inputVideoId" placeholder="Video ID / URL">
                 </div>
                 <div>
-                    <!-- <a class="ghost-button-full-color"><i class="far fa-times-circle"></i></a> -->
                     <button id="changeButton" onclick="changeVideoParse(roomnum)" class="btn btn-primary btn-dark-new"><i class="fas fa-exchange-alt"></i> Change Video</button>
                     <br/>
 
                 </div>
-                <!-- <input type="file" id="html5-input" /> -->
                 <!-- Playlist shit -->
                 <div id="visual-queue" class="vid-list-container">
                     <ul class="vid-list" id="vidlist">
                         <li class="vid-item">
-                            <!-- <div class="thumb">
-                                <a onClick="removeAt(0)" class="ghost-button-full-color"><i class="far fa-times-circle"></i></a>
-                                <img src="http://img.youtube.com/vi/eg6kNoJmzkY/0.jpg">
-                            </div>
-                            <div class="desc">
-                                Jessica Hernandez & the Deltas - Dead Brains
-                            </div> -->
                         </li>
                     </ul>
                 </div>
                 <br/>
-
                 <!-- HTML5 player input -->
-                <!-- <input type="file" id="html5-input" /> -->
-                <!-- <input type="Video" style="max-width: 200px; margin-right: .5rem; margin-bottom: .5rem; float: left;" class="form-control" id="inputVideoURL" placeholder="Direct URL to .mp4/.webm"> -->
-
-                <!-- <p style="display: none" id="html5-message" class="lead">Video File Upload Not Yet Supported</p> -->
                 <p style="display: none" id="beta-message" class="lead">Queue is currently only supported by YouTube</p>
 
             </div>
-            <!-- /.col-lg-8 -->
             <div class="col-lg-5">
-                <!-- <div class="col-md-4"> -->
-                <!-- <div id="onlineArea" class="row"> -->
                 <h5 class="right-header">Online Users</h5>
-                <hr style="height:0pt; visibility:hidden;" />
+                <hr style="height:0; visibility:hidden;" />
 
-                <!-- <br/> -->
                 <div class="col-md-13">
                     <div  class="well online-users noscrollbar">
                         <ul class="list-group" id="users"></ul>
                     </div>
                 </div>
             </div>
-        <!-- </div> -->
-        <!-- </div> -->
     </div>
-    <!-- /.col-md-4 -->
 </div>
 
-<!-- /.row -->
-
-
-
-<!-- Content Row -->
-<!-- <div class="row">
-<div class="col-md-4 mb-4">
-<div class="card h-100">
-<div class="card-body">
-  <h2 class="card-title">Card One</h2>
-  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-</div>
-<div class="card-footer">
-  <a href="#" class="btn btn-primary">More Info</a>
-</div>
-</div>
-</div> -->
-<!-- /.col-md-4 -->
-<!-- <div class="col-md-4 mb-4">
-<div class="card h-100">
-<div class="card-body">
-  <h2 class="card-title">Card Two</h2>
-  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-</div>
-<div class="card-footer">
-  <a href="#" class="btn btn-primary">More Info</a>
-</div>
-</div>
-</div> -->
-<!-- /.col-md-4 -->
-<!-- <div class="col-md-4 mb-4">
-<div class="card h-100">
-<div class="card-body">
-  <h2 class="card-title">Card Three</h2>
-  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-</div>
-<div class="card-footer">
-  <a href="#" class="btn btn-primary">More Info</a>
-</div>
-</div>
-</div> -->
-<!-- /.col-md-4 -->
-
-<!-- </div> -->
-<!-- /.row -->
-
-<!-- <hr style="height:20pt; visibility:hidden;" /> -->
 
 <hr style="height:20pt; visibility:hidden;" />
 
 
-</div>
 </div>
 <!-- /.container -->
 
@@ -330,7 +223,7 @@
     var id = "M7lc1UVf-VE"
     var username = ""
     // Don't allow trailing or leading whitespace!
-    var nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
+    const nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
 
     // Chat stuff
     $(function() {
@@ -374,7 +267,7 @@
             // This checks for the last user
             // If you are the last user, attach the message instead of creating a new div
             if (last_div !== undefined) {
-                var myRegex = /.*<strong>(.+)<\/strong>.*/g
+                const myRegex = /.*<strong>(.+)<\/strong>.*/g
                 var match = myRegex.exec(last_div.innerHTML)
                 console.log(last_div.innerHTML)
                 var last_user = ""
@@ -383,7 +276,7 @@
                     last_user = match[1]
                 }
             }
-            if (data.user != last_user) {
+            if (data.user !== last_user) {
                 $chat.append('<div class="well well-sm message-well"><strong>' + data.user + '</strong>: ' + data.msg + '</div>');
                 // $vidlist.append('<div class="vid-item"><div class="thumb"><img src="http://img.youtube.com/vi/eg6kNoJmzkY/0.jpg"></div><div class="desc">Jessica Hernandez & the Deltas - Dead Brains</div></div>');
             }
@@ -694,12 +587,6 @@
 
 <!-- Youtube -->
 <script src="js/yt.js"></script>
-<!-- Daily Motion -->
-<script src="https://api.dmcdn.net/all.js"></script>
-<script src="js/dm.js"></script>
-<!-- Vimeo -->
-<script src="https://player.vimeo.com/api/player.js"></script>
-<script src="js/vimeo.js"></script>
 <!-- HTML5 Player -->
 <script src="js/html5.js"></script>
 

@@ -22,42 +22,7 @@ socket.on('getPlayerData', function(data) {
             });
             break;
         case 1:
-            const ct = dailyPlayer.currentTime
-            const s = dailyPlayer.paused;
-            socket.emit('get host data', {
-                room: roomnum,
-                currTime: ct,
-                state: s,
-                caller: caller
-            });
-            break;
         case 2:
-            vimeoPlayer.getCurrentTime().then(function(seconds) {
-                // seconds = the current playback position
-                const currTime = seconds
-
-                // Need to nest async functions
-                vimeoPlayer.getPaused().then(function(paused) {
-                    // paused = whether or not the player is paused
-                    const state = paused
-
-                    socket.emit('get host data', {
-                        room: roomnum,
-                        currTime: currTime,
-                        state: state,
-                        caller: caller
-                    });
-
-                }).catch(function(error) {
-                    // an error occurred
-                    console.log("Error: Could not retrieve Vimeo Player state")
-                });
-
-            }).catch(function(error) {
-                // an error occurred
-                console.log("Error: Could not retrieve Vimeo player current time")
-            });
-
             break;
         case 3:
             const currTime = media.currentTime
@@ -119,69 +84,12 @@ socket.on('createYoutube', function(data) {
 
 // Create Daily Motion Player
 socket.on('createDaily', function(data) {
-    console.log("i am in create daily")
-    // player.destroy()
-    if (currPlayer !== 1) {
-        //     var playerIn = document.getElementById("playerArea")
-        //     console.log(playerIn.innerHTML)
-        //     playerIn.innerHTML = "<iframe id=\"player-daily\" frameborder=\"0\" width=\"640\" height=\"360\"src=\"//www.dailymotion.com/embed/video/x26m1j4\"allowfullscreen allow=\"autoplay\"></iframe>"
-
-        const you = document.getElementById('playerArea');
-        you.style.display = 'none';
-
-        const vimeo = document.getElementById('vimeoArea');
-        vimeo.style.display = 'none';
-
-        const html5 = document.getElementById('HTML5Area');
-        html5.style.display = 'none';
-
-        const daily = document.getElementById('dailyArea');
-        daily.style.display = 'block';
-        currPlayer = 1
-
-        // disable for dm/vimeo
-
-        document.getElementById('loveButton').style.display = 'none'
-        // document.getElementById('html5-input').style.display = 'none'
-        document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
-        // document.getElementById('html5-message').style.display = 'none'
-
-        // Special call to pause youtube player
-        // Only have to do on youtube player as it is the default player that autoplays
-        player.pauseVideo();
-    }
+    console.log("DailyMotion player has been deprecated in the latest release of NinkyMovies!")
 });
 
 // Create Vimeo Player
 socket.on('createVimeo', function(data) {
-    if (currPlayer !== 2) {
-        //     var playerIn = document.getElementById("playerArea")
-        //     console.log(playerIn.innerHTML)
-        //     playerIn.innerHTML = "<iframe id=\"player-daily\" frameborder=\"0\" width=\"640\" height=\"360\"src=\"//www.dailymotion.com/embed/video/x26m1j4\"allowfullscreen allow=\"autoplay\"></iframe>"
-
-        var you = document.getElementById('playerArea');
-        you.style.display = 'none';
-
-        var daily = document.getElementById('dailyArea');
-        daily.style.display = 'none';
-
-        var html5 = document.getElementById('HTML5Area');
-        html5.style.display = 'none';
-
-        var vimeo = document.getElementById('vimeoArea');
-        vimeo.style.display = 'block';
-        currPlayer = 2
-
-        // disable for dm/vimeo
-        document.getElementById('loveButton').style.display = 'none'
-        // document.getElementById('html5-input').style.display = 'none'
-        document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
-        // document.getElementById('html5-message').style.display = 'none'
-
-        // Special call to pause youtube player
-        // Only have to do on youtube player as it is the default player that autoplays
-        player.pauseVideo();
-    }
+    console.log("DailyMotion player has been deprecated in the latest release of NinkyMovies!")
 });
 
 // Create HTML5 Player

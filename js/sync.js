@@ -27,34 +27,7 @@ function syncVideo(roomnum) {
             console.log("I am host and my current time is " + currTime + state)
             break;
         case 1:
-            currTime = dailyPlayer.currentTime;
-            state = dailyPlayer.paused;
-            break;
         case 2:
-            vimeoPlayer.getCurrentTime().then(function(seconds) {
-                // seconds = the current playback position
-                currTime = seconds
-
-                // Need to nest async functions
-                vimeoPlayer.getPaused().then(function(paused) {
-                    // paused = whether or not the player is paused
-                    state = paused
-                    console.log("state=" + state)
-                    socket.emit('sync video', {
-                        room: roomnum,
-                        time: currTime,
-                        state: state,
-                        videoId: videoId
-                    });
-                }).catch(function(error) {
-                    // an error occurred
-                    console.log("Error: Could not retrieve Vimeo Player state")
-                });
-
-            }).catch(function(error) {
-                // an error occurred
-                console.log("Error: Could not retrieve Vimeo player current time")
-            });
             break;
         case 3:
             currTime = media.currentTime;
@@ -80,24 +53,12 @@ function getTime() {
     switch (currPlayer) {
         case 0:
             return player.getCurrentTime();
-            break;
         case 1:
-            return dailyPlayer.currentTime;
-            break;
         case 2:
-            vimeoPlayer.getCurrentTime().then(function(seconds) {
-                // seconds = the current playback position
-                return seconds
-
-            }).catch(function(error) {
-                // an error occurred
-                console.log("Error: Could not retrieve Vimeo player current time")
-                return null
-            });
-            break;
+            console.log("DailyMotion and Vimeo have been deprecated in this release of NinkyMovies")
+            return 0;
         case 3:
             return media.currentTime;
-            break;
         default:
             console.log("Error invalid player id")
     }
@@ -110,23 +71,7 @@ function seekTo(time) {
             player.playVideo()
             break;
         case 1:
-            dailyPlayer.seek(currTime);
-            dailyPlayer.play();
-            break;
         case 2:
-            vimeoPlayer.setCurrentTime(currTime).then(function(seconds) {
-                // seconds = the actual time that the player seeked to
-            }).catch(function(error) {
-                switch (error.name) {
-                    case 'RangeError':
-                        // the time was less than 0 or greater than the video’s duration
-                        console.log("the time was less than 0 or greater than the video’s duration")
-                        break;
-                    default:
-                        // some other error occurred
-                        break;
-                }
-            });
             break;
         case 3:
             media.currentTime = currTime
@@ -205,7 +150,6 @@ function playlistParse(videoId) {
 
             case 1:
                 break;
-
             case 2:
                 break;
             case 3:
@@ -415,12 +359,6 @@ socket.on('playVideoClient', function(data) {
         case 0:
             play()
             break;
-        case 1:
-            dailyPlay()
-            break;
-        case 2:
-            vimeoPlay()
-            break;
         case 3:
             html5Play()
             break;
@@ -435,10 +373,7 @@ socket.on('pauseVideoClient', function(data) {
             player.pauseVideo();
             break;
         case 1:
-            dailyPlayer.pause();
-            break;
         case 2:
-            vimeoPlayer.pause();
             break;
         case 3:
             media.pause()
@@ -500,47 +435,8 @@ socket.on('syncVideoClient', function(data) {
                 break;
 
             case 1:
-                var clientTime = dailyPlayer.currentTime;
-                // Only seek if off by more than .1 seconds
-                if (true || clientTime < currTime - .1 || clientTime > currTime + .1) {
-                    dailyPlayer.seek(currTime);
-                }
-                if (state) {
-                    console.log("i pausing!")
-                    dailyPlayer.pause()
-                } else {
-                    dailyPlayer.play()
-                }
-                break;
-
             case 2:
-                vimeoPlayer.getCurrentTime().then(function(seconds) {
-                    // seconds = the current playback position
-                    if (true || seconds < currTime - .1 || seconds > currTime + .1) {
-                        vimeoPlayer.setCurrentTime(currTime).then(function(seconds) {
-                            if (state) {
-                                vimeoPlayer.pause()
-                            } else {
-                                vimeoPlayer.play()
-                            }
 
-                        }).catch(function(error) {
-                            switch (error.name) {
-                                case 'RangeError':
-                                    // the time was less than 0 or greater than the video’s duration
-                                    console.log("the time was less than 0 or greater than the video’s duration")
-                                    break;
-
-                                default:
-                                    // some other error occurred
-                                    break;
-                            }
-                        });
-                    }
-                }).catch(function(error) {
-                    // an error occurred
-                    console.log("Error: Could not retrieve Vimeo player current time")
-                });
                 break;
 
             case 3:
@@ -584,33 +480,7 @@ socket.on('changeVideoClient', function(data) {
                 player.loadVideoById(videoId);
                 break;
             case 1:
-                dailyPlayer.load(videoId, {
-                    autoplay: true
-                });
-                break;
             case 2:
-                vimeoPlayer.loadVideo(videoId).then(function(id) {
-                    // the video successfully loaded
-                }).catch(function(error) {
-                    switch (error.name) {
-                        case 'TypeError':
-                            // the id was not a number
-                            break;
-
-                        case 'PasswordError':
-                            // the video is password-protected and the viewer needs to enter the
-                            // password first
-                            break;
-
-                        case 'PrivacyError':
-                            // the video is password-protected or private
-                            break;
-
-                        default:
-                            // some other error occurred
-                            break;
-                    }
-                });
                 break;
             case 3:
                 htmlLoadVideo(videoId)
