@@ -1,20 +1,11 @@
-# Vynchronize
-[Access the application here!](https://vynchronize.herokuapp.com/)
+# NinkyMovies
+[Access the application here!](http://watch.ninkynonk.co.uk/)
 
-![Vynchronize Screenshot](https://raw.githubusercontent.com/kyle8998/Vynchronize/master/img/screenshot2.PNG)
 
-Vynchronize is a real-time online video synchronization platform. You can enjoy any video available online with friends who may not be next to you!
+NinkyMovies is a fork of the real-time online video synchronization platform: Vynchronize. You can enjoy any video available online with friends who may not be next to you!
 
-Vynchronize currently supports YouTube, Daily Motion, Vimeo, and essentially any .mp4/.webm on the internet with the HTML5 Player!
+NinkyMovies currently supports YouTube, Daily Motion, Vimeo, and essentially any .mp4/.webm on the internet with the HTML5 Player!
 
-[![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](http://forthebadge.com)
-
-[![Build Status](https://travis-ci.org/kyle8998/Vynchronize.svg?branch=master)](https://travis-ci.org/kyle8998/Vynchronize)
-[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-<a href="https://github.com/kyle8998/Vynchronize/commits/master"> <img src="https://img.shields.io/github/last-commit/kyle8998/Vynchronize.svg?label=last%20deployed" alt="last deployed"></a>
-[![GitHub issues](https://img.shields.io/github/issues/kyle8998/Vynchronize.svg "GitHub issues")](https://github.com/kyle8998/Vynchronize/issues)
-[![GitHub stars](https://img.shields.io/github/stars/kyle8998/Vynchronize.svg "GitHub stars")](https://github.com/kyle8998/Vynchronize/stargazers)
-[![HitCount](http://hits.dwyl.io/kyle8998/Vynchronize.svg)](http://hits.dwyl.io/kyle8998/Vynchronize)
 
 ---
 
@@ -195,9 +186,4 @@ The Queue object consists of arrays for each specific player. Each array then
 consists of objects that hold both the id and title. It was created this way because
 grabbing the title required extra work, and could not be done continuously on the spot.
 
-##### In Depth Functionality
 
-**Note**: This was a very brief summary of what goes on behind the scenes.
-
-Please see the [Wiki](https://github.com/kyle8998/Vynchronize/wiki) for more
-information.

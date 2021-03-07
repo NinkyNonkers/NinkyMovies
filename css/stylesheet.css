@@ -1,0 +1,18 @@
+/* CSS Document */
+.bg-dark-back{
+	background-color: #B8C0FF
+}
+.btn-dark-new{
+	background-color: #E7C6FF;
+	color: #000000;
+	border-color: #E7C6FF;
+}
+
+.charlie-gray {
+	background-color: #BBD0FF;
+}
+
+.sidenote {
+	margin-top: 15px;
+	font-style: italic;
+}

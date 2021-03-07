@@ -91,7 +91,6 @@
 
  .right-header {
      float: right;
-     color: gray;
  }
 
  .inv_input {
@@ -200,7 +199,7 @@
      padding: 5px !important;
      float: right;
      /* padding-right: 11em; */
-     height: 140px;
+     height: 500px;
      width: 270px;
      overflow: scroll;
  }
@@ -414,7 +413,7 @@
  }
 
  .footer {
-     position: absolute;
+     position: relative;
      bottom: 0;
      width: 100%;
  }
