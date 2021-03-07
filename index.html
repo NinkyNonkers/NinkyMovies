@@ -42,7 +42,6 @@
     <link rel="stylesheet" href="css/stylesheet.css">
 
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 </head>
   
@@ -177,16 +176,6 @@
                     <br/>
 
                 </div>
-                <!-- Playlist shit -->
-                <div id="visual-queue" class="vid-list-container">
-                    <ul class="vid-list" id="vidlist">
-                        <li class="vid-item">
-                        </li>
-                    </ul>
-                </div>
-                <br/>
-                <!-- HTML5 player input -->
-                <p style="display: none" id="beta-message" class="lead">Queue is currently only supported by YouTube</p>
 
             </div>
             <div class="col-lg-5">
@@ -218,76 +207,27 @@
 </footer>
 
 <script>
-    var socket = io.connect();
-    var roomnum = 1
-    var id = "M7lc1UVf-VE"
-    var username = ""
+    const socket = io.connect();
+    let roomnum = 1
+    let id = "M7lc1UVf-VE"
+    let username = ""
     // Don't allow trailing or leading whitespace!
     const nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
 
     // Chat stuff
     $(function() {
-        var $messageForm = $('#messageForm');
-        var $message = $('#message');
-        var $chat = $('#chat');
-        var $roomArea = $('#roomArea');
-        var $userFormArea = $('#userFormArea');
-        var $userForm = $('#userForm');
-        var $users = $('#users');
-        var $username = $('#username');
-        var $roomnum = $('#roomnum');
+        const $roomArea = $('#roomArea');
+        const $userFormArea = $('#userFormArea');
+        const $userForm = $('#userForm');
+        const $users = $('#users');
+        const $username = $('#username');
+        const $roomnum = $('#roomnum');
+        const $roomBtn = $('#roombutton')
+        const $vidlist = $('#vidlist');
 
-        var $roomBtn = $('#roombutton')
-        var $vidlist = $('#vidlist');
-
-        //   function send_message() {
-        //       socket.emit('send message', $message.val());
-        //       $message.val('');
-        //   }
-        //
-        //   $(document).keyup(send_message());
-        //   $("input").keypress(function(event) {
-        //     if (event.which == 13) {
-        //         event.preventDefault();
-        //         send_message();
-        //     }
-        // });
-
-
-        $messageForm.submit(function(e) {
-            e.preventDefault();
-            // console.log("Submitted");
-            socket.emit('send message', $message.val());
-            $message.val('');
-        });
 
         socket.on('new message', function(data) {
-            var last_div = $('.chat > div:last')[0]
-
-            // This checks for the last user
-            // If you are the last user, attach the message instead of creating a new div
-            if (last_div !== undefined) {
-                const myRegex = /.*<strong>(.+)<\/strong>.*/g
-                var match = myRegex.exec(last_div.innerHTML)
-                console.log(last_div.innerHTML)
-                var last_user = ""
-                if (match != null) {
-                    console.log("found the user!" + match[1])
-                    last_user = match[1]
-                }
-            }
-            if (data.user !== last_user) {
-                $chat.append('<div class="well well-sm message-well"><strong>' + data.user + '</strong>: ' + data.msg + '</div>');
-                // $vidlist.append('<div class="vid-item"><div class="thumb"><img src="http://img.youtube.com/vi/eg6kNoJmzkY/0.jpg"></div><div class="desc">Jessica Hernandez & the Deltas - Dead Brains</div></div>');
-            }
-            // If you sent the last message, append to previous
-            else {
-                last_div.innerHTML = last_div.innerHTML + " <br> " + data.msg
-                // $vidlist.append('<div class="vid-item"><div class="thumb"><img src="http://img.youtube.com/vi/eg6kNoJmzkY/0.jpg"></div><div class="desc">Jessica Hernandez & the Deltas - Dead Brains</div></div>');
-            }
-            // $chat.scrollTop = $chat.scrollHeight;
-            // Auto scroll on each message send!
-            $('div#chat').scrollTop($('div#chat')[0].scrollHeight)
+            console.log("Chat has been deprecated in the latest version of NinkyMovies")
         });
 
         // Submit user form
@@ -364,7 +304,7 @@
         });
 
         socket.on('get users', function(data) {
-            var html = '';
+            let html = '';
             for (i = 0; i < data.length; i++) {
                 html += '<li style="padding-right: 10em;" class="list-group-item chat-users">' + data[i] + '</li>';
                 // html += '<div class="well well-sm message-well">' + data[i] + '</div>';
@@ -378,8 +318,8 @@
         // Parameters - vidlist, currPlayer, videoId
         socket.on('get vidlist', function(data) {
             console.log("i am updating the queue")
-            var yt = data.vidlist.yt
-            var html = ''
+            let yt = data.vidlist.yt
+            let html = ''
             if (yt.length > 0) {
                 for (i = 0; i < yt.length; i++) {
                     html += '<li class="vid-item"><div class="thumb"><a href="javascript: removeAt(' + i + ')" class="ghost-button-full-color"><i class="far fa-times-circle"></i></a><a href="javascript: playAt(' + i +
@@ -394,9 +334,9 @@
 
 
         // Prevent special characters from being typed
-        $('#roomnum').on('keypress', function(event) {
-            var nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
-            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        roomnum.on('keypress', function(event) {
+            const nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
+            const key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             console.log(key)
             console.log(event.keyCode)
             // Allow enters and spaces to be used still
@@ -407,7 +347,7 @@
         });
 
         // Prevent special characters from being typed
-        $('#username').on('keypress', function(event) {
+        username.on('keypress', function(event) {
             var nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
             var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             // Allow enters and spaces to be used still
@@ -492,24 +432,6 @@
     });
 
 
-    function copyInvite() {
-        /* Get the text field */
-        var copyText = document.getElementById("inv_input");
-        console.log(copyText)
-        /* Select the text field */
-        copyText.select();
-        /* Copy the text inside the text field */
-        document.execCommand("Copy");
-        /* Alert the copied text */
-        // alert("Copied the text: " + copyText.value);
-        var tooltip = document.getElementById("myTooltip");
-        tooltip.innerHTML = "Copied!";
-    }
-
-    function outFunc() {
-        var tooltip = document.getElementById("myTooltip");
-        tooltip.innerHTML = "Copy to clipboard";
-    }
 
     // Generate a random alphanumeric room id
     function randomroom() {
