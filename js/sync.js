@@ -88,14 +88,14 @@ function idParse(videoId) {
         switch (currPlayer) {
             case 0:
                 if (videoId.includes("youtu.be")) {
-                    var myRegex = /.+youtu\.be\/([A-Za-z0-9\-_]+)/g
-                    var match = myRegex.exec(videoId)
+                    const myRegex = /.+youtu\.be\/([A-Za-z0-9\-_]+)/g
+                    const match = myRegex.exec(videoId)
                     if (match != null) {
                         return match[1]
                     }
                 } else {
-                  var myRegex = /.+watch\?v=([A-Za-z0-9\-_]+)/g
-                  var match = myRegex.exec(videoId)
+                  const myRegex = /.+watch\?v=([A-Za-z0-9\-_]+)/g
+                  const match = myRegex.exec(videoId)
                   if (match != null) {
                       return match[1]
                   }
@@ -103,12 +103,12 @@ function idParse(videoId) {
                 videoId = "invalid"
                 break
             case 1:
-                var myRegex = /.+\/(.+)/g
+                let myRegex = /.+\/(.+)/g
                 if (videoId.includes("playlist")) {
                     myRegex = /.+video=(.+)/g
                 }
 
-                var match = myRegex.exec(videoId)
+                const match = myRegex.exec(videoId)
                 if (match != null) {
                     console.log("You entered a link, but you really meant " + match[1])
                     return match[1]
@@ -126,7 +126,6 @@ function idParse(videoId) {
                 break
             case 3:
                 return videoId
-                break
             default:
                 console.log("Error invalid videoId")
         }
@@ -141,8 +140,8 @@ function playlistParse(videoId) {
         // Do some string processing with regex
         switch (currPlayer) {
             case 0:
-                var myRegex = /.+&list=([A-Za-z0-9\-_]+)/g
-                var match = myRegex.exec(videoId)
+                const myRegex = /.+&list=([A-Za-z0-9\-_]+)/g
+                const match = myRegex.exec(videoId)
                 if (match != null) {
                     return match[1]
                 }
@@ -162,7 +161,7 @@ function playlistParse(videoId) {
 }
 
 function enqueueVideoParse(roomnum) {
-  var videoId = document.getElementById("inputVideoId").value;
+  const videoId = document.getElementById("inputVideoId").value;
   enqueueVideo(roomnum, videoId)
 }
 
