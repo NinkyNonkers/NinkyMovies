@@ -103,7 +103,7 @@ function idParse(videoId) {
                 videoId = "invalid"
                 break
             case 1:
-                let myRegex = /.+\/(.+)/g
+                var myRegex = /.+\/(.+)/g
                 if (videoId.includes("playlist")) {
                     myRegex = /.+video=(.+)/g
                 }

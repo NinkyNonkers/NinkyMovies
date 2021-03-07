@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/host.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/host.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615137150455</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="FIX I GUESS?????">
+      <created>1615138305381</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1615138305381</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -87,6 +90,7 @@
     <MESSAGE value="Remove duplicate lightsoff, turned on by default" />
     <MESSAGE value="Strip vimeo and dailymotion" />
     <MESSAGE value="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT" />
+    <MESSAGE value="FIX I GUESS?????" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIX I GUESS?????" />
   </component>
 </project>
