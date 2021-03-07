@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615138305381</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="might just hit that suicide wave">
+      <created>1615138486287</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1615138486287</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +99,7 @@
     <MESSAGE value="Strip vimeo and dailymotion" />
     <MESSAGE value="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT" />
     <MESSAGE value="FIX I GUESS?????" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIX I GUESS?????" />
+    <MESSAGE value="might just hit that suicide wave" />
+    <option name="LAST_COMMIT_MESSAGE" value="might just hit that suicide wave" />
   </component>
 </project>

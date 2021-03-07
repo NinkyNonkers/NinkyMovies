@@ -85,17 +85,19 @@ function idParse(videoId) {
     // If user enters a full link
     if (videoId.includes("https://") || videoId.includes("http://") || videoId.includes(".com/")) {
         // Do some string processing with regex
+        let match = "";
+        let myRegex;
         switch (currPlayer) {
             case 0:
                 if (videoId.includes("youtu.be")) {
-                    const myRegex = /.+youtu\.be\/([A-Za-z0-9\-_]+)/g
-                    const match = myRegex.exec(videoId)
+                    myRegex = /.+youtu\.be\/([A-Za-z0-9\-_]+)/g
+                    match = myRegex.exec(videoId)
                     if (match != null) {
                         return match[1]
                     }
                 } else {
-                  const myRegex = /.+watch\?v=([A-Za-z0-9\-_]+)/g
-                  const match = myRegex.exec(videoId)
+                  myRegex = /.+watch\?v=([A-Za-z0-9\-_]+)/g
+                  match = myRegex.exec(videoId)
                   if (match != null) {
                       return match[1]
                   }
@@ -103,12 +105,12 @@ function idParse(videoId) {
                 videoId = "invalid"
                 break
             case 1:
-                var myRegex = /.+\/(.+)/g
+                myRegex = /.+\/(.+)/g
                 if (videoId.includes("playlist")) {
                     myRegex = /.+video=(.+)/g
                 }
 
-                const match = myRegex.exec(videoId)
+                match = myRegex.exec(videoId)
                 if (match != null) {
                     console.log("You entered a link, but you really meant " + match[1])
                     return match[1]
@@ -116,8 +118,8 @@ function idParse(videoId) {
                 videoId = "invalid"
                 break
             case 2:
-                var myRegex = /.+\/(.+)/g
-                var match = myRegex.exec(videoId)
+                myRegex = /.+\/(.+)/g
+                match = myRegex.exec(videoId)
                 if (match != null) {
                     console.log("You entered a link, but you really meant " + match[1])
                     return match[1]
