@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')();
 const compression = require('compression')
 
 users = [];
@@ -174,6 +174,8 @@ io.sockets.on('connection', function(socket) {
         // Sets the default values when first initializing
         if (init) {
             // Sets the host
+            if (io.sockets.adapter.rooms['room-' + socket.roomnum] === undefined)
+                return;
             io.sockets.adapter.rooms['room-' + socket.roomnum].host = host
             // Default Player
             io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer = 0
