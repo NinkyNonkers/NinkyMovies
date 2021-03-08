@@ -208,21 +208,21 @@
 
 <script>
     const socket = io.connect();
-    let roomnum = 1
+    let roomNum = 1
     let id = "M7lc1UVf-VE"
-    let username = ""
+    let userName = ""
     // Don't allow trailing or leading whitespace!
     const nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
 
     // Chat stuff
     $(function() {
-        const $roomArea = $('#roomArea');
-        const $userFormArea = $('#userFormArea');
-        const $userForm = $('#userForm');
-        const $users = $('#users');
-        const $username = $('#username');
-        const $roomnum = $('#roomnum');
-        const $vidlist = $('#vidlist');
+        const roomArea = document.getElementById("roomArea");
+        const userFormArea = document.getElementById("userFormArea");
+        const userForm = document.getElementById("userForm");
+        const users = document.getElementById("users");
+        const username = document.getElementById("username");
+        const roomnum = document.getElementById("roomnum");
+        const vidlist = document.getElementById("vidlist");
 
 
         socket.on('new message', function(data) {
@@ -230,7 +230,7 @@
         });
 
         // Submit user form
-        $userForm.submit(function(e) {
+        userForm.submit(function(e) {
             e.preventDefault();
             // New User
 
@@ -238,7 +238,7 @@
 
             // If name not entered
 
-            const usernameValue = $username.val();
+            const usernameValue = username.val();
 
             if (usernameValue == "") {
                 console.log("ENTER A NAME")
@@ -252,7 +252,7 @@
                 noname.innerHTML = "Your name can't possibly be over 30 characters!"
             }
             // If roomnate
-            else if ($roomnum.val().length > 50) {
+            else if (roomnum.val().length > 50) {
                 console.log("ROOM NAME IS TOO LONG")
                 var noname = document.getElementById('missinginfo')
                 noname.innerHTML = "How are you going to remember a room code that has more than 50 characters?"
@@ -266,24 +266,24 @@
                 var noname2 = document.getElementById('missinginfo2')
                 noname2.innerHTML = "Please enter a room ID without symbols or leading/trailing whitespace!"
             } else {
-                username = $username.val()
-                socket.emit('new user', $username.val(), function(data) {
+                userName = username.val()
+                socket.emit('new user', username.val(), function(data) {
                     if (data) {
-                        $userFormArea.hide();
-                        $roomArea.show();
+                        userFormArea.hide();
+                        roomArea.show();
 
                         // This sets the room number on the client
-                        if ($roomnum.val() !== "") {
-                            roomnum = $roomnum.val()
+                        if (roomnum.val() !== "") {
+                            roomNum = roomnum.val()
                         }
 
                         // Sets the invite link (roomnum)
-                        history.pushState('', 'Vynchronize', roomnum);
+                        history.pushState('', 'Vynchronize', roomNum);
 
                     }
                 });
                 // Join room
-                socket.emit('new room', $roomnum.val(), function(data) {
+                socket.emit('new room', roomnum.val(), function(data) {
                     // This should only call back if the client is the host
                     if (data) {
                         console.log("Host is syncing the new socket!")
@@ -291,7 +291,7 @@
                     }
                 });
 
-                $username.val('');
+                username.val('');
             }
         });
 
@@ -303,7 +303,7 @@
                 // <div class="well well-sm message-well"><strong>
             }
 
-            $users.html(html)
+            users.html(html)
         });
 
         // Updates the queue
@@ -321,7 +321,7 @@
                 html += '<li class="vid-item"></li>'
             }
 
-            $vidlist.html(html)
+            vidlist.html(html)
         });
 
 
@@ -332,7 +332,7 @@
             console.log(key)
             console.log(event.keyCode)
             // Allow enters and spaces to be used still
-            if ($roomnum.val().length > 50 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
+            if (roomnum.val().length > 50 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
                 event.preventDefault();
                 return false;
             }
@@ -343,7 +343,7 @@
             var nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
             var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             // Allow enters and spaces to be used still
-            if ($username.val().length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
+            if (username.val().length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
                 event.preventDefault();
                 return false;
             }
@@ -354,16 +354,16 @@
 
     // Turn off the lights!
     var per = 0;
-    $(document).ready(function() {
-        $("#persoff").css("height", $(document).height()).hide();
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("persoff").css("height", $(document).height()).hide();
         $(document).click(function(e) {
             if (!$(e.target).hasClass('switch') && per == 1) {
-                $("#persoff").toggle();
+                document.getElementById("persoff").toggle();
                 per = 0;
             }
         });
-        $(".switch").click(function() {
-            $("#persoff").toggle();
+        document.getElementById(".switch").click(function() {
+            document.getElementById("persoff").toggle();
             per += 1;
             if (per == 2) {
                 per = 0;
@@ -372,16 +372,16 @@
     });
 
     // playlist
-    $(document).ready(function() {
-        $(".arrow-right").bind("click", function(event) {
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById(".arrow-right").bind("click", function(event) {
             event.preventDefault();
-            $(".vid-list-container").stop().animate({
+            document.getElementById(".vid-list-container").stop().animate({
                 scrollLeft: "+=336"
             }, 750);
         });
-        $(".arrow-left").bind("click", function(event) {
+        document.getElementById(".arrow-left").bind("click", function(event) {
             event.preventDefault();
-            $(".vid-list-container").stop().animate({
+            document.getElementById(".vid-list-container").stop().animate({
                 scrollLeft: "-=336"
             }, 750);
         });
@@ -412,7 +412,7 @@
         document.getElementById('roomnum').value = "main"
     }
 
-    $(document).ready(function() {
+    document.addEventListener("DOMContentLoaded", function() {
         const urlParams = new URLSearchParams(window.location.search);
         const roomId = urlParams.get("room");
         if (roomId === undefined || roomId === "" || roomId == null)
@@ -422,9 +422,9 @@
             userName = "random discord user!";
 
 
-        const $roomArea = $('#roomArea');
-        const $userFormArea = $('#userFormArea');
-        const $roomnum = $('#roomnum');
+        const $roomArea = document.getElementById("roomArea")
+        const $userFormArea = document.getElementById('#userFormArea');
+        const $roomnum = document.getElementById('#roomnum');
 
 
         socket.emit('new user', userName, function(data) {
