@@ -6,10 +6,6 @@
     font-style: normal;
 }
 
-#html5-input {
-    display: none;
-}
-
 .html5player:hover .controls, html5player:focus .controls {
     opacity: 1;
 }

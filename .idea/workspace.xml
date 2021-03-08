@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/html5player.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/html5player.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/dependencies/jquery.easing.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/dependencies/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/dependencies/scrolling-nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/dependencies/scrolling-nav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615196056364</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add text compression, remove lots of unused JS">
+      <created>1615201055550</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615201055550</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +116,7 @@
     <MESSAGE value="FIX I GUESS?????" />
     <MESSAGE value="might just hit that suicide wave" />
     <MESSAGE value="Begin work on stripping jquery" />
-    <option name="LAST_COMMIT_MESSAGE" value="Begin work on stripping jquery" />
+    <MESSAGE value="Add text compression, remove lots of unused JS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add text compression, remove lots of unused JS" />
   </component>
 </project>
