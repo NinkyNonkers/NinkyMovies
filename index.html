@@ -283,7 +283,6 @@
                     var noname2 = document.getElementById('missinginfo2')
                     noname2.innerHTML = "Please enter a room ID without symbols or leading/trailing whitespace!"
                 } else {
-                    userName = username.value
                     socket.emit('new user', username.value, function (data) {
                         if (data) {
                             userFormArea.style.display = 'none'
