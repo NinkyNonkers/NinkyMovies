@@ -243,74 +243,79 @@
             console.log("Chat has been deprecated in the latest version of NinkyMovies")
         });
 
-        // Submit user form
-        userForm.onsubmit = function(e) {
-            e.preventDefault();
-            // New User
+        if (userForm != null) {
 
-            // Get rid of trailing/leading whitespace
+            // Submit user form
+            userForm.onsubmit = function (e) {
+                e.preventDefault();
+                // New User
 
-            // If name not entered
+                // Get rid of trailing/leading whitespace
 
-            const usernameValue = username.value;
-            let noname;
+                // If name not entered
 
-            if (usernameValue == "") {
-                console.log("ENTER A NAME")
-                noname = document.getElementById('missinginfo')
-                noname.innerHTML = "Surely you have a name right? Enter it below!"
-            }
-            // If name is too long
-            else if (usernameValue.length > 30) {
-                console.log("NAME IS TOO LONG")
-                noname = document.getElementById('missinginfo')
-                noname.innerHTML = "Your name can't possibly be over 30 characters!"
-            }
-            // If roomnate
-            else if (roomnum.value.length > 50) {
-                console.log("ROOM NAME IS TOO LONG")
-                noname = document.getElementById('missinginfo')
-                noname.innerHTML = "How are you going to remember a room code that has more than 50 characters?"
-            }
-                // If Room contains symbols
-            // Can only be reached if the user decided to be sneaky and paste them!
-            else if (!nosymbols.test(roomnum.value)) {
-                console.log("ENTER A PROPER ROOMNUMBER")
-                noname = document.getElementById('missinginfo')
-                noname.innerHTML = ""
-                var noname2 = document.getElementById('missinginfo2')
-                noname2.innerHTML = "Please enter a room ID without symbols or leading/trailing whitespace!"
-            } else {
-                userName = username.value
-                socket.emit('new user', username.value, function(data) {
-                    if (data) {
-                        userFormArea.style.display = 'none'
-                        roomArea.style.display = 'block';
+                const usernameValue = username.value;
+                let noname;
 
-                        // This sets the room number on the client
-                        if (roomnum.value !== "") {
-                            roomNum = roomnum.value;
+                if (usernameValue == "") {
+                    console.log("ENTER A NAME")
+                    noname = document.getElementById('missinginfo')
+                    noname.innerHTML = "Surely you have a name right? Enter it below!"
+                }
+                // If name is too long
+                else if (usernameValue.length > 30) {
+                    console.log("NAME IS TOO LONG")
+                    noname = document.getElementById('missinginfo')
+                    noname.innerHTML = "Your name can't possibly be over 30 characters!"
+                }
+                // If roomnate
+                else if (roomnum.value.length > 50) {
+                    console.log("ROOM NAME IS TOO LONG")
+                    noname = document.getElementById('missinginfo')
+                    noname.innerHTML = "How are you going to remember a room code that has more than 50 characters?"
+                }
+                    // If Room contains symbols
+                // Can only be reached if the user decided to be sneaky and paste them!
+                else if (!nosymbols.test(roomnum.value)) {
+                    console.log("ENTER A PROPER ROOMNUMBER")
+                    noname = document.getElementById('missinginfo')
+                    noname.innerHTML = ""
+                    var noname2 = document.getElementById('missinginfo2')
+                    noname2.innerHTML = "Please enter a room ID without symbols or leading/trailing whitespace!"
+                } else {
+                    userName = username.value
+                    socket.emit('new user', username.value, function (data) {
+                        if (data) {
+                            userFormArea.style.display = 'none'
+                            roomArea.style.display = 'block';
+
+                            // This sets the room number on the client
+                            if (roomnum.value !== "") {
+                                roomNum = roomnum.value;
+                            }
+
+                            // Sets the invite link (roomnum)
+                            history.pushState('', 'Vynchronize', roomNum);
+
                         }
+                    });
+                    // Join room
+                    socket.emit('new room', roomnum.value, function (data) {
+                        // This should only call back if the client is the host
+                        if (data) {
+                            console.log("Host is syncing the new socket!")
+                            syncVideo(roomnum)
+                        }
+                    });
 
-                        // Sets the invite link (roomnum)
-                        history.pushState('', 'Vynchronize', roomNum);
-
-                    }
-                });
-                // Join room
-                socket.emit('new room', roomnum.value, function(data) {
-                    // This should only call back if the client is the host
-                    if (data) {
-                        console.log("Host is syncing the new socket!")
-                        syncVideo(roomnum)
-                    }
-                });
-
-                username.value = '';
-            }
-        };
+                    username.value = '';
+                }
+            };
+        }
 
         socket.on('get users', function(data) {
+            if (users == null)
+                return;
             let html = '';
             for (i = 0; i < data.length; i++) {
                 html += '<li style="padding-right: 10em;" class="list-group-item chat-users">' + data[i] + '</li>';
@@ -329,28 +334,32 @@
         const nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
 
 
-        // Prevent special characters from being typed
-        roomnum.on('keypress', function(event) {
-            const key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            console.log(key)
-            console.log(event.keyCode)
-            // Allow enters and spaces to be used still
-            if (roomnum.value.length > 50 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
-                event.preventDefault();
-                return false;
-            }
-        });
+        if (roomnum != null) {
+            // Prevent special characters from being typed
+            roomnum.onkeypress = function (event) {
+                var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                console.log(key)
+                console.log(event.keyCode)
+                // Allow enters and spaces to be used still
+                if (roomnum.value.length > 50 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
+                    event.preventDefault();
+                    return false;
+                }
+            };
+        }
 
-        // Prevent special characters from being typed
-        username.on('keypress', function(event) {
+        if (username != null) {
 
-            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-            // Allow enters and spaces to be used still
-            if (username.value.length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
-                event.preventDefault();
-                return false;
-            }
-        });
+            // Prevent special characters from being typed
+            username.onkeypress = function (event) {
+                var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                // Allow enters and spaces to be used still
+                if (username.value.length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
+                    event.preventDefault();
+                    return false;
+                }
+            };
+        }
 
 
         //Here on its just checking url parameters to see if the room can be joined automatically
