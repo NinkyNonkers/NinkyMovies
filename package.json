@@ -13,10 +13,11 @@
   "author": "Kyle Lim",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.7.4",
     "dotenv": "8.1.0",
     "express": "*",
-    "lodash": "^4.17.13",
-    "socket.io": "*",
+    "lodash": "^4.17.21",
+    "socket.io": "^3.1.2",
     "ws": ">=3.3.1"
   },
   "bugs": {
@@ -24,6 +25,6 @@
   },
   "homepage": "https://github.com/kyle8998/Vynchronize#readme",
   "devDependencies": {
-    "jshint": "^2.9.5"
+    "jshint": "^2.12.0"
   }
 }

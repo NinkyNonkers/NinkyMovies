@@ -4,6 +4,13 @@
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/dependencies/jquery.easing.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/dependencies/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/dependencies/scrolling-nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/dependencies/scrolling-nav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/site.webmanifest" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615138486287</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Begin work on stripping jquery">
+      <created>1615196056364</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1615196056364</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +114,7 @@
     <MESSAGE value="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT" />
     <MESSAGE value="FIX I GUESS?????" />
     <MESSAGE value="might just hit that suicide wave" />
-    <option name="LAST_COMMIT_MESSAGE" value="might just hit that suicide wave" />
+    <MESSAGE value="Begin work on stripping jquery" />
+    <option name="LAST_COMMIT_MESSAGE" value="Begin work on stripping jquery" />
   </component>
 </project>

@@ -6,29 +6,16 @@
     <meta name="description" content="Movies">
     <meta name="author" content="">
 
+    <meta name="theme-color" content="#E7C6FF">
+
     <title>The Ninky Nonk Company</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!-- Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
-
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $.ajax({
-                url: 'http://127.0.0.1/',
-                type: 'html',
-                data: '',
-                headers: { 'Access-Control-Allow-Origin': 'https://wikiservices.ml' },
-            });
-        });
-    </script>
 
     <!-- Font awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -36,10 +23,11 @@
     <!-- Custom styles for this template -->
     <link href="css/small-business.css" rel="stylesheet">
 
+    <link rel="manifest" href="site.webmanifest">
+
     <link href="css/style.css" rel="stylesheet">
     <link href="css/mobile-style.css" rel="stylesheet">
-    <link href="css/html5player.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link href="css/stylesheet.css" rel="stylesheet" >
 
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
@@ -214,15 +202,36 @@
     // Don't allow trailing or leading whitespace!
     const nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
 
-    // Chat stuff
-    $(function() {
+    (function() {
         const roomArea = document.getElementById("roomArea");
         const userFormArea = document.getElementById("userFormArea");
         const userForm = document.getElementById("userForm");
         const users = document.getElementById("users");
         const username = document.getElementById("username");
         const roomnum = document.getElementById("roomnum");
-        const vidlist = document.getElementById("vidlist");
+        const persoff = document.getElementById("persoff");
+
+
+        //Lights off
+        let per = 0;
+
+        persoff.style.height = document.body.style.height;
+        persoff.style.display = "none";
+
+        document.onclick = function(e) {
+            if (!e.target.classList.contains('switch') && per == 1) {
+                persoff.toggle();
+                per = 0;
+            }
+        };
+
+        document.getElementById(".switch").onclick = function() {
+            persoff.toggle();
+            per += 1;
+            if (per == 2) {
+                per = 0;
+            }
+        };
 
 
         socket.on('new message', function(data) {
@@ -230,7 +239,7 @@
         });
 
         // Submit user form
-        userForm.submit(function(e) {
+        userForm.onsubmit = function(e) {
             e.preventDefault();
             // New User
 
@@ -238,43 +247,44 @@
 
             // If name not entered
 
-            const usernameValue = username.val();
+            const usernameValue = username.value;
+            let noname;
 
             if (usernameValue == "") {
                 console.log("ENTER A NAME")
-                var noname = document.getElementById('missinginfo')
+                noname = document.getElementById('missinginfo')
                 noname.innerHTML = "Surely you have a name right? Enter it below!"
             }
             // If name is too long
             else if (usernameValue.length > 30) {
                 console.log("NAME IS TOO LONG")
-                var noname = document.getElementById('missinginfo')
+                noname = document.getElementById('missinginfo')
                 noname.innerHTML = "Your name can't possibly be over 30 characters!"
             }
             // If roomnate
-            else if (roomnum.val().length > 50) {
+            else if (roomnum.value.length > 50) {
                 console.log("ROOM NAME IS TOO LONG")
-                var noname = document.getElementById('missinginfo')
+                noname = document.getElementById('missinginfo')
                 noname.innerHTML = "How are you going to remember a room code that has more than 50 characters?"
             }
                 // If Room contains symbols
             // Can only be reached if the user decided to be sneaky and paste them!
-            else if (!nosymbols.test($roomnum.val())) {
+            else if (!nosymbols.test(roomnum.value)) {
                 console.log("ENTER A PROPER ROOMNUMBER")
-                var noname = document.getElementById('missinginfo')
+                noname = document.getElementById('missinginfo')
                 noname.innerHTML = ""
                 var noname2 = document.getElementById('missinginfo2')
                 noname2.innerHTML = "Please enter a room ID without symbols or leading/trailing whitespace!"
             } else {
-                userName = username.val()
-                socket.emit('new user', username.val(), function(data) {
+                userName = username.value
+                socket.emit('new user', username.value, function(data) {
                     if (data) {
                         userFormArea.hide();
                         roomArea.show();
 
                         // This sets the room number on the client
-                        if (roomnum.val() !== "") {
-                            roomNum = roomnum.val()
+                        if (roomnum.value !== "") {
+                            roomNum = roomnum.value;
                         }
 
                         // Sets the invite link (roomnum)
@@ -283,7 +293,7 @@
                     }
                 });
                 // Join room
-                socket.emit('new room', roomnum.val(), function(data) {
+                socket.emit('new room', roomnum.value, function(data) {
                     // This should only call back if the client is the host
                     if (data) {
                         console.log("Host is syncing the new socket!")
@@ -291,16 +301,14 @@
                     }
                 });
 
-                username.val('');
+                username.value = '';
             }
-        });
+        };
 
         socket.on('get users', function(data) {
             let html = '';
             for (i = 0; i < data.length; i++) {
                 html += '<li style="padding-right: 10em;" class="list-group-item chat-users">' + data[i] + '</li>';
-                // html += '<div class="well well-sm message-well">' + data[i] + '</div>';
-                // <div class="well well-sm message-well"><strong>
             }
 
             users.html(html)
@@ -309,25 +317,15 @@
         // Updates the queue
         // Parameters - vidlist, currPlayer, videoId
         socket.on('get vidlist', function(data) {
-            console.log("i am updating the queue")
-            let yt = data.vidlist.yt
-            let html = ''
-            if (yt.length > 0) {
-                for (i = 0; i < yt.length; i++) {
-                    html += '<li class="vid-item"><div class="thumb"><a href="javascript: removeAt(' + i + ')" class="ghost-button-full-color"><i class="far fa-times-circle"></i></a><a href="javascript: playAt(' + i +
-                        ')"><img src="http://img.youtube.com/vi/' + yt[i].videoId + '/0.jpg"></a></div><a href="javascript: playAt(' + i + ')" class="desc">' + yt[i].title + '</a></li>'
-                }
-            } else {
-                html += '<li class="vid-item"></li>'
-            }
-
-            vidlist.html(html)
+            console.log("Queue has been deprecated in this version of NinkyMovies")
         });
+
+
+        const nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
 
 
         // Prevent special characters from being typed
         roomnum.on('keypress', function(event) {
-            const nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
             const key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             console.log(key)
             console.log(event.keyCode)
@@ -340,7 +338,7 @@
 
         // Prevent special characters from being typed
         username.on('keypress', function(event) {
-            var nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
+
             var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             // Allow enters and spaces to be used still
             if (username.val().length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
@@ -349,43 +347,43 @@
             }
         });
 
-    });
+
+        //Here on its just checking url parameters to see if the room can be joined automatically
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get("room");
+        if (roomId === null || roomId === "" || roomId === undefined)
+            return;
+        let userName = urlParams.get("username");
+        if (userName === undefined || userName === "" || userName == null)
+            userName = "random discord user!";
 
 
-    // Turn off the lights!
-    var per = 0;
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("persoff").css("height", $(document).height()).hide();
-        $(document).click(function(e) {
-            if (!$(e.target).hasClass('switch') && per == 1) {
-                document.getElementById("persoff").toggle();
-                per = 0;
+        socket.emit('new user', userName, function(data) {
+            if (data) {
+                userFormArea.hide();
+                roomArea.show();
+
+                // This sets the room number on the client
+                if (roomnum.value !== "") {
+                    roomNum = roomnum.value
+                }
+
+                history.pushState('', 'Vynchronize', roomNum);
             }
         });
-        document.getElementById(".switch").click(function() {
-            document.getElementById("persoff").toggle();
-            per += 1;
-            if (per == 2) {
-                per = 0;
+
+        // Join room
+        socket.emit('new room', roomnum.value, function(data) {
+            // This should only call back if the client is the host
+            if (data) {
+                console.log("Host is syncing the new socket!")
+                syncVideo(roomnum)
             }
         });
-    });
 
-    // playlist
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById(".arrow-right").bind("click", function(event) {
-            event.preventDefault();
-            document.getElementById(".vid-list-container").stop().animate({
-                scrollLeft: "+=336"
-            }, 750);
-        });
-        document.getElementById(".arrow-left").bind("click", function(event) {
-            event.preventDefault();
-            document.getElementById(".vid-list-container").stop().animate({
-                scrollLeft: "-=336"
-            }, 750);
-        });
-    });
+    })();
+
 
     // set id
     socket.on('set id', function(data) {
@@ -412,62 +410,12 @@
         document.getElementById('roomnum').value = "main"
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const roomId = urlParams.get("room");
-        if (roomId === undefined || roomId === "" || roomId == null)
-            return;
-        let userName = urlParams.get("username");
-        if (userName === undefined || userName === "" || userName == null)
-            userName = "random discord user!";
-
-
-        const $roomArea = document.getElementById("roomArea")
-        const $userFormArea = document.getElementById('#userFormArea');
-        const $roomnum = document.getElementById('#roomnum');
-
-
-        socket.emit('new user', userName, function(data) {
-            if (data) {
-                $userFormArea.hide();
-                $roomArea.show();
-
-                // Move footer to correct position
-                document.getElementById('footer').style.position = 'relative';
-
-                // No longer using initarea
-                // var initStuff = document.getElementById("initArea")
-                // initStuff.innerHTML = ""
-
-                // This sets the room number on the client
-                if ($roomnum.val() !== "") {
-                    roomnum = $roomnum.val()
-                }
-
-                history.pushState('', 'Vynchronize', roomnum);
-            }
-        });
-        // Join room
-        socket.emit('new room', $roomnum.val(), function(data) {
-            // This should only call back if the client is the host
-            if (data) {
-                console.log("Host is syncing the new socket!")
-                syncVideo(roomnum)
-            }
-        });
-
-    });
 
 
 </script>
 
 <!-- Bootstrap core JavaScript -->
-<script src="js/dependencies/jquery.min.js"></script>
 <script src="js/dependencies/bootstrap.bundle.min.js"></script>
-<script src="js/dependencies/scrolling-nav.js"></script>
-<script src="js/dependencies/bootstrap-notify.min.js"></script>
-<!-- Plugin JavaScript -->
-<script src="js/dependencies/jquery.easing.min.js"></script>
 
 
 <!-- My JS files -->

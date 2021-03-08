@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "NinkyMovies",
+    "short_name": "NinkyMovies",
     "icons": [
         {
             "src": "/android-chrome-96x96.png",
@@ -8,7 +8,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#E7C6FF",
+    "background_color": "#B8C0FF",
     "display": "standalone"
 }
