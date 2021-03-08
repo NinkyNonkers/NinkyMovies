@@ -226,13 +226,17 @@
             }
         };
 
-        document.getElementById(".switch").onclick = function() {
-            persoff.toggle();
-            per += 1;
-            if (per == 2) {
-                per = 0;
-            }
-        };
+        const lightToggle = document.getElementById(".switch");
+
+        if (lightToggle !== undefined) {
+            lightToggle.onclick = function () {
+                persoff.toggle();
+                per += 1;
+                if (per == 2) {
+                    per = 0;
+                }
+            };
+        }
 
 
         socket.on('new message', function(data) {
