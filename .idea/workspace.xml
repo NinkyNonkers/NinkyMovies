@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/html5player.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/html5player.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615201055550</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add back HTML5 player CSS">
+      <created>1615201160826</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1615201160826</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +123,7 @@
     <MESSAGE value="might just hit that suicide wave" />
     <MESSAGE value="Begin work on stripping jquery" />
     <MESSAGE value="Add text compression, remove lots of unused JS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add text compression, remove lots of unused JS" />
+    <MESSAGE value="Add back HTML5 player CSS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add back HTML5 player CSS" />
   </component>
 </project>
