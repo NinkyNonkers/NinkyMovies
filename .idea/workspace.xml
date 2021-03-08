@@ -4,7 +4,6 @@
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615203936152</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Fix express version">
+      <created>1615205341580</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1615205341580</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,6 +187,7 @@
     <MESSAGE value="Hahaaaa" />
     <MESSAGE value="Remove unused username asignment" />
     <MESSAGE value="Downgrade back to socket.io 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Downgrade back to socket.io 2" />
+    <MESSAGE value="Fix express version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix express version" />
   </component>
 </project>

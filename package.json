@@ -1,5 +1,5 @@
 {
-  "name": "vynchronize",
+  "name": "ninkymovies",
   "version": "1.0.0",
   "description": "Video synchronization app",
   "main": "server.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kyle8998/Vynchronize.git"
+    "url": "git+https://github.com/NinkyNonkers/NinkyMovies.git"
   },
   "author": "Kyle Lim",
   "license": "ISC",
@@ -21,9 +21,9 @@
     "ws": ">=3.3.1"
   },
   "bugs": {
-    "url": "https://github.com/kyle8998/Vynchronize/issues"
+    "url": "https://github.com/NinkyNonkers/NinkyMovies/issues"
   },
-  "homepage": "https://github.com/kyle8998/Vynchronize#readme",
+  "homepage": "https://github.com/NinkyNonkers/NinkyMovies#readme",
   "devDependencies": {
     "jshint": "^2.12.0"
   }
