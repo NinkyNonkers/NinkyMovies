@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615201160826</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Update socket.io stuff">
+      <created>1615201752624</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1615201752624</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +131,7 @@
     <MESSAGE value="Begin work on stripping jquery" />
     <MESSAGE value="Add text compression, remove lots of unused JS" />
     <MESSAGE value="Add back HTML5 player CSS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add back HTML5 player CSS" />
+    <MESSAGE value="Update socket.io stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update socket.io stuff" />
   </component>
 </project>

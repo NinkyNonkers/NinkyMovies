@@ -280,8 +280,8 @@
                 userName = username.value
                 socket.emit('new user', username.value, function(data) {
                     if (data) {
-                        userFormArea.hide();
-                        roomArea.show();
+                        userFormArea.style.display = 'none'
+                        roomArea.style.display = 'block';
 
                         // This sets the room number on the client
                         if (roomnum.value !== "") {
@@ -331,7 +331,7 @@
             console.log(key)
             console.log(event.keyCode)
             // Allow enters and spaces to be used still
-            if (roomnum.val().length > 50 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
+            if (roomnum.value.length > 50 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
                 event.preventDefault();
                 return false;
             }
@@ -342,7 +342,7 @@
 
             var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             // Allow enters and spaces to be used still
-            if (username.val().length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
+            if (username.value.length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
                 event.preventDefault();
                 return false;
             }
@@ -362,8 +362,8 @@
 
         socket.emit('new user', userName, function(data) {
             if (data) {
-                userFormArea.hide();
-                roomArea.show();
+                userFormArea.style.display = 'none'
+                roomArea.style.display = 'block'
 
                 // This sets the room number on the client
                 if (roomnum.value !== "") {
