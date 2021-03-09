@@ -7,7 +7,7 @@ let dropDownToggledB = false;
 
 function dropDownAClicked() {
     dropDownToggledA = !dropDownToggledA;
-    if (dropDownToggledA === true) {
+    if (dropDownToggledA) {
         dropdownMenuA.style.display = 'block';
         return;
     }
@@ -16,7 +16,7 @@ function dropDownAClicked() {
 
 function dropDownBClicked() {
     dropDownToggledB = !dropDownToggledB;
-    if (dropDownToggledB === true) {
+    if (dropDownToggledB) {
         dropdownMenuB.style.display = 'block';
         return;
     }

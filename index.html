@@ -206,9 +206,6 @@
     const nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
 
 
-
-
-
     (function() {
 
         const roomArea = document.getElementById("roomArea");
@@ -426,12 +423,6 @@
         socket.emit('reset url')
     });
 
-
-
-    // Generate a random alphanumeric room id
-    function randomroom() {
-        document.getElementById('roomnum').value = Math.random().toString(36).substr(2, 12)
-    }
 
     function getMainRoom() {
         document.getElementById('roomnum').value = "main"

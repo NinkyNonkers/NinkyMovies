@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/styling.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/host.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/host.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/html5.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/html5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/notify.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/notify.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/styling.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/styling.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
-      <workItem from="1615281065899" duration="6023000" />
+      <workItem from="1615281065899" duration="7043000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -215,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615288109802</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add custom dropdown + complete stripping&#10;Completely eliminate jquery usage, started phasing out bootstrap JS (not css portion though)">
+      <created>1615292420308</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1615292420308</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +243,7 @@
     <MESSAGE value="Begin upgrade to http2 and start redoing dropdown" />
     <MESSAGE value="Fix dropdown stuff" />
     <MESSAGE value="Update old html() jquery usage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update old html() jquery usage" />
+    <MESSAGE value="Add custom dropdown + complete stripping&#10;Completely eliminate jquery usage, started phasing out bootstrap JS (not css portion though)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add custom dropdown + complete stripping&#10;Completely eliminate jquery usage, started phasing out bootstrap JS (not css portion though)" />
   </component>
 </project>
