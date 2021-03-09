@@ -98,11 +98,9 @@
         <!-- Heading Row -->
         <div class="row my-4" style="margin-top: 0 !important;">
             <div class="col-lg-7">
-
                 <div class="nonmobile-hide"><b>Note: </b>Only the host can control the video using the native video player controls </div>
                 <div class="mobile-hide"><b>Mobile User</b>, please play the video once manually to give the browser permission to control the video player. </div>
                 <!-- <hr style="height:0pt; visibility:hidden;" /> -->
-
                 <div style="margin: 10px 2px 10px 10px;" class="dropdown">
                     <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButtonA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-video"></i> Player
@@ -111,7 +109,7 @@
                         <a class="dropdown-item" onclick="changePlayer(roomnum, 0)"><i class="fab fa-youtube"></i> YouTube</a>
                         <!---<a class="dropdown-item" onclick="changePlayer(roomnum, 1)"><img width="14px" height="14px" src="img/dailymotion-logo.svg" alt="Daily Motion Logo"> Daily Motion</a>-->
                         <!---<a class="dropdown-item" onclick="changePlayer(roomnum, 2)"><i class="fab fa-vimeo"></i> Vimeo</a>-->
-                        <a class="dropdown-item" onclick="changePlayer(roomnum, 3)"><i class="fas fa-file-video"></i> HTML5 Player (.mp4/.webm) (Beta)</a>
+                        <a class="dropdown-item" onclick="changePlayer(roomnum, 3)"><i class="fas fa-file-video"></i> HTML5 Player (.mp4/.webm)</a>
                     </div>
                 </div>
 
@@ -217,8 +215,8 @@
     const username = document.getElementById("username");
     const roomnum = document.getElementById("roomnum");
     const persoff = document.getElementById("persoff");
-    const dropdownBtnA = document.getElementById("dropdownButtonA");
-    const dropdownBtnB = document.getElementById("dropdownButtonB");
+    const dropdownBtnA = document.getElementById("dropdownMenuButtonA");
+    const dropdownBtnB = document.getElementById("dropdownMenuButtonB");
     const dropdownMenuA = document.getElementById("ddmenuA");
     const dropdownMenuB = document.getElementById("ddmenuB");
 
