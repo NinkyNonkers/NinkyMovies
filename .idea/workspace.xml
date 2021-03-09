@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +55,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
+      <workItem from="1615281065899" duration="2186000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -171,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615205900952</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="I DID WOOPS LOL">
+      <created>1615206059155</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1615206059155</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +207,7 @@
     <MESSAGE value="Downgrade back to socket.io 2" />
     <MESSAGE value="Fix express version" />
     <MESSAGE value="Redo package lock?" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redo package lock?" />
+    <MESSAGE value="I DID WOOPS LOL" />
+    <option name="LAST_COMMIT_MESSAGE" value="I DID WOOPS LOL" />
   </component>
 </project>

@@ -104,10 +104,10 @@
                 <!-- <hr style="height:0pt; visibility:hidden;" /> -->
 
                 <div style="margin: 10px 2px 10px 10px;" class="dropdown">
-                    <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButtonA" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-video"></i> Player
                     </button>
-                    <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" id="ddmenuA">
                         <a class="dropdown-item" onclick="changePlayer(roomnum, 0)"><i class="fab fa-youtube"></i> YouTube</a>
                         <!---<a class="dropdown-item" onclick="changePlayer(roomnum, 1)"><img width="14px" height="14px" src="img/dailymotion-logo.svg" alt="Daily Motion Logo"> Daily Motion</a>-->
                         <!---<a class="dropdown-item" onclick="changePlayer(roomnum, 2)"><i class="fab fa-vimeo"></i> Vimeo</a>-->
@@ -144,12 +144,19 @@
 
                     <button id="lightButton" style="margin-top:.5rem" class="btn btn-primary btn-dark-new switch"><i style="pointer-events:none;" class="fas fa-lightbulb"></i></button>
 
-                    <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
-                        <a id="mdd1" class="dropdown-item" onclick="changeModeIndex(1)"></a>
-                        <a id="mdd2" class="dropdown-item" onclick="changeModeIndex(2)"></a>
-                        <a id="mdd3" class="dropdown-item" onclick="changeModeIndex(3)"></a>
-                        <a id="mdd4" class="dropdown-item" onclick="changeModeIndex(4)"></a>
+
+                    <div style="margin: 10px 2px 10px 10px;" class="dropdown">
+                        <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButtonB" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-video"></i> Bitrate Mode
+                        </button>
+                        <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" id="ddmenuB">
+                            <a id="mdd1" class="dropdown-item" onclick="changeModeIndex(1)"></a>
+                            <a id="mdd2" class="dropdown-item" onclick="changeModeIndex(2)"></a>
+                            <a id="mdd3" class="dropdown-item" onclick="changeModeIndex(3)"></a>
+                            <a id="mdd4" class="dropdown-item" onclick="changeModeIndex(4)"></a>
+                        </div>
                     </div>
+
 
                     <p class="sidenote">Change the mode for a different bitrate and less stuttering</p>
                     <!-- Turn off the lights -->
@@ -203,18 +210,52 @@
     // Don't allow trailing or leading whitespace!
     const nosymbols = new RegExp("^(([a-zA-Z0-9_-][a-zA-Z0-9 _-]*[a-zA-Z0-9_-])|([a-zA-Z0-9_-]*))$");
 
-    (function() {
-        const roomArea = document.getElementById("roomArea");
-        const userFormArea = document.getElementById("userFormArea");
-        const userForm = document.getElementById("userForm");
-        const users = document.getElementById("users");
-        const username = document.getElementById("username");
-        const roomnum = document.getElementById("roomnum");
-        const persoff = document.getElementById("persoff");
+    const roomArea = document.getElementById("roomArea");
+    const userFormArea = document.getElementById("userFormArea");
+    const userForm = document.getElementById("userForm");
+    const users = document.getElementById("users");
+    const username = document.getElementById("username");
+    const roomnum = document.getElementById("roomnum");
+    const persoff = document.getElementById("persoff");
+    const dropdownBtnA = document.getElementById("dropdownButtonA");
+    const dropdownBtnB = document.getElementById("dropdownButtonB");
+    const dropdownMenuA = document.getElementById("ddmenuA");
+    const dropdownMenuB = document.getElementById("ddmenuB");
 
+    //faster alternative to using jquery lol, I know its horrible but really its readable and considering the performance benefit theres no need to heavily design this
+    let dropDownToggledA = false;
+    let dropDownToggledB = false;
+
+    function dropDownAClicked(e) {
+        dropDownToggledA = !dropDownToggledA;
+        if (dropDownToggledA) {
+            dropdownMenuA.style.display = 'block';
+            return;
+        }
+        dropdownMenuA.style.display = 'none'
+    }
+
+    function dropDownBClicked(e) {
+        dropDownToggledB = !dropDownToggledB;
+        if (dropDownToggledB) {
+            dropdownMenuB.style.display = 'block';
+            return;
+        }
+        dropdownMenuB.style.display = 'none'
+    }
+
+
+
+    (function() {
+
+        setupModeDropdown();
+
+        dropdownBtnA.onclick = dropDownAClicked();
+        dropdownBtnB.onclick = dropDownBClicked();
 
         //Lights off
         let per = 0;
+
 
         persoff.style.height = document.body.style.height;
         persoff.style.display = "none";
@@ -224,6 +265,12 @@
                 persoff.toggle();
                 per = 0;
             }
+            if (e.target.classList.contains("dropdown"))
+                return;
+            if (dropDownToggledA)
+                dropDownAClicked();
+            if (dropDownToggledB)
+                dropDownBClicked();
         };
 
         const lightToggle = document.getElementById(".switch");

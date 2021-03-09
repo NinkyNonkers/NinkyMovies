@@ -1,10 +1,13 @@
 require('dotenv').config();
 
+//TODO: upgrade to http2 electric boogaloo
+
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
-const compression = require('compression')
+const compression = require('compression');
+const spdy = require('spdy');
 
 users = [];
 connections = [];
