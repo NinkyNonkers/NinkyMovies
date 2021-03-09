@@ -162,10 +162,6 @@ function playlistParse(videoId) {
     return "invalid"
 }
 
-function enqueueVideoParse(roomnum) {
-  const videoId = document.getElementById("inputVideoId").value;
-  enqueueVideo(roomnum, videoId)
-}
 
 // QueueVideo
 function enqueueVideo(roomnum, rawId) {
@@ -190,19 +186,6 @@ function enqueueVideo(roomnum, rawId) {
     }
 }
 
-// Empty Queue
-function emptyQueue(roomnum) {
-
-    // Empty the queue
-    socket.emit('empty queue', {
-        room: roomnum
-    });
-    // Notify
-    socket.emit('notify alerts', {
-        alert: 2,
-        user: username
-    })
-}
 
 function changeVideoParse(roomnum) {
   var videoId = document.getElementById("inputVideoId").value

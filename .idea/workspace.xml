@@ -2,13 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/js/styling.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/host.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/host.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/html5.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/html5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/notify.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/notify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,7 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
-      <workItem from="1615281065899" duration="3586000" />
+      <workItem from="1615281065899" duration="6023000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -194,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615287925411</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update old html() jquery usage">
+      <created>1615288109802</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1615288109802</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,6 +242,7 @@
     <MESSAGE value="I DID WOOPS LOL" />
     <MESSAGE value="Begin upgrade to http2 and start redoing dropdown" />
     <MESSAGE value="Fix dropdown stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix dropdown stuff" />
+    <MESSAGE value="Update old html() jquery usage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update old html() jquery usage" />
   </component>
 </project>

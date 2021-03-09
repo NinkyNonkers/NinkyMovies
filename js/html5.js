@@ -1,14 +1,5 @@
 // Read in video input from filesystem
-// var html5input = document.getElementById('html5-input');
-// html5input.onchange = function(e) {
-//     var html5 = document.getElementById('html5src');
-//     html5.src = URL.createObjectURL(this.files[0]);
-//     // not really needed in this exact case, but since it is really important in other cases,
-//     // don't forget to revoke the blobURI when you don't need it
-//     html5.onend = function(e) {
-//         URL.revokeObjectURL(this.src);
-//     }
-// }
+
 
 const media = document.querySelector('video');
 
@@ -50,6 +41,7 @@ media.addEventListener("seeked", function(e) {
     }
 })
 
+
 // Play/pause function
 function html5Play() {
     if (media.paused) {
@@ -71,9 +63,6 @@ function changeMode() {
 function changeVideoMode(newIndex) {
     if (newIndex > videoModes.length - 1)
         return;
-    const switchModeButton = document.getElementById("switchmode");
-    if (switchModeButton !== undefined && switchModeButton != null)
-        switchModeButton.innerText = videoModes[newIndex] + " mode" + "(" + videoModeDescriptions[newIndex] + ")";
     media.src = modeRootDir + videoModes[newIndex] + ".mp4";
 }
 

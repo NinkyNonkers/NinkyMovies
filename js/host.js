@@ -87,10 +87,6 @@ socket.on('compareHost', function(data) {
             }
 
             break;
-        case 1:
-            break;
-        case 2:
-            break;
         case 3:
             var currTime = media.currentTime
             var state = media.paused

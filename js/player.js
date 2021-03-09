@@ -21,9 +21,6 @@ socket.on('getPlayerData', function(data) {
                 caller: caller
             });
             break;
-        case 1:
-        case 2:
-            break;
         case 3:
             const currTime = media.currentTime
             const state = media.paused
@@ -35,7 +32,7 @@ socket.on('getPlayerData', function(data) {
             });
             break;
         default:
-            console.log("Error invalid player id")
+            console.log("Error: invalid player id")
     }
 });
 
@@ -74,12 +71,12 @@ socket.on('createYoutube', function(data) {
 
 // Create Daily Motion Player
 socket.on('createDaily', function(data) {
-    console.log("DailyMotion player has been deprecated in the latest release of NinkyMovies!")
+    console.log("Error: DailyMotion player has been deprecated in the latest release of NinkyMovies!")
 });
 
 // Create Vimeo Player
 socket.on('createVimeo', function(data) {
-    console.log("DailyMotion player has been deprecated in the latest release of NinkyMovies!")
+    console.log("Error: DailyMotion player has been deprecated in the latest release of NinkyMovies!")
 });
 
 // Create HTML5 Player

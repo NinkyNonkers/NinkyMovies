@@ -2,7 +2,7 @@
 [Access the application here!](http://watch.ninkynonk.co.uk/)
 
 
-NinkyMovies is a fork of the real-time online video synchronization platform: Vynchronize. You can enjoy any video available online with friends who may not be next to you!
+NinkyMovies is a heavily modified fork of the real-time online video synchronization platform: Vynchronize. You can enjoy any video available online with friends who may not be next to you!
 
 NinkyMovies currently supports YouTube, Daily Motion, Vimeo, and essentially any .mp4/.webm on the internet with the HTML5 Player!
 
