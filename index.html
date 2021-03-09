@@ -365,7 +365,7 @@
                 html += '<li style="padding-right: 10em;" class="list-group-item chat-users">' + data[i] + '</li>';
             }
 
-            users.html(html)
+            users.innerHTML += html;
         });
 
         // Updates the queue

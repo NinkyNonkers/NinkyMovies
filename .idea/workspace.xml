@@ -52,7 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
-      <workItem from="1615281065899" duration="3413000" />
+      <workItem from="1615281065899" duration="3586000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -187,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615283808636</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fix dropdown stuff">
+      <created>1615287925411</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1615287925411</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +220,7 @@
     <MESSAGE value="Redo package lock?" />
     <MESSAGE value="I DID WOOPS LOL" />
     <MESSAGE value="Begin upgrade to http2 and start redoing dropdown" />
-    <option name="LAST_COMMIT_MESSAGE" value="Begin upgrade to http2 and start redoing dropdown" />
+    <MESSAGE value="Fix dropdown stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix dropdown stuff" />
   </component>
 </project>
