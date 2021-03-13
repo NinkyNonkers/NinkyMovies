@@ -629,6 +629,7 @@ io.sockets.on('connection', function(socket) {
                     io.sockets.in("room-" + roomnum).emit('createYoutube', {});
                     break;
                 case 3:
+                    console.log("creating html5player")
                     io.sockets.in("room-" + roomnum).emit('createHTML5', {});
                     break;
                 default:
@@ -637,7 +638,6 @@ io.sockets.on('connection', function(socket) {
 
             // This changes the room variable to the player id
             room.currPlayer = playerId
-            // console.log(io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
 
             // This syncs the host whenever the player changes
             host = room.host

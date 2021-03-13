@@ -1,8 +1,8 @@
 let currPlayer = 0
 
 // 0 - YouTube
-// 1 - Daily Motion
-// 2 - Vimeo
+// 1 - Daily Motion (Deprecated)
+// 2 - Vimeo (Deprecated)
 // 3 - HTML5
 
 // Gets all the player data
