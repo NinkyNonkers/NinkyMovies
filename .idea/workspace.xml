@@ -4,7 +4,6 @@
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
       <workItem from="1615281065899" duration="7043000" />
-      <workItem from="1615648288515" duration="5522000" />
+      <workItem from="1615648288515" duration="5909000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -245,14 +244,20 @@
       <option name="project" value="LOCAL" />
       <updated>1615653538660</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="HMMPHH">
+      <created>1615654436948</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1615654436948</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Strip vimeo and dailymotion" />
     <MESSAGE value="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT" />
     <MESSAGE value="FIX I GUESS?????" />
     <MESSAGE value="might just hit that suicide wave" />
@@ -277,6 +282,7 @@
     <MESSAGE value="Remove dd from master click event" />
     <MESSAGE value="Woops" />
     <MESSAGE value="Correct README.md and optimise other stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct README.md and optimise other stuff" />
+    <MESSAGE value="HMMPHH" />
+    <option name="LAST_COMMIT_MESSAGE" value="HMMPHH" />
   </component>
 </project>

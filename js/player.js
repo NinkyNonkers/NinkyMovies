@@ -79,7 +79,10 @@ socket.on('createVimeo', function(data) {
 
 // Create HTML5 Player
 socket.on('createHTML5', function(data) {
+
     if (currPlayer != 3) {
+
+        console.log("changing to html5");
 
         const you = document.getElementById('playerArea');
         you.style.display = 'none';
@@ -90,9 +93,6 @@ socket.on('createHTML5', function(data) {
 
         document.getElementById('loveButton').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Direct mp4/webm URL'
-
-        //TODO: restyle this
-        //betaAlert()
     }
     else
         console.log("Player is already on HTML5!")
