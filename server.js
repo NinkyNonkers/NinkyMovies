@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 //TODO: upgrade to http2 electric boogaloo
 
 const express = require('express');
@@ -15,9 +13,6 @@ rooms = [];
 // Store all of the sockets and their respective room numbers
 userrooms = {}
 
-YT3_API_KEY = process.env.YT3_API_KEY;
-DM_API_KEY = process.env.DM_API_KEY;
-
 // Set given room for url parameter
 var given_room = ""
 
@@ -25,8 +20,8 @@ app.use(express.static(__dirname + '/'));
 app.use(compression());
 
 server.listen(process.env.PORT || 80);
-console.log('Server Started . . .');
 
+console.log('Server Started . . .');
 
 // app.param('room', function(req,res, next, room){
 //     console.log("testing")
@@ -56,7 +51,6 @@ io.on('connection', function(socket) {
    io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
 })*/
 
-var roomno = 1;
 
 io.sockets.on('connection', function(socket) {
     // Connect Socket
@@ -234,12 +228,6 @@ io.sockets.on('connection', function(socket) {
             case 0:
                 var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
                 break;
-            case 1:
-                var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.dm
-                break;
-            case 2:
-                var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.vimeo
-                break;
             case 3:
                 var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                 break;
@@ -356,16 +344,6 @@ io.sockets.on('connection', function(socket) {
                     if (io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.length > 0) {
                         // Gets the video id from the room object
                         videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.shift().videoId
-                    }
-                    break;
-                case 1:
-                    if (io.sockets.adapter.rooms['room-' + socket.roomnum].queue.dm.length > 0) {
-                        videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.dm.shift().videoId
-                    }
-                    break;
-                case 2:
-                    if (io.sockets.adapter.rooms['room-' + socket.roomnum].queue.dm.length > 0) {
-                        videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.vimeo.shift().videoId
                     }
                     break;
                 case 3:
@@ -489,12 +467,6 @@ io.sockets.on('connection', function(socket) {
                 case 0:
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt = []
                     break;
-                case 1:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.dm = []
-                    break;
-                case 2:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.vimeo = []
-                    break;
                 case 3:
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5 = []
                     break;
@@ -512,12 +484,6 @@ io.sockets.on('connection', function(socket) {
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
                 case 0:
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.splice(idx, 1)
-                    break;
-                case 1:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.dm.splice(idx, 1)
-                    break;
-                case 2:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.vimeo.splice(idx, 1)
                     break;
                 case 3:
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
@@ -538,12 +504,6 @@ io.sockets.on('connection', function(socket) {
                 case 0:
                     videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt[idx].videoId
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.splice(idx, 1)
-                    break;
-                case 1:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.dm.splice(idx, 1)
-                    break;
-                case 2:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.vimeo.splice(idx, 1)
                     break;
                 case 3:
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
@@ -574,20 +534,6 @@ io.sockets.on('connection', function(socket) {
                     io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.time = time
                     // Set new video id
                     io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt = videoId
-                    break;
-                case 1:
-                    // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.dm.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.dm
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.dm.time = time
-                    // Set new video id
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.dm = videoId
-                    break;
-                case 2:
-                    // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.vimeo.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.vimeo
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.vimeo.time = time
-                    // Set new video id
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.vimeo = videoId
                     break;
                 case 3:
                     // Set prev video before changing
@@ -633,14 +579,6 @@ io.sockets.on('connection', function(socket) {
                     var videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.id
                     var time = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.time
                     break;
-                case 1:
-                    var videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.dm.id
-                    var time = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.dm.time
-                    break;
-                case 2:
-                    var videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.vimeo.id
-                    var time = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.vimeo.time
-                    break;
                 case 3:
                     var videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.id
                     var time = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.time
@@ -666,12 +604,6 @@ io.sockets.on('connection', function(socket) {
                 case 0:
                     var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
                     break;
-                case 1:
-                    var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.dm
-                    break;
-                case 2:
-                    var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.vimeo
-                    break;
                 case 3:
                     var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                     break;
@@ -695,12 +627,6 @@ io.sockets.on('connection', function(socket) {
             switch (playerId) {
                 case 0:
                     io.sockets.in("room-" + roomnum).emit('createYoutube', {});
-                    break;
-                case 1:
-                    io.sockets.in("room-" + roomnum).emit('createDaily', {});
-                    break;
-                case 2:
-                    io.sockets.in("room-" + roomnum).emit('createVimeo', {});
                     break;
                 case 3:
                     io.sockets.in("room-" + roomnum).emit('createHTML5', {});
@@ -728,12 +654,6 @@ io.sockets.on('connection', function(socket) {
             switch (playerId) {
                 case 0:
                     socket.emit('createYoutube', {});
-                    break;
-                case 1:
-                    socket.emit('createDaily', {});
-                    break;
-                case 2:
-                    socket.emit('createVimeo', {});
                     break;
                 case 3:
                     socket.emit('createHTML5', {});

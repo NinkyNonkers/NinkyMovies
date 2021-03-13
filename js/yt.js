@@ -20,12 +20,10 @@ function onYouTubeIframeAPIReady() {
             'onStateChange': onPlayerStateChange
         }
     });
-    // document.getElementById('player').src = document.getElementById('player').src + '&controls=0'
     console.log(document.getElementById('player').src)
 }
 
 function onPlayerReady(event) {
-    //document.getElementById('player').style.borderColor = '#FF6D00';
     document.getElementById('player').style.borderColor = '#00000000';
 }
 
@@ -50,8 +48,6 @@ function changeBorderColor(playerStatus) {
 }
 
 function onPlayerStateChange(event) {
-    //changeBorderColor(event.data);
-    //socket.emit('player status', event.data);
     playerStatus = event.data;
 
     // Event Listeners

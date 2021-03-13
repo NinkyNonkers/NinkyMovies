@@ -37,7 +37,7 @@ Run the server
 node server
 ```
 
-Access the page by going to localhost:3000
+Access the page by going to localhost:80
 
 ##### How to run CI tests
 
@@ -88,29 +88,9 @@ io.sockets.adapter.rooms['room-'+roomnum].host = socket.id
 Along with holding the host information this object also holds the current
 video, player, and connected clients.
 
-##### Video Players
 
-At first I only supported the YouTube API because it was the easiest and most
-popular video platform. While it was good for what it was, I wanted to support
-many more players. It was difficult at first because the way I implemented
-YouTube was in a way that would not work with others. Additionally every
-video player had a different API and functioned differently.
 
-I started playing around with the Daily Motion API, and I had to completely
-redesign how I was displaying the player. What I did was simply initialize all
-of the players and would destroy/hide a player when necessary. While this worked
-there seemed to be many bugs.
 
-This was probably the hardest part so far. Just because of all of the
-asynchronous calls messing up some of the sockets. I finally figured out a way
-to add all the possible data into the host and room object. Any new sockets that
-join or sync will have all the data already loaded and synced automatically.
-Even when you play a YouTube video and switch players, your progress on the
-original YouTube video will be saved and you can go back to it at any time.
-
-This set up the foundation for many more video players in the future. I hope to
-implement them soon! One feature I would really like would be the ability to
-parse videos from any link, but that may be out of my ability at the moment!
 
 
 ##### The Room Object
@@ -129,8 +109,6 @@ io.sockets.adapter.rooms['room-'+roomnum]
 │
 └───.currVideo
 │   |   .yt
-│   |   .dm
-│   |   .vimeo
 │   |   .html5
 |
 └───.prevVideo
@@ -138,41 +116,10 @@ io.sockets.adapter.rooms['room-'+roomnum]
 │   └───.yt
 │   |   |   .id
 │   |   |   .time
-│   └───.dm
-│   |   |   .id
-│   |   |   .time
-│   └───.vimeo
-│   |   │   .id
-│   |   │   .time
+│   │
 │   └───.html5
 │       │   .id
 │       │   .time
-|
-└───.queue
-│   |
-|   └───.yt
-|   |   └───[{
-|   |   |   videoId,
-|   |   |   title
-|   |   |   }]
-|   |
-│   └───.dm
-|   |   └───[{
-|   |   |   videoId,
-|   |   |   title
-|   |   |   }]
-|   |
-│   └───.vimeo
-|   |   └───[{
-|   |   |   videoId,
-|   |   |   title
-|   |   |   }]
-|   |
-│   └───.html5
-|       └───[{
-|       |   videoId,
-|       |   title
-|       |   }]
 |
 └───.sockets
     │   SOCKET-ID1
