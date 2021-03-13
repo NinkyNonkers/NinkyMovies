@@ -59,7 +59,7 @@
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
       <workItem from="1615281065899" duration="7043000" />
-      <workItem from="1615648288515" duration="2237000" />
+      <workItem from="1615648288515" duration="2359000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -222,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615650588003</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Remove dd from master click event">
+      <created>1615650724894</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1615650724894</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,6 +259,7 @@
     <MESSAGE value="Update old html() jquery usage" />
     <MESSAGE value="Add custom dropdown + complete stripping&#10;Completely eliminate jquery usage, started phasing out bootstrap JS (not css portion though)" />
     <MESSAGE value="hmm" />
-    <option name="LAST_COMMIT_MESSAGE" value="hmm" />
+    <MESSAGE value="Remove dd from master click event" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove dd from master click event" />
   </component>
 </project>
