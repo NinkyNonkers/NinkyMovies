@@ -326,7 +326,7 @@
 
 
         // Prevent special characters from being typed
-        roomnum.on('keypress', function(event) {
+        $roomnum.on('keypress', function(event) {
             const nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
             const key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             console.log(key)
@@ -339,7 +339,7 @@
         });
 
         // Prevent special characters from being typed
-        username.on('keypress', function(event) {
+        $username.on('keypress', function(event) {
             var nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
             var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
             // Allow enters and spaces to be used still
