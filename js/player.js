@@ -51,9 +51,7 @@ socket.on('createYoutube', function(data) {
 
 
         document.getElementById('loveButton').style.display = 'inline-block'
-        // document.getElementById('html5-input').style.display = 'none'
         document.getElementById('inputVideoId').placeholder = 'Video ID / URL'
-        // document.getElementById('html5-message').style.display = 'none'
 
         console.log("Player state: " + playerStatus)
         // If it is -1, there was an error and needs to resync to host
@@ -90,15 +88,13 @@ socket.on('createHTML5', function(data) {
         html5.style.display = 'block';
         currPlayer = 3
 
-
-
         document.getElementById('loveButton').style.display = 'none'
-        // document.getElementById('html5-input').style.display = 'block'
         document.getElementById('inputVideoId').placeholder = 'Direct mp4/webm URL'
-        // document.getElementById('html5-message').style.display = 'block'
 
         //TODO: restyle this
         //betaAlert()
     }
+    else
+        console.log("Player is already on HTML5!")
 });
 
