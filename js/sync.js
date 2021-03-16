@@ -26,9 +26,6 @@ function syncVideo(roomnum) {
             state = playerStatus
             console.log("I am host and my current time is " + currTime + state)
             break;
-        case 1:
-        case 2:
-            break;
         case 3:
             currTime = media.currentTime;
             state = media.paused;
@@ -70,9 +67,6 @@ function seekTo(time) {
             player.seekTo(time)
             player.playVideo()
             break;
-        case 1:
-        case 2:
-            break;
         case 3:
             media.currentTime = currTime
             media.play()
@@ -104,28 +98,6 @@ function idParse(videoId) {
                 }
                 videoId = "invalid"
                 break
-            case 1:
-                myRegex = /.+\/(.+)/g
-                if (videoId.includes("playlist")) {
-                    myRegex = /.+video=(.+)/g
-                }
-
-                match = myRegex.exec(videoId)
-                if (match != null) {
-                    console.log("You entered a link, but you really meant " + match[1])
-                    return match[1]
-                }
-                videoId = "invalid"
-                break
-            case 2:
-                myRegex = /.+\/(.+)/g
-                match = myRegex.exec(videoId)
-                if (match != null) {
-                    console.log("You entered a link, but you really meant " + match[1])
-                    return match[1]
-                }
-                videoId = "invalid"
-                break
             case 3:
                 return videoId
             default:
@@ -149,12 +121,6 @@ function playlistParse(videoId) {
                 }
                 break;
 
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
             default:
                 console.log("Error invalid player")
         }
@@ -435,11 +401,6 @@ socket.on('syncVideoClient', function(data) {
                 }
                 break;
 
-            case 1:
-            case 2:
-
-                break;
-
             case 3:
                 media.currentTime = currTime
 
@@ -479,9 +440,6 @@ socket.on('changeVideoClient', function(data) {
         switch (currPlayer) {
             case 0:
                 player.loadVideoById(videoId);
-                break;
-            case 1:
-            case 2:
                 break;
             case 3:
                 htmlLoadVideo(videoId)

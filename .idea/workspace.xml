@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +59,8 @@
       <option name="presentableId" value="Default" />
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
+      <workItem from="1615829013610" duration="748000" />
+      <workItem from="1615916195542" duration="377000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -93,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615138486287</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="FIX SO ITS STABLE">
+      <created>1615665645080</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1615665645080</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +116,7 @@
     <MESSAGE value="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT" />
     <MESSAGE value="FIX I GUESS?????" />
     <MESSAGE value="might just hit that suicide wave" />
-    <option name="LAST_COMMIT_MESSAGE" value="might just hit that suicide wave" />
+    <MESSAGE value="FIX SO ITS STABLE" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIX SO ITS STABLE" />
   </component>
 </project>

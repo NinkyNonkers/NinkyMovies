@@ -601,6 +601,8 @@ io.sockets.on('connection', function(socket) {
                 // Call back to return the video id
                 callback()
             }
+            else
+                console.log("Could not get room whilst changing video")
 
         }
 
