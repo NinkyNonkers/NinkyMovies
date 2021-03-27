@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +60,7 @@
       <workItem from="1615829013610" duration="748000" />
       <workItem from="1615916195542" duration="907000" />
       <workItem from="1616872420513" duration="549000" />
-      <workItem from="1616873032814" duration="118000" />
+      <workItem from="1616873032814" duration="371000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -133,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616872803756</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="jesus 2">
+      <created>1616873184758</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1616873184759</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +156,7 @@
     <MESSAGE value="yeah woo!" />
     <MESSAGE value="What am I loikkkkkkk" />
     <MESSAGE value="jesus" />
-    <option name="LAST_COMMIT_MESSAGE" value="jesus" />
+    <MESSAGE value="jesus 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="jesus 2" />
   </component>
 </project>
