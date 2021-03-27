@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+    <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="improve some stability and error logging">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +59,8 @@
       <updated>1615069201751</updated>
       <workItem from="1615069209461" duration="356000" />
       <workItem from="1615829013610" duration="748000" />
-      <workItem from="1615916195542" duration="377000" />
+      <workItem from="1615916195542" duration="907000" />
+      <workItem from="1616872420513" duration="168000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -104,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615665645080</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="improve some stability and error logging">
+      <created>1615916616027</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1615916616027</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +124,7 @@
     <MESSAGE value="FIX I GUESS?????" />
     <MESSAGE value="might just hit that suicide wave" />
     <MESSAGE value="FIX SO ITS STABLE" />
-    <option name="LAST_COMMIT_MESSAGE" value="FIX SO ITS STABLE" />
+    <MESSAGE value="improve some stability and error logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve some stability and error logging" />
   </component>
 </project>

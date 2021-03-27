@@ -557,6 +557,8 @@ io.sockets.on('connection', function(socket) {
             const videoId = data.videoId
             const time = data.time
 
+            console.log("changing video!!!!")
+
             // This changes the room variable to the video id
             // io.sockets.adapter.rooms['room-' + roomnum].currVideo = videoId
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
@@ -567,20 +569,6 @@ io.sockets.on('connection', function(socket) {
                     // Set new video id
                     io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt = videoId
                     break;
-                case 1:
-                    // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.dm.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.dm
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.dm.time = time
-                    // Set new video id
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.dm = videoId
-                    break;
-                case 2:
-                    // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.vimeo.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.vimeo
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.vimeo.time = time
-                    // Set new video id
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.vimeo = videoId
-                    break;
                 case 3:
                     // Set prev video before changing
                     io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
@@ -589,7 +577,12 @@ io.sockets.on('connection', function(socket) {
                     io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5 = videoId
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error invalid player id");
+            }
+        }
+            else
+            {
+                console.log("Could not get room whilst changing video")
             }
 
             io.sockets.in("room-" + roomnum).emit('changeVideoClient', {
@@ -601,10 +594,8 @@ io.sockets.on('connection', function(socket) {
                 // Call back to return the video id
                 callback()
             }
-            else
-                console.log("Could not get room whilst changing video")
 
-        }
+
 
         // Auto sync with host after 1000ms of changing video
         // NOT NEEDED ANYMORE, IN THE CHANGEVIDEOCLIENT FUNCTION
