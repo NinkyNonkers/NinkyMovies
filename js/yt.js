@@ -122,21 +122,5 @@ socket.on('get title', function(data, callback) {
 })
 
 socket.on('get playlist videos', function(data) {
-    var playlistId = data.playlistId
-    var user = data.user
 
-    $.get(
-        "https://www.googleapis.com/youtube/v3/playlistItems", {
-            part: 'snippet,contentDetails',
-            playlistId: playlistId,
-            maxResults: '50',
-            key: data.api_key
-        },
-        function(data) {
-          // Iterate through all of the playlist videos
-          for (let video of data.items) {
-            enqueueVideo(roomnum, video.contentDetails.videoId)
-          }
-        }
-    )
 })

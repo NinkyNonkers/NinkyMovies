@@ -107,54 +107,7 @@ function idParse(videoId) {
     return videoId
 }
 
-// This parses the ID out of the video link
-function playlistParse(videoId) {
-    // If user enters a full link
-    if (videoId.includes("https://") || videoId.includes("http://") || videoId.includes(".com/")) {
-        // Do some string processing with regex
-        switch (currPlayer) {
-            case 0:
-                const myRegex = /.+&list=([A-Za-z0-9\-_]+)/g
-                const match = myRegex.exec(videoId)
-                if (match != null) {
-                    return match[1]
-                }
-                break;
 
-            default:
-                console.log("Error invalid player")
-        }
-    }
-    return "invalid"
-}
-
-function enqueueVideoParse(roomnum) {
-  const videoId = document.getElementById("inputVideoId").value;
-  enqueueVideo(roomnum, videoId)
-}
-
-// QueueVideo
-function enqueueVideo(roonum, rawId) {
-    videoId = idParse(rawId)
-    playlistId = playlistParse(rawId)
-
-    if (playlistId != "invalid") {
-      socket.emit('enqueue playlist', {
-          room: roonum,
-          playlistId: playlistId,
-          user: username
-      })
-    } else if (videoId != "invalid") {
-        socket.emit('enqueue video', {
-            room: roonum,
-            videoId: videoId,
-            user: username
-        })
-    } else {
-        console.log("User entered an invalid video url :(")
-        invalidURL()
-    }
-}
 
 
 function changeVideoParse(rmid) {
@@ -185,29 +138,9 @@ function changeVideo(roomid, rawId) {
 
 
 // Change to previous video
-function prevVideo(roomnum) {
-    // This gets the previous video
-    socket.emit('change previous video', {
-        room: roomnum
-    }, function(data) {
-        // Actually change the video!
-        var prevTime = data.time
-        var time = getTime()
-        socket.emit('change video', {
-            room: roomnum,
-            videoId: data.videoId,
-            time: time,
-            prev: true
-        }, function(data) {
-            // Set to the previous time
-            setTimeout(function() {
-                seekTo(prevTime)
-            }, 1200);
-        });
-    });
-}
 
-function loveLive(roomnum) {
+
+function loveLive(rrr) {
     var time = getTime()
     // love live, love4eva, why, gee, what is love, stay, starlight, bad boy
     // likey, spring love, palette, roller coaster, DNA, I, peekaboo, wee woo
@@ -243,7 +176,7 @@ function loveLive(roomnum) {
     var random = Math.floor(Math.random() * (69))
     // Only for YouTube testing
     socket.emit('change video', {
-        room: roomnum,
+        room: rrr,
         videoId: video_roulette[random],
         time: time
     })
@@ -267,10 +200,10 @@ socket.on('getData', function(data) {
     //socket.emit('change video', { time: time });
 });
 
-function changePlayer(roomnum, playerId) {
+function changePlayer(playerroom, playerId) {
     if (playerId != currPlayer) {
         socket.emit('change player', {
-            room: roomnum,
+            room: playerroom,
             playerId: playerId
         });
     }

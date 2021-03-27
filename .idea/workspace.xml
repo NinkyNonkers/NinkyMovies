@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/yt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/yt.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +61,7 @@
       <workItem from="1615829013610" duration="748000" />
       <workItem from="1615916195542" duration="907000" />
       <workItem from="1616872420513" duration="549000" />
-      <workItem from="1616873032814" duration="989000" />
+      <workItem from="1616873032814" duration="1238000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -154,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616873752040</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Add mode changing button">
+      <created>1616874049340</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1616874049340</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +181,7 @@
     <MESSAGE value="jesus 2" />
     <MESSAGE value="Fix declaration issues" />
     <MESSAGE value="z&#10;Move video changing so syncing doesn't affcect behaviour" />
-    <option name="LAST_COMMIT_MESSAGE" value="z&#10;Move video changing so syncing doesn't affcect behaviour" />
+    <MESSAGE value="Add mode changing button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add mode changing button" />
   </component>
 </project>
