@@ -401,6 +401,43 @@
         socket.emit('reset url')
     });
 
+    socket.on('changeVideoClient', function(data) {
+        console.log("changing video!")
+        var videoId = data.videoId;
+        console.log("video id is: " + videoId)
+
+        // Pause right before changing
+        // pauseOther(roomnum)
+
+        // This is getting the video id from the server
+        // The original change video call updates the value for the room
+        // This probably is more inefficient than just passing in the parameter but is safer?
+        socket.emit('get video', function(id) {
+            console.log("it really is " + id)
+            videoId = id
+            // This changes the video
+            id = videoId
+
+            switch (currPlayer) {
+                case 0:
+                    player.loadVideoById(videoId);
+                    break;
+                case 3:
+                    htmlLoadVideo(videoId)
+                    break;
+                default:
+                    console.log("Error invalid player id")
+            }
+        })
+
+        // Auto sync with host after 1000ms of changing video
+        setTimeout(function() {
+            console.log("resyncing with host after video change")
+            socket.emit('sync host', {});
+        }, 1000);
+
+    });
+
 
 
     // Generate a random alphanumeric room id

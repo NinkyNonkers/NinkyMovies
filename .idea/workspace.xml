@@ -60,7 +60,7 @@
       <workItem from="1615829013610" duration="748000" />
       <workItem from="1615916195542" duration="907000" />
       <workItem from="1616872420513" duration="549000" />
-      <workItem from="1616873032814" duration="371000" />
+      <workItem from="1616873032814" duration="482000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -139,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616873184759</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fix declaration issues">
+      <created>1616873422073</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1616873422073</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +164,7 @@
     <MESSAGE value="What am I loikkkkkkk" />
     <MESSAGE value="jesus" />
     <MESSAGE value="jesus 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="jesus 2" />
+    <MESSAGE value="Fix declaration issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix declaration issues" />
   </component>
 </project>

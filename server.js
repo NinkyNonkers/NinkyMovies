@@ -50,7 +50,6 @@ io.on('connection', function(socket) {
    io.sockets.in("room-"+roomno).emit('connectToRoom', "You are in room no. "+roomno);
 })*/
 
-var roomno = 1;
 
 io.sockets.on('connection', function(socket) {
     // Connect Socket

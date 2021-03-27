@@ -11,7 +11,7 @@ function playVideo(rn) {
 }
 
 // Calls the sync function on the server
-function syncVideo(roomnum) {
+function syncVideo(rmnum) {
     var currTime = 0
     var state
     var videoId = id
@@ -37,7 +37,7 @@ function syncVideo(roomnum) {
     // Required due to vimeo asyncronous functionality
     if (currPlayer != 2) {
         socket.emit('sync video', {
-            room: roomnum,
+            room: rmnum,
             time: currTime,
             state: state,
             videoId: videoId
@@ -134,19 +134,19 @@ function enqueueVideoParse(roomnum) {
 }
 
 // QueueVideo
-function enqueueVideo(roomnum, rawId) {
+function enqueueVideo(roonum, rawId) {
     videoId = idParse(rawId)
     playlistId = playlistParse(rawId)
 
     if (playlistId != "invalid") {
       socket.emit('enqueue playlist', {
-          room: roomnum,
+          room: roonum,
           playlistId: playlistId,
           user: username
       })
     } else if (videoId != "invalid") {
         socket.emit('enqueue video', {
-            room: roomnum,
+            room: roonum,
             videoId: videoId,
             user: username
         })
@@ -156,27 +156,14 @@ function enqueueVideo(roomnum, rawId) {
     }
 }
 
-// Empty Queue
-function emptyQueue(roomnum) {
 
-    // Empty the queue
-    socket.emit('empty queue', {
-        room: roomnum
-    });
-    // Notify
-    socket.emit('notify alerts', {
-        alert: 2,
-        user: username
-    })
-}
-
-function changeVideoParse(roomnum) {
+function changeVideoParse(rmid) {
   var videoId = document.getElementById("inputVideoId").value
-  changeVideo(roomnum, videoId)
+  changeVideo(rmid, videoId)
 }
 
 // Change playVideo
-function changeVideo(roomnum, rawId) {
+function changeVideo(roomid, rawId) {
     var videoId = idParse(rawId)
 
     if (videoId != "invalid") {
@@ -184,7 +171,7 @@ function changeVideo(roomnum, rawId) {
         console.log("The time is this man: " + time)
         // Actually change the video!
         socket.emit('change video', {
-            room: roomnum,
+            room: roomid,
             videoId: videoId,
             time: time
         });
@@ -195,16 +182,7 @@ function changeVideo(roomnum, rawId) {
     //player.loadVideoById(videoId);
 }
 
-// Does this even work?
-function changeVideoId(roomnum, id) {
-    //var videoId = 'sjk7DiH0JhQ';
-    document.getElementById("inputVideoId").innerHTML = id;
-    socket.emit('change video', {
-        room: roomnum,
-        videoId: id
-    });
-    //player.loadVideoById(videoId);
-}
+
 
 // Change to previous video
 function prevVideo(roomnum) {
@@ -420,43 +398,6 @@ socket.on('syncVideoClient', function(data) {
 
 });
 
-// Change video
-socket.on('changeVideoClient', function(data) {
-    console.log("changing video!")
-    var videoId = data.videoId;
-    console.log("video id is: " + videoId)
-
-    // Pause right before changing
-    // pauseOther(roomnum)
-
-    // This is getting the video id from the server
-    // The original change video call updates the value for the room
-    // This probably is more inefficient than just passing in the parameter but is safer?
-    socket.emit('get video', function(id) {
-        console.log("it really is " + id)
-        videoId = id
-        // This changes the video
-        id = videoId
-
-        switch (currPlayer) {
-            case 0:
-                player.loadVideoById(videoId);
-                break;
-            case 3:
-                htmlLoadVideo(videoId)
-                break;
-            default:
-                console.log("Error invalid player id")
-        }
-    })
-
-    // Auto sync with host after 1000ms of changing video
-    setTimeout(function() {
-        console.log("resyncing with host after video change")
-        socket.emit('sync host', {});
-    }, 1000);
-
-});
 
 // Change time
 socket.on('changeTime', function(data) {
