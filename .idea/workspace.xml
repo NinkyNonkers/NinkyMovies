@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="improve some stability and error logging">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +59,7 @@
       <workItem from="1615069209461" duration="356000" />
       <workItem from="1615829013610" duration="748000" />
       <workItem from="1615916195542" duration="907000" />
-      <workItem from="1616872420513" duration="168000" />
+      <workItem from="1616872420513" duration="370000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -111,7 +110,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615916616027</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="yeah woo!">
+      <created>1616872631995</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1616872631995</updated>
+    </task>
+    <task id="LOCAL-00009" summary="What am I loikkkkkkk">
+      <created>1616872719800</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1616872719800</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +138,8 @@
     <MESSAGE value="might just hit that suicide wave" />
     <MESSAGE value="FIX SO ITS STABLE" />
     <MESSAGE value="improve some stability and error logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve some stability and error logging" />
+    <MESSAGE value="yeah woo!" />
+    <MESSAGE value="What am I loikkkkkkk" />
+    <option name="LAST_COMMIT_MESSAGE" value="What am I loikkkkkkk" />
   </component>
 </project>

@@ -586,7 +586,7 @@ io.sockets.on('connection', function(socket) {
             }
 
             io.sockets.in("room-" + socket.roomnum).emit('changeVideoClient', {
-                videoId: videoId
+                videoId: data.videoId
             });
 
             // If called from previous video, do a callback to seek to the right time
