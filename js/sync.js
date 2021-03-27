@@ -1,16 +1,24 @@
 // Calls the play video function on the server
-function playVideo(roomnum) {
+function playVideo(rn) {
+    // dailyPlayer.play();
+    //vimeoPlayer.play()
     socket.emit('play video', {
-        room: roomnum
+        room: rn
     });
+
+    // Doesn't work well unless called in server
+    //io.sockets.in("room-"+roomnum).emit('playVideoClient');
 }
 
 // Calls the sync function on the server
-function syncVideo(roomnum) {
+function syncVideo(rmnum) {
     var currTime = 0
     var state
     var videoId = id
 
+    // var syncText = document.getElementById("syncbutton")
+    // console.log(syncText.innerHTML)
+    // syncText.innerHTML = "<i class=\"fas fa-sync fa-spin\"></i> Sync"
 
     switch (currPlayer) {
         case 0:
@@ -18,25 +26,23 @@ function syncVideo(roomnum) {
             state = playerStatus
             console.log("I am host and my current time is " + currTime + state)
             break;
-        case 1:
-        case 2:
-            console.log("Error: the player trying to be synced has been deprecated")
-            break;
         case 3:
             currTime = media.currentTime;
             state = media.paused;
             break;
         default:
             console.log("Error invalid player id")
-
     }
 
-    socket.emit('sync video', {
-        room: roomnum,
-        time: currTime,
-        state: state,
-        videoId: videoId
-    });
+    // Required due to vimeo asyncronous functionality
+    if (currPlayer != 2) {
+        socket.emit('sync video', {
+            room: rmnum,
+            time: currTime,
+            state: state,
+            videoId: videoId
+        });
+    }
 }
 
 // This return the current time
@@ -44,6 +50,10 @@ function getTime() {
     switch (currPlayer) {
         case 0:
             return player.getCurrentTime();
+        case 1:
+        case 2:
+            console.log("DailyMotion and Vimeo have been deprecated in this release of NinkyMovies")
+            return 0;
         case 3:
             return media.currentTime;
         default:
@@ -60,9 +70,6 @@ function seekTo(time) {
         case 3:
             media.currentTime = currTime
             media.play()
-            break;
-        default:
-            console.log("Error: Invalid player id");
             break;
     }
 }
@@ -83,33 +90,11 @@ function idParse(videoId) {
                         return match[1]
                     }
                 } else {
-                  myRegex = /.+watch\?v=([A-Za-z0-9\-_]+)/g
-                  match = myRegex.exec(videoId)
-                  if (match != null) {
-                      return match[1]
-                  }
-                }
-                videoId = "invalid"
-                break
-            case 1:
-                myRegex = /.+\/(.+)/g
-                if (videoId.includes("playlist")) {
-                    myRegex = /.+video=(.+)/g
-                }
-
-                match = myRegex.exec(videoId)
-                if (match != null) {
-                    console.log("You entered a link, but you really meant " + match[1])
-                    return match[1]
-                }
-                videoId = "invalid"
-                break
-            case 2:
-                myRegex = /.+\/(.+)/g
-                match = myRegex.exec(videoId)
-                if (match != null) {
-                    console.log("You entered a link, but you really meant " + match[1])
-                    return match[1]
+                    myRegex = /.+watch\?v=([A-Za-z0-9\-_]+)/g
+                    match = myRegex.exec(videoId)
+                    if (match != null) {
+                        return match[1]
+                    }
                 }
                 videoId = "invalid"
                 break
@@ -122,65 +107,16 @@ function idParse(videoId) {
     return videoId
 }
 
-// This parses the ID out of the video link
-function playlistParse(videoId) {
-    // If user enters a full link
-    if (videoId.includes("https://") || videoId.includes("http://") || videoId.includes(".com/")) {
-        // Do some string processing with regex
-        switch (currPlayer) {
-            case 0:
-                const myRegex = /.+&list=([A-Za-z0-9\-_]+)/g
-                const match = myRegex.exec(videoId)
-                if (match != null) {
-                    return match[1]
-                }
-                break;
-
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            default:
-                console.log("Error invalid player")
-        }
-    }
-    return "invalid"
-}
 
 
-// QueueVideo
-function enqueueVideo(roomnum, rawId) {
-    videoId = idParse(rawId)
-    playlistId = playlistParse(rawId)
 
-    if (playlistId != "invalid") {
-      socket.emit('enqueue playlist', {
-          room: roomnum,
-          playlistId: playlistId,
-          user: username
-      })
-    } else if (videoId != "invalid") {
-        socket.emit('enqueue video', {
-            room: roomnum,
-            videoId: videoId,
-            user: username
-        })
-    } else {
-        console.log("User entered an invalid video url :(")
-        invalidURL()
-    }
-}
-
-
-function changeVideoParse(roomnum) {
-  var videoId = document.getElementById("inputVideoId").value
-  changeVideo(roomnum, videoId)
+function changeVideoParse(rmid) {
+    var videoId = document.getElementById("inputVideoId").value
+    changeVideo(rmid, videoId)
 }
 
 // Change playVideo
-function changeVideo(roomnum, rawId) {
+function changeVideo(roomid, rawId) {
     var videoId = idParse(rawId)
 
     if (videoId != "invalid") {
@@ -188,7 +124,7 @@ function changeVideo(roomnum, rawId) {
         console.log("The time is this man: " + time)
         // Actually change the video!
         socket.emit('change video', {
-            room: roomnum,
+            room: roomid,
             videoId: videoId,
             time: time
         });
@@ -199,39 +135,12 @@ function changeVideo(roomnum, rawId) {
     //player.loadVideoById(videoId);
 }
 
-// Does this even work?
-function changeVideoId(roomnum, id) {
-    document.getElementById("inputVideoId").innerHTML = id;
-    socket.emit('change video', {
-        room: roomnum,
-        videoId: id
-    });
-}
+
 
 // Change to previous video
-function prevVideo(roomnum) {
-    // This gets the previous video
-    socket.emit('change previous video', {
-        room: roomnum
-    }, function(data) {
-        // Actually change the video!
-        var prevTime = data.time
-        var time = getTime()
-        socket.emit('change video', {
-            room: roomnum,
-            videoId: data.videoId,
-            time: time,
-            prev: true
-        }, function(data) {
-            // Set to the previous time
-            setTimeout(function() {
-                seekTo(prevTime)
-            }, 1200);
-        });
-    });
-}
 
-function loveLive(roomnum) {
+
+function loveLive(rrr) {
     var time = getTime()
     // love live, love4eva, why, gee, what is love, stay, starlight, bad boy
     // likey, spring love, palette, roller coaster, DNA, I, peekaboo, wee woo
@@ -267,7 +176,7 @@ function loveLive(roomnum) {
     var random = Math.floor(Math.random() * (69))
     // Only for YouTube testing
     socket.emit('change video', {
-        room: roomnum,
+        room: rrr,
         videoId: video_roulette[random],
         time: time
     })
@@ -288,18 +197,16 @@ function loveLive(roomnum) {
 socket.on('getData', function(data) {
     console.log("Hi im the host, you called?")
     socket.emit('sync host', {});
+    //socket.emit('change video', { time: time });
 });
 
-function changePlayer(roomnum, playerId) {
+function changePlayer(playerroom, playerId) {
     if (playerId != currPlayer) {
-        console.log("changing player")
         socket.emit('change player', {
-            room: roomnum,
+            room: playerroom,
             playerId: playerId
         });
     }
-    else
-        console.log("Error: could not change player to the same value!")
 }
 
 // Change a single player
@@ -364,11 +271,19 @@ socket.on('syncVideoClient', function(data) {
     console.log("curr vid id: " + id + " " + videoId)
     console.log("state" + state)
 
+    // There should no longer be any need to sync a video change
+    // Video should always be the same
+    // if (id != videoId){
+    //     console.log(id == videoId)
+    //     changeVideoId(roomnum, videoId)
+    // }
 
     // This switchs you to the correct player
     // Should only happen when a new socket joins late
 
     // Current issue: changePlayer is called asynchronously when we need this function to wait for it to finish
+    // changeSinglePlayer(playerId)
+    // currPlayer = playerId
 
     // Change the player if necessary
     if (currPlayer != playerId) {
@@ -381,8 +296,9 @@ socket.on('syncVideoClient', function(data) {
                 var clientTime = player.getCurrentTime();
                 // Only seek if off by more than .1 seconds
                 // CURRENTLY ALL SET TO TRUE TO TO SYNCING ISSUES
-                player.seekTo(currTime);
-
+                if (true || clientTime < currTime - .1 || clientTime > currTime + .1) {
+                    player.seekTo(currTime);
+                }
                 // Sync player state
                 // IF parent player was paused
                 // If state is -1 (unstarted) the video will still start as intended
@@ -415,39 +331,6 @@ socket.on('syncVideoClient', function(data) {
 
 });
 
-// Change video
-socket.on('changeVideoClient', function(data) {
-    var videoId = data.videoId;
-    console.log("video id is: " + videoId)
-
-    // This is getting the video id from the server
-    // The original change video call updates the value for the room
-    // This probably is more inefficient than just passing in the parameter but is safer?
-    socket.emit('get video', function(id) {
-        console.log("it really is " + id)
-        videoId = id
-        // This changes the video
-        id = videoId
-
-        switch (currPlayer) {
-            case 0:
-                player.loadVideoById(videoId);
-                break;
-            case 3:
-                htmlLoadVideo(videoId)
-                break;
-            default:
-                console.log("Error invalid player id")
-        }
-    })
-
-    // Auto sync with host after 1000ms of changing video
-    setTimeout(function() {
-        console.log("resyncing with host after video change")
-        socket.emit('sync host', {});
-    }, 1000);
-
-});
 
 // Change time
 socket.on('changeTime', function(data) {
