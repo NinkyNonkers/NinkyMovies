@@ -422,6 +422,7 @@ socket.on('syncVideoClient', function(data) {
 
 // Change video
 socket.on('changeVideoClient', function(data) {
+    console.log("changing video!")
     var videoId = data.videoId;
     console.log("video id is: " + videoId)
 
