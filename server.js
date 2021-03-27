@@ -585,7 +585,7 @@ io.sockets.on('connection', function(socket) {
                 console.log("Could not get room whilst changing video")
             }
 
-            io.sockets.in("room-" + roomnum).emit('changeVideoClient', {
+            io.sockets.in("room-" + socket.roomnum).emit('changeVideoClient', {
                 videoId: videoId
             });
 
