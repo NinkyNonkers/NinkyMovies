@@ -41,12 +41,11 @@ socket.on('justPause', function(data) {
         case 0:
             player.pauseVideo()
             break;
-        case 1:
-        case 2:
-            break;
         case 3:
             media.pause()
             break;
+        default:
+            console.log("Invalid player id")
     }
     player.pauseVideo()
 });
@@ -75,9 +74,6 @@ socket.on('justSeek', function(data) {
                 player.playVideo()
             }
             break;
-        case 1:
-        case 2:
-            break;
         case 3:
             var clientTime = media.currentTime
             if (clientTime < currTime - .2 || clientTime > currTime + .2) {
@@ -85,6 +81,8 @@ socket.on('justSeek', function(data) {
             }
             // playOther(roomnum)
             break;
+        default:
+            console.log("Invalid player id")
     }
 });
 

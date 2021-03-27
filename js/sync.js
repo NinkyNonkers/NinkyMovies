@@ -50,10 +50,6 @@ function getTime() {
     switch (currPlayer) {
         case 0:
             return player.getCurrentTime();
-        case 1:
-        case 2:
-            console.log("DailyMotion and Vimeo have been deprecated in this release of NinkyMovies")
-            return 0;
         case 3:
             return media.currentTime;
         default:
@@ -227,7 +223,7 @@ function changeSinglePlayer(playerId) {
 // Client Synchronization Stuff //
 //------------------------------//
 
-var roomnum = 1
+
 var id = "M7lc1UVf-VE"
 
 // Calls the play/pause function
@@ -249,9 +245,6 @@ socket.on('pauseVideoClient', function(data) {
     switch (currPlayer) {
         case 0:
             player.pauseVideo();
-            break;
-        case 1:
-        case 2:
             break;
         case 3:
             media.pause()
@@ -296,9 +289,7 @@ socket.on('syncVideoClient', function(data) {
                 var clientTime = player.getCurrentTime();
                 // Only seek if off by more than .1 seconds
                 // CURRENTLY ALL SET TO TRUE TO TO SYNCING ISSUES
-                if (true || clientTime < currTime - .1 || clientTime > currTime + .1) {
-                    player.seekTo(currTime);
-                }
+                player.seekTo(currTime);
                 // Sync player state
                 // IF parent player was paused
                 // If state is -1 (unstarted) the video will still start as intended

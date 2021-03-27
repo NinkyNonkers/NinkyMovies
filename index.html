@@ -49,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a target="_blank" rel="noopener noreferrer" class="nav-link js-scroll-trigger" href="https://github.com/NinkyNonkers">
+                    <a target="_blank" rel="noopener noreferrer" class="nav-link js-scroll-trigger" href="https://github.com/NinkyNonkers/NinkyMovies">
                         <i class="fab fa-github"></i>
                     </a>
                 </li>
@@ -359,7 +359,7 @@
 
             // Prevent special characters from being typed
             username.onkeypress = function (event) {
-                var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                const key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
                 // Allow enters and spaces to be used still
                 if (username.value.length > 30 || !nosymbols.test(key) && event.keyCode != 13 && event.keyCode != 32 && event.keyCode != 45 && event.keyCode != 95) {
                     event.preventDefault();
@@ -384,6 +384,7 @@
             if (data) {
                 userFormArea.style.display = 'none'
                 roomArea.style.display = 'block'
+                applyRoom(roomnum.value)
 
                 // This sets the room number on the client
                 if (roomnum.value !== "") {

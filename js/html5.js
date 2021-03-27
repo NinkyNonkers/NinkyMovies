@@ -5,6 +5,8 @@ const media = document.querySelector('video');
 
 let currentMode = 1;
 
+let roomNumber = 0;
+
 let videoModes = {
     1: "Pontipines",
     2: "Tittifers",
@@ -20,6 +22,10 @@ let videoModeDescriptions = {
 }
 
 let modeRootDir = undefined;
+
+function applyRoom(roomnumber) {
+    roomNumber = roomnumber;
+}
 
 // Event listeners
 media.addEventListener("play", function(e) {

@@ -16,6 +16,8 @@ userrooms = {}
 // Set given room for url parameter
 var given_room = ""
 
+let roomnum = 0;
+
 app.use(express.static(__dirname + '/'));
 app.use(compression());
 
@@ -97,8 +99,8 @@ io.sockets.on('connection', function(socket) {
 
         // Grabs room from userrooms data structure
         const id = socket.id;
-        const roomnum = userrooms[id];
-        const room = io.sockets.adapter.rooms['room-' + roomnum];
+        const rm = userrooms[id];
+        const room = io.sockets.adapter.rooms['room-' + rm];
 
         // If you are not the last socket to leave
         if (room !== undefined) {
@@ -107,7 +109,7 @@ io.sockets.on('connection', function(socket) {
                 // Reassign
                 console.log("hello i am the host " + socket.id + " and i am leaving my responsibilities to " + Object.keys(room.sockets)[0])
                 io.to(Object.keys(room.sockets)[0]).emit('autoHost', {
-                    roomnum: roomnum
+                    roomnum: rm
                 })
             }
 
@@ -115,7 +117,7 @@ io.sockets.on('connection', function(socket) {
             // If socket username is found
             if (room.users.indexOf(socket.username) !== -1) {
                 room.users.splice((room.users.indexOf(socket.username)), 1);
-                updateRoomUsers(roomnum);
+                updateRoomUsers(rm);
             }
         }
 
@@ -179,22 +181,12 @@ io.sockets.on('connection', function(socket) {
             // Default video
             io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo = {
                 yt: 'M7lc1UVf-VE',
-                dm: 'x26m1j4',
-                vimeo: '76979871',
                 html5: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
             }
             // Previous Video
             io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo = {
                 yt: {
                     id: 'M7lc1UVf-VE',
-                    time: 0
-                },
-                dm: {
-                    id: 'x26m1j4',
-                    time: 0
-                },
-                vimeo: {
-                    id: '76979871',
                     time: 0
                 },
                 html5: {
@@ -209,8 +201,6 @@ io.sockets.on('connection', function(socket) {
             // Set an empty queue
             io.sockets.adapter.rooms['room-' + socket.roomnum].queue = {
                 yt: [],
-                dm: [],
-                vimeo: [],
                 html5: []
             }
         }
@@ -240,12 +230,6 @@ io.sockets.on('connection', function(socket) {
         switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
             case 0:
                 // YouTube is default so do nothing
-                break;
-            case 1:
-                io.sockets.in("room-" + socket.roomnum).emit('createDaily', {});
-                break;
-            case 2:
-                io.sockets.in("room-" + socket.roomnum).emit('createVimeo', {});
                 break;
             case 3:
                 io.sockets.in("room-" + socket.roomnum).emit('createHTML5', {});
@@ -367,14 +351,13 @@ io.sockets.on('connection', function(socket) {
     socket.on('sync video', function(data) {
         const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
         if (room !== undefined) {
-
-            const roomnum = data.room
+            const room = data.room
             const currTime = data.time
             const state = data.state
             const videoId = data.videoId
             const playerId = room.currPlayer
             // var videoId = io.sockets.adapter.rooms['room-'+roomnum].currVideo
-            io.sockets.in("room-" + roomnum).emit('syncVideoClient', {
+            io.sockets.in("room-" + room).emit('syncVideoClient', {
                 time: currTime,
                 state: state,
                 videoId: videoId,
@@ -408,18 +391,6 @@ io.sockets.on('connection', function(socket) {
                         console.log(io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt)
                         // Update front end
                         updateQueueVideos()
-                    })
-                    break;
-                case 1:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.dm.push({
-                        videoId: videoId,
-                        title: title
-                    })
-                    break;
-                case 2:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.vimeo.push({
-                        videoId: videoId,
-                        title: title
                     })
                     break;
                 case 3:
@@ -521,7 +492,7 @@ io.sockets.on('connection', function(socket) {
     // Change video
     socket.on('change video', function(data, callback) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const roomnum = data.room
+            const room = data.room
             const videoId = data.videoId
             const time = data.time
 
@@ -546,7 +517,7 @@ io.sockets.on('connection', function(socket) {
                     console.log("Error invalid player id")
             }
 
-            io.sockets.in("room-" + roomnum).emit('changeVideoClient', {
+            io.sockets.in("room-" + room).emit('changeVideoClient', {
                 videoId: videoId
             });
 
@@ -570,7 +541,7 @@ io.sockets.on('connection', function(socket) {
     // Change to previous video
     socket.on('change previous video', function(data, callback) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            var roomnum = data.room
+            var room = data.room
             var host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
 
             // This sets the videoId to the proper previous video
@@ -870,10 +841,10 @@ io.sockets.on('connection', function(socket) {
     }
 
     // Update the room usernames
-    function updateRoomUsers(roomnum) {
+    function updateRoomUsers(rm) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
             const roomUsers = io.sockets.adapter.rooms['room-' + socket.roomnum].users
-            io.sockets.in("room-" + roomnum).emit('get users', roomUsers)
+            io.sockets.in("room-" + rm).emit('get users', roomUsers)
         }
     }
 
