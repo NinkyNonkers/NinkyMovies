@@ -1,3 +1,6 @@
+let id = "M7lc1UVf-VE"
+
+
 // Calls the play video function on the server
 function playVideo(rn) {
     // dailyPlayer.play();
@@ -12,9 +15,9 @@ function playVideo(rn) {
 
 // Calls the sync function on the server
 function syncVideo(rmnum) {
-    var currTime = 0
-    var state
-    var videoId = id
+    let currTime = 0
+    let state
+    const videoID = id
 
     // var syncText = document.getElementById("syncbutton")
     // console.log(syncText.innerHTML)
@@ -40,7 +43,7 @@ function syncVideo(rmnum) {
             room: rmnum,
             time: currTime,
             state: state,
-            videoId: videoId
+            videoId: videoID
         });
     }
 }
@@ -217,14 +220,6 @@ function changeSinglePlayer(playerId) {
     })
 }
 
-
-
-//------------------------------//
-// Client Synchronization Stuff //
-//------------------------------//
-
-
-var id = "M7lc1UVf-VE"
 
 // Calls the play/pause function
 socket.on('playVideoClient', function(data) {

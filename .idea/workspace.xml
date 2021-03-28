@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/html5.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/html5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +61,8 @@
       <workItem from="1615069209461" duration="356000" />
       <workItem from="1615281065899" duration="7043000" />
       <workItem from="1615648288515" duration="7063000" />
-      <workItem from="1616877794126" duration="4704000" />
+      <workItem from="1616877794126" duration="4770000" />
+      <workItem from="1616919037212" duration="298000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -270,14 +267,20 @@
       <option name="project" value="LOCAL" />
       <updated>1616874587465</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Improve">
+      <created>1616882644523</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1616882644523</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="might just hit that suicide wave" />
     <MESSAGE value="Begin work on stripping jquery" />
     <MESSAGE value="Add text compression, remove lots of unused JS" />
     <MESSAGE value="Add back HTML5 player CSS" />
@@ -302,6 +305,7 @@
     <MESSAGE value="HMMPHH" />
     <MESSAGE value="Add more verbose logging" />
     <MESSAGE value="Pull from stable so master now works 1!1!1!!!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pull from stable so master now works 1!1!1!!!!!" />
+    <MESSAGE value="Improve" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve" />
   </component>
 </project>
