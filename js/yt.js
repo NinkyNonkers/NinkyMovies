@@ -1,4 +1,5 @@
 const tag = document.createElement('script');
+const playerElement = document.getElementById('player');
 tag.id = 'iframe-demo';
 tag.src = 'https://www.youtube.com/iframe_api';
 const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -24,7 +25,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    document.getElementById('player').style.borderColor = '#00000000';
+    playerElement.style.borderColor = '#00000000';
 }
 
 function changeBorderColor(playerStatus) {
@@ -43,7 +44,7 @@ function changeBorderColor(playerStatus) {
         color = "#FF6DOO"; // video cued = orange
     }
     if (color) {
-        document.getElementById('player').style.borderColor = color;
+        playerElement.style.borderColor = color;
     }
 }
 
@@ -56,26 +57,26 @@ function onPlayerStateChange(event) {
             // Video Ended
             // Go to next in queue
             if (host) {
-                playNext(roomnum)
+                playNext(roomNum)
             }
             break;
         case 1:
             console.log(host)
             if (host) {
-                playOther(roomnum)
+                playOther(roomNum)
             } else {
-                getHostData(roomnum)
+                getHostData(roomNum)
             }
             break;
         case 2:
             if (host) {
-                pauseOther(roomnum)
+                pauseOther(roomNum)
             }
             break;
         case 3:
             var currTime = player.getCurrentTime();
             if (host) {
-                seekOther(roomnum, currTime)
+                seekOther(roomNum, currTime)
                 // syncVideo(roomnum)
             }
             break;
@@ -92,10 +93,43 @@ function play() {
 }
 
 socket.on('get title', function(data, callback) {
-    var videoId = data.videoId
-    var user = data.user
+    //TODO: rework this to use built in requests instead of jquery
+    const videoId = data.videoId
+    const user = data.user
 
-    $.get(
+    const request = new XMLHttpRequest();
+    request.open('GET', 'https://www.googleapis.com/youtube/v3/videos', true);
+
+    request.onload = function() {
+        if (this.status >= 200 && this.status < 400) {
+            // Success!
+            var resp = this.response;
+            // enqueueNotify(user, data.items[0].snippet.title)
+            console.log("Title resolving is currently a WIP!")
+            return;
+            socket.emit('notify alerts', {
+                alert: 0,
+                user: user,
+                title: data.items[0].snippet.title
+            })
+            // Does a callback and returns title
+            callback({
+                videoId: videoId,
+                title: data.items[0].snippet.title
+            })
+        } else {
+            console.log("Could not get yt video title");
+
+        }
+    };
+
+    request.onerror = function() {
+        console.log("Could not get yt video title");
+    };
+
+    request.send();
+
+    /*$.get(
         "https://www.googleapis.com/youtube/v3/videos", {
             part: 'snippet',
             id: videoId,
@@ -114,25 +148,9 @@ socket.on('get title', function(data, callback) {
                 title: data.items[0].snippet.title
             })
         }
-    )
+    ) */
 })
 
 socket.on('get playlist videos', function(data) {
-    var playlistId = data.playlistId
-    var user = data.user
-
-    $.get(
-        "https://www.googleapis.com/youtube/v3/playlistItems", {
-            part: 'snippet,contentDetails',
-            playlistId: playlistId,
-            maxResults: '50',
-            key: data.api_key
-        },
-        function(data) {
-          // Iterate through all of the playlist videos
-          for (let video of data.items) {
-            enqueueVideo(roomnum, video.contentDetails.videoId)
-          }
-        }
-    )
+    console.log("Queue has been deprecated in this version of NinkyMovies!");
 })

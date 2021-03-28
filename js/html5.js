@@ -30,20 +30,20 @@ function applyRoom(roomnumber) {
 // Event listeners
 media.addEventListener("play", function(e) {
     if (host) {
-        playOther(roomnum)
+        playOther(roomNumber)
     } else {
-        getHostData(roomnum)
+        getHostData(roomNumber)
     }
 })
 media.addEventListener("pause", function(e) {
     if (host) {
-        pauseOther(roomnum)
+        pauseOther(roomNumber)
     }
 })
 media.addEventListener("seeked", function(e) {
-    var currTime = media.currentTime
+    const currTime = media.currentTime
     if (host) {
-        seekOther(roomnum, currTime)
+        seekOther(roomNumber, currTime)
     }
 })
 

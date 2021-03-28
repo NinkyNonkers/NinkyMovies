@@ -38,7 +38,7 @@ function syncVideo(rmnum) {
     }
 
     // Required due to vimeo asyncronous functionality
-    if (currPlayer != 2) {
+    if (currPlayer !== 2) {
         socket.emit('sync video', {
             room: rmnum,
             time: currTime,
@@ -110,16 +110,16 @@ function idParse(videoId) {
 
 
 function changeVideoParse(rmid) {
-    var videoId = document.getElementById("inputVideoId").value
+    const videoId = document.getElementById("inputVideoId").value
     changeVideo(rmid, videoId)
 }
 
 // Change playVideo
 function changeVideo(roomid, rawId) {
-    var videoId = idParse(rawId)
+    const videoId = idParse(rawId)
 
-    if (videoId != "invalid") {
-        var time = getTime()
+    if (videoId !== "invalid") {
+        const time = getTime()
         console.log("The time is this man: " + time)
         // Actually change the video!
         socket.emit('change video', {
@@ -172,7 +172,7 @@ function loveLive(rrr) {
     ]
 
     // Random number between 0 and 68 inclusive
-    var random = Math.floor(Math.random() * (69))
+    const random = Math.floor(Math.random() * (69))
     // Only for YouTube testing
     socket.emit('change video', {
         room: rrr,
@@ -181,16 +181,6 @@ function loveLive(rrr) {
     })
 }
 
-// Get time - DEPRECATED
-// socket.on('getTime', function(data) {
-//     var caller = data.caller
-//     var time = player.getCurrentTime()
-//     console.log("Syncing new socket to time: " + time)
-//     socket.emit('change time', {
-//         time: time,
-//         id: caller
-//     });
-// });
 
 // This just calls the sync host function in the server
 socket.on('getData', function(data) {
@@ -252,10 +242,10 @@ socket.on('pauseVideoClient', function(data) {
 
 // Syncs the video client
 socket.on('syncVideoClient', function(data) {
-    var currTime = data.time
-    var state = data.state
-    var videoId = data.videoId
-    var playerId = data.playerId
+    const currTime = data.time
+    const state = data.state
+    const videoId = data.videoId
+    const playerId = data.playerId
     console.log("current time is: " + currTime)
     console.log("curr vid id: " + id + " " + videoId)
     console.log("state" + state)
@@ -275,21 +265,18 @@ socket.on('syncVideoClient', function(data) {
     // currPlayer = playerId
 
     // Change the player if necessary
-    if (currPlayer != playerId) {
+    if (currPlayer !== playerId) {
         // This changes the player then recalls sync afterwards on the host
         changeSinglePlayer(playerId)
     } else {
         // This syncs the time and state
         switch (currPlayer) {
             case 0:
-                var clientTime = player.getCurrentTime();
-                // Only seek if off by more than .1 seconds
-                // CURRENTLY ALL SET TO TRUE TO TO SYNCING ISSUES
                 player.seekTo(currTime);
                 // Sync player state
                 // IF parent player was paused
                 // If state is -1 (unstarted) the video will still start as intended
-                if (state == 2) {
+                if (state === 2) {
                     console.log("paused?")
                     player.pauseVideo();
                 }
