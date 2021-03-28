@@ -99,12 +99,12 @@
                 <div class="nonmobile-hide"><b>Note: </b>Only the host can control the video using the native video player controls </div>
                 <div class="mobile-hide"><b>Mobile User</b>, please play the video once manually to give the browser permission to control the video player. </div>
                 <div style="margin: 10px 2px 10px 10px;" class="dropdown">
-                    <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" onclick="dropdownButtonAClicked(dropDownAClicked)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" onclick="dropDownAClicked()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-video"></i> Player
                     </button>
                     <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" id="ddmenuA">
-                        <a class="dropdown-item" onclick="changePlayer(roomnum, 0)"><i class="fab fa-youtube"></i> YouTube</a>
-                        <a class="dropdown-item" onclick="changePlayer(roomnum, 3)"><i class="fas fa-file-video"></i> HTML5 Player (.mp4/.webm)</a>
+                        <a class="dropdown-item" onclick="dropdownButtonAClicked(roomNum, 0, changePlayer)"><i class="fab fa-youtube"></i> YouTube</a>
+                        <a class="dropdown-item" onclick="dropdownButtonAClicked(roomNum, 3, changePlayer)"><i class="fas fa-file-video"></i> HTML5 Player (.mp4/.webm)</a>
                     </div>
                 </div>
 
@@ -126,26 +126,26 @@
                 <!----------------------------------- PLAYER AREA ----------------------------------->
                 <!-- <hr> -->
                 <div>
-                    <button id="playButton" onclick="playVideo(roomnum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fa fa-play"></i> Play / <i class="fa fa-pause"></i> Pause</button>
+                    <button id="playButton" onclick="playVideo(roomNum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fa fa-play"></i> Play / <i class="fa fa-pause"></i> Pause</button>
 
-                    <button id="syncbutton" onclick="syncVideo(roomnum);syncAlert()" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fa fa-sync"></i> Sync</button>
+                    <button id="syncbutton" onclick="syncVideo(roomNum);syncAlert()" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fa fa-sync"></i> Sync</button>
 
-                    <button id="loveButton" onclick="loveLive(roomnum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="far fa-heart"></i> Random K-pop</button>
+                    <button id="loveButton" onclick="loveLive(roomNum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="far fa-heart"></i> Random K-pop</button>
 
-                    <button id="hostbutton" onclick="changeHost(roomnum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fas fa-users"></i> Make me the host!</button>
+                    <button id="hostbutton" onclick="changeHost(roomNum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fas fa-users"></i> Make me the host!</button>
 
                     <button id="lightButton" style="margin-top:.5rem" class="btn btn-primary btn-dark-new switch"><i style="pointer-events:none;" class="fas fa-lightbulb"></i></button>
 
 
                     <div style="margin: 10px 2px 10px 10px; display: none;" class="dropdown" id="switchmode">
-                        <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" onclick="dropdownButtonBClicked(dropDownBClicked)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button style="background-color: #E7C6FF" class="btn btn-info dropdown-toggle" type="button" onclick="dropDownBClicked()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-video"></i> Bitrate Mode
                         </button>
                         <div class="form-control dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton" id="ddmenuB">
-                            <a id="mdd1" class="dropdown-item" onclick="changeModeIndex(1)"></a>
-                            <a id="mdd2" class="dropdown-item" onclick="changeModeIndex(2)"></a>
-                            <a id="mdd3" class="dropdown-item" onclick="changeModeIndex(3)"></a>
-                            <a id="mdd4" class="dropdown-item" onclick="changeModeIndex(4)"></a>
+                            <a id="mdd1" class="dropdown-item" onclick="dropDownBClicked(1, changeModeIndex)"></a>
+                            <a id="mdd2" class="dropdown-item" onclick="dropDownBClicked(2, changeModeIndex)"></a>
+                            <a id="mdd3" class="dropdown-item" onclick="dropDownBClicked(3, changeModeIndex)"></a>
+                            <a id="mdd4" class="dropdown-item" onclick="dropDownBClicked(4, changeModeIndex)"></a>
                         </div>
                     </div>
 
@@ -160,7 +160,7 @@
                     <input type="Video" style="max-width: 400px; margin-right: .5rem; margin-bottom: .5rem; float: left;" class="form-control" id="inputVideoId" placeholder="Video ID / URL">
                 </div>
                 <div>
-                    <button id="changeButton" onclick="changeVideoParse(roomnum)" class="btn btn-primary btn-dark-new"><i class="fas fa-exchange-alt"></i> Change Video</button>
+                    <button id="changeButton" onclick="changeVideoParse(roomNum)" class="btn btn-primary btn-dark-new"><i class="fas fa-exchange-alt"></i> Change Video</button>
                     <br/>
 
                 </div>

@@ -23,12 +23,12 @@ function dropDownBClicked() {
     dropdownMenuB.style.display = 'none'
 }
 
-function dropdownButtonAClicked(callback) {
+function dropdownButtonAClicked(roomnum, index, callback) {
     dropDownAClicked();
-    callback();
+    callback(roomnum, index);
 }
 
-function dropdownButtonBClicked(callback) {
+function dropdownButtonBClicked(index, callback) {
     dropDownBClicked();
-    callback();
+    callback(index);
 }
