@@ -228,7 +228,7 @@
 
         document.onclick = function(e) {
             if (!e.target.classList.contains('switch') && per === 1) {
-                persoff.toggle();
+                toggle(persoff);
                 per = 0;
             }
         };
@@ -237,7 +237,7 @@
 
         if (lightToggle !== null) {
             lightToggle.onclick = function () {
-                persoff.toggle();
+                toggle(persoff);
                 per += 1;
                 if (per === 2) {
                     per = 0;
@@ -264,7 +264,7 @@
                 const usernameValue = username.value;
                 let noname;
 
-                if (usernameValue == "") {
+                if (usernameValue === "") {
                     console.log("ENTER A NAME")
                     noname = document.getElementById('missinginfo')
                     noname.innerHTML = "Surely you have a name right? Enter it below!"

@@ -13,6 +13,7 @@ function playVideo(rn) {
     //io.sockets.in("room-"+roomnum).emit('playVideoClient');
 }
 
+
 // Calls the sync function on the server
 function syncVideo(rmnum) {
     let currTime = 0

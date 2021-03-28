@@ -32,3 +32,11 @@ function dropdownButtonBClicked(index, callback) {
     dropDownBClicked();
     callback(index);
 }
+
+function toggle(/*HTMLElement*/element) {
+    if (element.style.display === 'none') {
+        element.style.display = 'block';
+        return;
+    }
+    element.style.display = 'none';
+}
