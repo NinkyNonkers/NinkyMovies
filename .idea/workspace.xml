@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/styling.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/styling.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +64,7 @@
       <workItem from="1615281065899" duration="7043000" />
       <workItem from="1615648288515" duration="7063000" />
       <workItem from="1616877794126" duration="4770000" />
-      <workItem from="1616919037212" duration="4533000" />
+      <workItem from="1616919037212" duration="5057000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -318,14 +318,20 @@
       <option name="project" value="LOCAL" />
       <updated>1616919469393</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Fix using element instead of value">
+      <created>1616920084390</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1616920084390</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="woops" />
     <MESSAGE value="Hahaaaa" />
     <MESSAGE value="Remove unused username asignment" />
     <MESSAGE value="Downgrade back to socket.io 2" />
@@ -350,6 +356,7 @@
     <MESSAGE value="Fix host not syncing and optimise" />
     <MESSAGE value="Remove unused calls" />
     <MESSAGE value="Dropdowns now close when a button is clicked" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dropdowns now close when a button is clicked" />
+    <MESSAGE value="Fix using element instead of value" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix using element instead of value" />
   </component>
 </project>

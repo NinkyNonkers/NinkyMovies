@@ -79,10 +79,7 @@ socket.on('createVimeo', function(data) {
 
 // Create HTML5 Player
 socket.on('createHTML5', function(data) {
-    console.log("preparing to change player")
-    if (currPlayer != 3) {
-
-        console.log("changing to html5");
+    if (currPlayer !== 3) {
 
         const you = document.getElementById('playerArea');
         you.style.display = 'none';

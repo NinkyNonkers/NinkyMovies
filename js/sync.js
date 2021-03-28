@@ -140,7 +140,7 @@ function changeVideo(roomid, rawId) {
 
 
 function loveLive(rrr) {
-    var time = getTime()
+    const time = getTime()
     // love live, love4eva, why, gee, what is love, stay, starlight, bad boy
     // likey, spring love, palette, roller coaster, DNA, I, peekaboo, wee woo
     // rookie, russian roulette, i want you back, TT, whistle, ddu du ddu du, turtle, 24/7
@@ -150,7 +150,7 @@ function loveLive(rrr) {
     // love scenario, dance the night away, solo, some, yes or yes, when the wind blows, hi high, don't forget,
     // Uh Oh!, Workaholic, 25, through the night, four seasons, bom, runaway, don't
     // psycho, fancy, feel special, leave (park bo young), blueming,
-    var video_roulette = [
+    const video_roulette = [
         '97uviVyw0_o', 'tIWpr3tHzII', 'WkdtmT8A2iY', 'U7mPqycQ0tQ',
         'i0p1bmr0EmE', 'FzVR_fymZw4', 'eNmL4JiGxZQ', 'J_CFBjAyPWE',
         'V2hlQkVJZhE', 'erErBFKPbMY', 'd9IxdwEFk1c', '900X9fDFLc4',
@@ -302,6 +302,43 @@ socket.on('syncVideoClient', function(data) {
                 console.log("Error invalid player id")
         }
     }
+
+});
+
+socket.on('changeVideoClient', function(data) {
+    console.log("changing video!")
+    let videoId = data.videoId;
+    console.log("video id is: " + videoId)
+
+    // Pause right before changing
+    // pauseOther(roomnum)
+
+    // This is getting the video id from the server
+    // The original change video call updates the value for the room
+    // This probably is more inefficient than just passing in the parameter but is safer?
+    socket.emit('get video', function(id) {
+        console.log("it really is " + id)
+        videoId = id
+        // This changes the video
+        id = videoId
+
+        switch (currPlayer) {
+            case 0:
+                player.loadVideoById(videoId);
+                break;
+            case 3:
+                htmlLoadVideo(videoId)
+                break;
+            default:
+                console.log("Error invalid player id")
+        }
+    })
+
+    // Auto sync with host after 1000ms of changing video
+    setTimeout(function() {
+        console.log("resyncing with host after video change")
+        socket.emit('sync host', {});
+    }, 1000);
 
 });
 
