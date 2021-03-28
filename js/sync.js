@@ -1,4 +1,4 @@
-let id = "M7lc1UVf-VE"
+let outerVideoId = "M7lc1UVf-VE"
 
 
 // Calls the play video function on the server
@@ -17,7 +17,7 @@ function playVideo(rn) {
 function syncVideo(rmnum) {
     let currTime = 0
     let state
-    const videoID = id
+    const videoID = outerVideoId
 
     // var syncText = document.getElementById("syncbutton")
     // console.log(syncText.innerHTML)
