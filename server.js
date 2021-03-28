@@ -291,25 +291,25 @@ io.sockets.on('connection', function(socket) {
 
     // Play video
     socket.on('play video', function(data) {
-        var roomnum = data.room
+        const roomnum = data.room
         io.sockets.in("room-" + roomnum).emit('playVideoClient');
     });
 
     // Event Listener Functions
     // Broadcast so host doesn't continuously call it on itself!
     socket.on('play other', function(data) {
-        var roomnum = data.room
+        const roomnum = data.room
         socket.broadcast.to("room-" + roomnum).emit('justPlay');
     });
 
     socket.on('pause other', function(data) {
-        var roomnum = data.room
+        const roomnum = data.room
         socket.broadcast.to("room-" + roomnum).emit('justPause');
     });
 
     socket.on('seek other', function(data) {
-        var roomnum = data.room
-        var currTime = data.time
+        const roomnum = data.room
+        const currTime = data.time
         socket.broadcast.to("room-" + roomnum).emit('justSeek', {
             time: currTime
         });
@@ -343,21 +343,6 @@ io.sockets.on('connection', function(socket) {
         }
     });
 
-    // Enqueue video
-    // Gets title then calls back
-    socket.on('enqueue video', function(data) {
-
-    })
-
-
-    socket.on('enqueue playlist', function(data) {
-
-    })
-
-    // Empty the queue
-    socket.on('empty queue', function(data) {
-
-    })
 
     // Remove a specific video from queue
     socket.on('remove at', function(data) {
@@ -451,8 +436,6 @@ io.sockets.on('connection', function(socket) {
     // Change to previous video
     socket.on('change previous video', function(data, callback) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            var room = data.room
-            var host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
 
             // This sets the videoId to the proper previous video
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
@@ -741,8 +724,7 @@ io.sockets.on('connection', function(socket) {
     // Some update functions --------------------------------------------------
     // Update all users
     function updateUsernames() {
-        // io.sockets.emit('get users', users);
-        // console.log(users)
+
     }
 
     // Update the room usernames

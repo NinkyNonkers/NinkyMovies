@@ -29,7 +29,7 @@ function onPlayerReady(event) {
 }
 
 function changeBorderColor(playerStatus) {
-    var color;
+    let color;
     if (playerStatus === -1) {
         color = "#37474F"; // unstarted = gray
     } else if (playerStatus === 0) {
@@ -77,7 +77,6 @@ function onPlayerStateChange(event) {
             const currTime = player.getCurrentTime();
             if (host) {
                 seekOther(roomNum, currTime)
-                // syncVideo(roomnum)
             }
             break;
     }
@@ -104,7 +103,6 @@ socket.on('get title', function(data, callback) {
         if (this.status >= 200 && this.status < 400) {
             // Success!
             var resp = this.response;
-            // enqueueNotify(user, data.items[0].snippet.title)
             console.log("Title resolving is currently a WIP!")
             return;
             socket.emit('notify alerts', {
@@ -151,6 +149,3 @@ socket.on('get title', function(data, callback) {
     ) */
 })
 
-socket.on('get playlist videos', function(data) {
-    console.log("Queue has been deprecated in this version of NinkyMovies!");
-})

@@ -20,7 +20,6 @@ socket.on('unSetHost', function(data) {
 
 // This grabs data and calls sync FROM the host
 socket.on('getData', function(data) {
-    console.log("Hi im the host, you called?")
     socket.emit('sync host', {});
 });
 // Calls sync
@@ -73,15 +72,12 @@ function getHostData(roomnum) {
 socket.on('compareHost', function(data) {
     // The host data
     const hostTime = data.currTime
-    const hostState = data.state
 
     switch (currPlayer) {
         case 0:
             var currTime = player.getCurrentTime()
-            var state = playerStatus
 
             // If out of sync
-            console.log("curr: " + currTime + " Host: " + hostTime)
             if (currTime < hostTime - 2 || currTime > hostTime + 2) {
                 disconnected()
             }
@@ -89,14 +85,11 @@ socket.on('compareHost', function(data) {
             break;
         case 3:
             var currTime = media.currentTime
-            var state = media.paused
 
             // If out of sync
-            console.log("curr: " + currTime + " Host: " + hostTime)
             if (currTime < hostTime - 2 || currTime > hostTime + 2) {
                 disconnected()
             }
-
             break;
         default:
             console.log("Error invalid player id")
@@ -104,25 +97,11 @@ socket.on('compareHost', function(data) {
 });
 
 function test() {
-    document.getElementById('player').src = document.getElementById('player').src + '&controls=0'
+    playerElement.src = playerElement.src + '&controls=0'
 }
 
 
-// DEPRECATED DOES NOT WORK PROPERLY
-// Set controls on api to the host, remove controls on other sockets
 socket.on('hostControls', function(data) {
-    // If host disable controls
-    if (!host) {
-        console.log("SOURCE: " + document.getElementById('player').src)
-        // document.getElementById('player').src = document.getElementById('player').src + '&controls=0'
-        document.getElementById('player').src = document.getElementById('player').src.replace("&controls=1", "&controls=0")
-        console.log("POSTSOURCE: " + document.getElementById('player').src)
 
-    }
-    // Give back controls, if needed!
-    else {
-        document.getElementById('player').src = document.getElementById('player').src.replace("&controls=0", "&controls=1")
-    }
 });
 
-//-----------------------------------------------------------------------------

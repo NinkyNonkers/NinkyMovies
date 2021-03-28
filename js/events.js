@@ -31,7 +31,6 @@ function pauseOther(roomnum) {
     socket.emit('pause other', {
         room: roomnum
     });
-    //socket.broadcast.to("room-"+roomnum).emit('justPlay');
 }
 
 socket.on('justPause', function(data) {
@@ -88,7 +87,7 @@ socket.on('justSeek', function(data) {
 // Needs to grab the next video id and change the video
 function playNext(roomnum) {
     socket.emit('play next', {}, function(data) {
-        var videoId = data.videoId
+        const videoId = data.videoId
 
         // IF queue is empty do not try to change
         if (videoId !== "QUEUE IS EMPTY") {

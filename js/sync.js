@@ -9,8 +9,6 @@ function playVideo(rn) {
         room: rn
     });
 
-    // Doesn't work well unless called in server
-    //io.sockets.in("room-"+roomnum).emit('playVideoClient');
 }
 
 
@@ -20,9 +18,6 @@ function syncVideo(rmnum) {
     let state
     const videoID = outerVideoId
 
-    // var syncText = document.getElementById("syncbutton")
-    // console.log(syncText.innerHTML)
-    // syncText.innerHTML = "<i class=\"fas fa-sync fa-spin\"></i> Sync"
 
     switch (currPlayer) {
         case 0:
@@ -121,7 +116,6 @@ function changeVideo(roomid, rawId) {
 
     if (videoId !== "invalid") {
         const time = getTime()
-        console.log("The time is this man: " + time)
         // Actually change the video!
         socket.emit('change video', {
             room: roomid,
@@ -132,7 +126,6 @@ function changeVideo(roomid, rawId) {
         console.log("User entered an invalid video url :(")
         invalidURL()
     }
-    //player.loadVideoById(videoId);
 }
 
 
@@ -185,13 +178,10 @@ function loveLive(rrr) {
 
 // This just calls the sync host function in the server
 socket.on('getData', function(data) {
-    console.log("Hi im the host, you called?")
     socket.emit('sync host', {});
-    //socket.emit('change video', { time: time });
 });
 
 function changePlayer(playerroom, playerId) {
-    console.log("Changing player")
     if (playerId !== currPlayer) {
         socket.emit('change player', {
             room: playerroom,
@@ -251,12 +241,7 @@ socket.on('syncVideoClient', function(data) {
     console.log("curr vid id: " + id + " " + videoId)
     console.log("state" + state)
 
-    // There should no longer be any need to sync a video change
-    // Video should always be the same
-    // if (id != videoId){
-    //     console.log(id == videoId)
-    //     changeVideoId(roomnum, videoId)
-    // }
+
 
     // This switchs you to the correct player
     // Should only happen when a new socket joins late
@@ -307,18 +292,12 @@ socket.on('syncVideoClient', function(data) {
 });
 
 socket.on('changeVideoClient', function(data) {
-    console.log("changing video!")
     let videoId = data.videoId;
-    console.log("video id is: " + videoId)
-
-    // Pause right before changing
-    // pauseOther(roomnum)
 
     // This is getting the video id from the server
     // The original change video call updates the value for the room
     // This probably is more inefficient than just passing in the parameter but is safer?
     socket.emit('get video', function(id) {
-        console.log("it really is " + id)
         videoId = id
         // This changes the video
         id = videoId
@@ -337,7 +316,6 @@ socket.on('changeVideoClient', function(data) {
 
     // Auto sync with host after 1000ms of changing video
     setTimeout(function() {
-        console.log("resyncing with host after video change")
         socket.emit('sync host', {});
     }, 1000);
 
@@ -346,6 +324,6 @@ socket.on('changeVideoClient', function(data) {
 
 // Change time
 socket.on('changeTime', function(data) {
-    var time = data.time
+    const time = data.time
     player.seekTo(time);
 });

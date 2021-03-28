@@ -3,10 +3,6 @@
 // 2. Empty Queue
 // 3. Beta Message
 
-// Enqueue Notify (0)
-socket.on('enqueueNotify', function(data) {
-
-})
 
 // Change Host (1)
 socket.on('changeHostNotify', function(data) {
@@ -14,16 +10,10 @@ socket.on('changeHostNotify', function(data) {
 
 })
 
-// Empty Queue (2)
-socket.on('emptyQueueNotify', function(data) {
-    console.log("Queue has been deprecated in this version of vynchronize")
-})
 
 // Beta Message (3)
 socket.on('betaNotify', function(data) {
     console.log("Beta Notify Alert")
-
-
 })
 
 //------------------------------------------------------------------------------
