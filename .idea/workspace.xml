@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/html5.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/html5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/yt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/yt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +63,7 @@
       <workItem from="1615281065899" duration="7043000" />
       <workItem from="1615648288515" duration="7063000" />
       <workItem from="1616877794126" duration="4770000" />
-      <workItem from="1616919037212" duration="3512000" />
+      <workItem from="1616919037212" duration="3979000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -306,14 +303,20 @@
       <option name="project" value="LOCAL" />
       <updated>1616918235510</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Remove unused calls">
+      <created>1616919122891</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1616919122891</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove old show and hide functions" />
     <MESSAGE value="Fix undefined issues" />
     <MESSAGE value="woops" />
     <MESSAGE value="Hahaaaa" />
@@ -338,6 +341,7 @@
     <MESSAGE value="Fix id issue" />
     <MESSAGE value="Fix some minor exploitable features" />
     <MESSAGE value="Fix host not syncing and optimise" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix host not syncing and optimise" />
+    <MESSAGE value="Remove unused calls" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unused calls" />
   </component>
 </project>
