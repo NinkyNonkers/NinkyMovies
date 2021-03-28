@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +65,7 @@
       <workItem from="1615648288515" duration="7063000" />
       <workItem from="1616877794126" duration="4770000" />
       <workItem from="1616919037212" duration="11407000" />
-      <workItem from="1616931132471" duration="1499000" />
+      <workItem from="1616931132471" duration="3288000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -373,14 +375,20 @@
       <option name="project" value="LOCAL" />
       <updated>1616934083349</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="LOL">
+      <created>1616934439429</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1616934439429</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Begin upgrade to http2 and start redoing dropdown" />
     <MESSAGE value="Fix dropdown stuff" />
     <MESSAGE value="Update old html() jquery usage" />
     <MESSAGE value="Add custom dropdown + complete stripping&#10;Completely eliminate jquery usage, started phasing out bootstrap JS (not css portion though)" />
@@ -405,6 +413,7 @@
     <MESSAGE value="Further and hopefully final optimisation&#10;Remove notify stuff especially" />
     <MESSAGE value="Woops" />
     <MESSAGE value="Clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up" />
+    <MESSAGE value="LOL" />
+    <option name="LAST_COMMIT_MESSAGE" value="LOL" />
   </component>
 </project>

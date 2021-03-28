@@ -2,10 +2,10 @@
 
 const express = require('express');
 const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io').listen(server);
+const https = require('https');
 const compression = require('compression');
 const spdy = require('spdy');
+const fs = require('fs');
 
 users = [];
 connections = [];
@@ -18,12 +18,23 @@ let given_room = ""
 
 let roomnum = 0;
 
+console.log("Preparing certificate and express")
+
+credentials = {
+    cert: fs.readFileSync("fullchain.pem", "utf8"),
+    key: fs.readFileSync("privkey.pem", "utf8")
+}
+
+const server = https.createServer(credentials)
+
+const io = require('socket.io').listen(server);
+
 app.use(express.static(__dirname + '/'));
 app.use(compression());
 
 server.listen(process.env.PORT || 80);
 
-console.log('Server Started . . .');
+console.log('Server Starting . . .');
 
 // app.param('room', function(req,res, next, room){
 //     console.log("testing")
@@ -100,7 +111,6 @@ io.sockets.on('connection', function(socket) {
 
     });
 
-    // ------------------------------------------------------------------------
     // New room
     socket.on('new room', function(data, callback) {
         // Roomnum passed through
@@ -181,8 +191,6 @@ io.sockets.on('connection', function(socket) {
             username: io.sockets.adapter.rooms['room-' + socket.roomnum].hostName
         })
 
-        // Set Queue
-
         // Gets current video from room variable
         switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
             case 0:
@@ -194,7 +202,6 @@ io.sockets.on('connection', function(socket) {
             default:
                 console.log("Error: invalid player id")
         }
-        var currYT = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
 
         // Change the video player to current One
         switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
@@ -231,9 +238,6 @@ io.sockets.on('connection', function(socket) {
         updateRoomUsers(socket.roomnum)
 
     });
-    // ------------------------------------------------------------------------
-
-
 
     // ------------------------------------------------------------------------
     // ------------------------- Socket Functions -----------------------------
@@ -266,8 +270,6 @@ io.sockets.on('connection', function(socket) {
 
     });
 
-
-
     // Sync video
     socket.on('sync video', function(data) {
         const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
@@ -286,45 +288,6 @@ io.sockets.on('connection', function(socket) {
         }
     });
 
-
-    // Remove a specific video from queue
-    socket.on('remove at', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const idx = data.idx
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.splice(idx, 1)
-                    break;
-                case 3:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
-                    break;
-                default:
-                    console.log("Error: invalid player id")
-            }
-        }
-    })
-
-    // Play a specific video from queue
-    socket.on('play at', function(data, callback) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const idx = data.idx
-            let videoId = ""
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt[idx].videoId
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.splice(idx, 1)
-                    break;
-                case 3:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
-                    break;
-                default:
-                    console.log("Error: invalid player id")
-            }
-            callback({
-                videoId: videoId
-            })
-        }
-    })
 
     // Change video
     socket.on('change video', function(data, callback) {
@@ -362,9 +325,7 @@ io.sockets.on('connection', function(socket) {
                 // Call back to return the video id
                 callback()
             }
-
         }
-
     });
 
     // Get video id based on player
@@ -493,11 +454,6 @@ io.sockets.on('connection', function(socket) {
                 io.sockets.in("room-" + roomnum).emit('changeHostLabel', {
                     username: socket.username
                 })
-                // Notify alert
-                socket.emit('notify alerts', {
-                    alert: 1,
-                    user: socket.username
-                })
             }
         }
     })
@@ -535,36 +491,9 @@ io.sockets.on('connection', function(socket) {
 
     })
 
-    // Calls notify functions
-    socket.on('notify alerts', function(data) {
-        const alert = data.alert
-        console.log("entered notify alerts")
-        let encodedUser = ""
-        if (data.user) {
-            encodedUser = data.user.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        }
-
-        switch (alert) {
-                // Host Change Alert
-            case 1:
-                io.sockets.in("room-" + socket.roomnum).emit('changeHostNotify', {
-                    user: encodedUser
-                })
-                break;
-                // Beta Message Alert
-            case 3:
-                io.sockets.in("room-" + socket.roomnum).emit('betaNotify', {})
-                break;
-            default:
-                console.log("Invalid alert id")
-        }
-    })
-
-    //------------------------------------------------------------------------------
     // Async get current time
     socket.on('auto sync', function(data) {
         const async = require("async");
-        const http = require("http");
 
         //Delay of 5 seconds
         const delay = 5000;
@@ -590,7 +519,6 @@ io.sockets.on('connection', function(socket) {
     });
 
 
-
     // Update the room usernames
     function updateRoomUsers(rm) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
@@ -600,3 +528,5 @@ io.sockets.on('connection', function(socket) {
     }
 
 })
+
+console.log("Server started");
