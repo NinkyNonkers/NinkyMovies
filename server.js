@@ -367,33 +367,6 @@ io.sockets.on('connection', function(socket) {
 
     });
 
-    // Change to previous video
-    socket.on('change previous video', function(data, callback) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-
-            // This sets the videoId to the proper previous video
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    var videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.id
-                    var time = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.time
-                    break;
-                case 3:
-                    var videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.id
-                    var time = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.time
-                    break;
-                default:
-                    console.log("Error: invalid player id")
-            }
-
-            console.log("Hot Swapping to Previous Video: " + videoId + " at current time: " + time)
-            // Callback to go back to client to request the video change
-            callback({
-                videoId: videoId,
-                time: time
-            })
-        }
-    })
-
     // Get video id based on player
     socket.on('get video', function(callback) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
@@ -496,12 +469,6 @@ io.sockets.on('connection', function(socket) {
         }
     })
 
-    // Emits the player status
-    socket.on('player status', function(data) {
-        // console.log(data);
-        console.log(data)
-    });
-
     // Change host
     socket.on('change host', function(data) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
@@ -538,7 +505,7 @@ io.sockets.on('connection', function(socket) {
     // Get host data
     socket.on('get host data', function(data) {
         try {
-            if (roomnum === null || roomnum === undefined)
+            if (roomnum === undefined)
                 return;
             const room = io.sockets.adapter.rooms['room-' + roomnum];
             if (room !== undefined) {
