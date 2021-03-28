@@ -21,8 +21,8 @@ let roomnum = 0;
 console.log("Preparing certificate and express")
 
 credentials = {
-    cert: fs.readFileSync("fullchain.pem", "utf8"),
-    key: fs.readFileSync("privkey.pem", "utf8")
+    cert: fs.readFileSync(__dirname + "/fullchain.pem", "utf8"),
+    key: fs.readFileSync(__dirname + "/privkey.pem", "utf8")
 }
 
 const server = https.createServer(credentials)
