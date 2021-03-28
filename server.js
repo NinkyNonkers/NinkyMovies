@@ -14,7 +14,7 @@ rooms = [];
 userrooms = {}
 
 // Set given room for url parameter
-var given_room = ""
+let given_room = ""
 
 let roomnum = 0;
 
@@ -321,30 +321,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('play next', function(data, callback) {
-        var videoId = "QUEUE IS EMPTY"
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    if (io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.length > 0) {
-                        // Gets the video id from the room object
-                        videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.shift().videoId
-                    }
-                    break;
-                case 3:
-                    if (io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.length > 0) {
-                        videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.shift().videoId
-                    }
-                    break;
-                default:
-                    console.log("Error invalid player id")
-            }
-            // console.log(videoId)
-            // Remove video from the front end
-            updateQueueVideos()
-            callback({
-                videoId: videoId
-            })
-        }
+
     });
 
     // Sync video
@@ -369,83 +346,17 @@ io.sockets.on('connection', function(socket) {
     // Enqueue video
     // Gets title then calls back
     socket.on('enqueue video', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            test = false
-            var user = data.user
-            var videoId = data.videoId
-            var title = ""
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    // See yt.js file
-                    socket.emit('get title', {
-                        videoId: videoId,
-                        user: user,
-                        api_key: YT3_API_KEY
-                    }, function(data) {
-                        videoId = data.videoId
-                        title = data.title
-                        io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.push({
-                            videoId: videoId,
-                            title: title
-                        })
-                        console.log(io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt)
-                        // Update front end
-                        updateQueueVideos()
-                    })
-                    break;
-                case 3:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.push({
-                        videoId: videoId,
-                        title: title
-                    })
-                    break;
-                default:
-                    console.log("Error invalid player id")
-            }
-        }
+
     })
 
-    // Enqueue playlist
-    // Gets all of the playlist videos and enqueues them
-    // Only supported for YouTube
+
     socket.on('enqueue playlist', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const user = data.user
-            const playlistId = data.playlistId
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    // See yt.js file
-                    socket.emit('get playlist videos', {
-                        playlistId: playlistId,
-                        user: user,
-                        api_key: YT3_API_KEY
-                    })
-                    break;
-                case 1:
-                case 2:
-                case 3:
-                    break;
-                default:
-                    console.log("Error invalid player id")
-            }
-        }
+
     })
 
     // Empty the queue
     socket.on('empty queue', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt = []
-                    break;
-                case 3:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5 = []
-                    break;
-                default:
-                    console.log("Error invalid player id")
-            }
-            updateQueueVideos()
-        }
+
     })
 
     // Remove a specific video from queue
@@ -641,12 +552,7 @@ io.sockets.on('connection', function(socket) {
 
     // Send Message in chat
     socket.on('send message', function(data) {
-        const encodedMsg = data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        // console.log(data);
-        io.sockets.in("room-" + socket.roomnum).emit('new message', {
-            msg: encodedMsg,
-            user: socket.username
-        });
+
     });
 
     // New User

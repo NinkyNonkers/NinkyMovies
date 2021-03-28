@@ -200,7 +200,8 @@ socket.on('getData', function(data) {
 });
 
 function changePlayer(playerroom, playerId) {
-    if (playerId != currPlayer) {
+    console.log("Changing player")
+    if (playerId !== currPlayer) {
         socket.emit('change player', {
             room: playerroom,
             playerId: playerId
