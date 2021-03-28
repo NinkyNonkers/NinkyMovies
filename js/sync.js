@@ -3,8 +3,6 @@ let outerVideoId = "M7lc1UVf-VE"
 
 // Calls the play video function on the server
 function playVideo(rn) {
-    // dailyPlayer.play();
-    //vimeoPlayer.play()
     socket.emit('play video', {
         room: rn
     });
@@ -34,14 +32,14 @@ function syncVideo(rmnum) {
     }
 
     // Required due to vimeo asyncronous functionality
-    if (currPlayer !== 2) {
-        socket.emit('sync video', {
-            room: rmnum,
-            time: currTime,
-            state: state,
-            videoId: videoID
-        });
-    }
+
+    socket.emit('sync video', {
+        room: rmnum,
+        time: currTime,
+        state: state,
+        videoId: videoID
+    });
+
 }
 
 // This return the current time
@@ -238,14 +236,10 @@ socket.on('syncVideoClient', function(data) {
     console.log("curr vid id: " + id + " " + videoId)
     console.log("state" + state)
 
-
-
     // This switchs you to the correct player
     // Should only happen when a new socket joins late
 
     // Current issue: changePlayer is called asynchronously when we need this function to wait for it to finish
-    // changeSinglePlayer(playerId)
-    // currPlayer = playerId
 
     // Change the player if necessary
     if (currPlayer !== playerId) {

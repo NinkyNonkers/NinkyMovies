@@ -1,6 +1,3 @@
-// Read in video input from filesystem
-
-
 const media = document.querySelector('video');
 
 let currentMode = 1;

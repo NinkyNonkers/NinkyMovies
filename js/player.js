@@ -51,9 +51,6 @@ socket.on('createYoutube', function(data) {
         you.style.display = 'block';
         currPlayer = 0
 
-        // The visual queue
-
-
         loveButton.style.display = 'inline-block'
         videoTxt.placeholder = 'Video ID / URL'
 

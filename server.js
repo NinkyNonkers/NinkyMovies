@@ -82,7 +82,6 @@ io.sockets.on('connection', function(socket) {
             // If you are the host
             if (socket.id === room.host) {
                 // Reassign
-                console.log("hello i am the host " + socket.id + " and i am leaving my responsibilities to " + Object.keys(room.sockets)[0])
                 io.to(Object.keys(room.sockets)[0]).emit('autoHost', {
                     roomnum: rm
                 })
@@ -193,7 +192,7 @@ io.sockets.on('connection', function(socket) {
                 var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                 break;
             default:
-                console.log("Error invalid player id")
+                console.log("Error: invalid player id")
         }
         var currYT = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
 
@@ -206,7 +205,7 @@ io.sockets.on('connection', function(socket) {
                 io.sockets.in("room-" + socket.roomnum).emit('createHTML5', {});
                 break;
             default:
-                console.log("Error invalid player id")
+                console.log("Error: invalid player id")
         }
 
         // Change the video to the current one
@@ -226,8 +225,6 @@ io.sockets.on('connection', function(socket) {
             // Push to users in the room
             io.sockets.adapter.rooms['room-' + socket.roomnum].users.push(socket.username)
 
-        } else {
-            console.log("I am the host")
         }
 
         // Update online users
@@ -302,7 +299,7 @@ io.sockets.on('connection', function(socket) {
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error: invalid player id")
             }
         }
     })
@@ -321,7 +318,7 @@ io.sockets.on('connection', function(socket) {
                     io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error: invalid player id")
             }
             callback({
                 videoId: videoId
@@ -353,7 +350,7 @@ io.sockets.on('connection', function(socket) {
                     io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5 = videoId
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error: invalid player id")
             }
 
             io.sockets.in("room-" + room).emit('changeVideoClient', {
@@ -385,7 +382,7 @@ io.sockets.on('connection', function(socket) {
                     var time = io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.time
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error: invalid player id")
             }
 
             console.log("Hot Swapping to Previous Video: " + videoId + " at current time: " + time)
@@ -409,7 +406,7 @@ io.sockets.on('connection', function(socket) {
                     var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error: invalid player id")
             }
             // Call back to return the video id
             callback(currVideo)
@@ -424,17 +421,15 @@ io.sockets.on('connection', function(socket) {
             const playerId = data.playerId
 
             io.sockets.in("room-" + roomnum).emit('pauseVideoClient');
-            console.log(playerId)
             switch (playerId) {
                 case 0:
                     io.sockets.in("room-" + roomnum).emit('createYoutube', {});
                     break;
                 case 3:
-                    console.log("creating html5player")
                     io.sockets.in("room-" + roomnum).emit('createHTML5', {});
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error: invalid player id")
             }
 
             // This changes the room variable to the player id
@@ -460,7 +455,7 @@ io.sockets.on('connection', function(socket) {
                     socket.emit('createHTML5', {});
                     break;
                 default:
-                    console.log("Error invalid player id")
+                    console.log("Error: invalid player id")
             }
             // After changing the player, resync with the host
             host = io.sockets.adapter.rooms['room-' + socket.roomnum].host

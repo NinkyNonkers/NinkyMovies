@@ -1,8 +1,6 @@
 // These functions just simply play or pause the player
 // Created for event listeners
 
-//-----------------------------------------------------------------------------
-
 function playOther(roomnum) {
     socket.emit('play other', {
         room: roomnum
@@ -53,7 +51,6 @@ function seekOther(roomnum, currTime) {
         room: roomnum,
         time: currTime
     });
-    // socket.emit('getData');
 }
 
 
@@ -77,7 +74,6 @@ socket.on('justSeek', function(data) {
             if (clientTime < currTime - .2 || clientTime > currTime + .2) {
                 media.currentTime = currTime
             }
-            // playOther(roomnum)
             break;
         default:
             console.log("Invalid player id")
