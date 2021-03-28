@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/notify.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/notify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/yt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/yt.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +65,7 @@
       <workItem from="1615281065899" duration="7043000" />
       <workItem from="1615648288515" duration="7063000" />
       <workItem from="1616877794126" duration="4770000" />
-      <workItem from="1616919037212" duration="5057000" />
+      <workItem from="1616919037212" duration="5745000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -325,14 +326,20 @@
       <option name="project" value="LOCAL" />
       <updated>1616920084390</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="CAR ON A TRAIN">
+      <created>1616920550695</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1616920550695</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Hahaaaa" />
     <MESSAGE value="Remove unused username asignment" />
     <MESSAGE value="Downgrade back to socket.io 2" />
     <MESSAGE value="Fix express version" />
@@ -357,6 +364,7 @@
     <MESSAGE value="Remove unused calls" />
     <MESSAGE value="Dropdowns now close when a button is clicked" />
     <MESSAGE value="Fix using element instead of value" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix using element instead of value" />
+    <MESSAGE value="CAR ON A TRAIN" />
+    <option name="LAST_COMMIT_MESSAGE" value="CAR ON A TRAIN" />
   </component>
 </project>

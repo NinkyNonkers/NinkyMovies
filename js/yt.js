@@ -7,7 +7,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 
-var playerStatus = -1;
+let playerStatus = -1;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
@@ -74,7 +74,7 @@ function onPlayerStateChange(event) {
             }
             break;
         case 3:
-            var currTime = player.getCurrentTime();
+            const currTime = player.getCurrentTime();
             if (host) {
                 seekOther(roomNum, currTime)
                 // syncVideo(roomnum)
