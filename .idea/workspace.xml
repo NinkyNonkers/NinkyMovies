@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/host.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/host.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/styling.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/styling.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/sync.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sync.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
@@ -63,7 +68,7 @@
       <workItem from="1615281065899" duration="7043000" />
       <workItem from="1615648288515" duration="7063000" />
       <workItem from="1616877794126" duration="4770000" />
-      <workItem from="1616919037212" duration="1038000" />
+      <workItem from="1616919037212" duration="2704000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -289,14 +294,20 @@
       <option name="project" value="LOCAL" />
       <updated>1616919750143</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Fix some minor exploitable features">
+      <created>1616920318353</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1616920318353</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add back HTML5 player CSS" />
     <MESSAGE value="Update socket.io stuff" />
     <MESSAGE value="Remove old show and hide functions" />
     <MESSAGE value="Fix undefined issues" />
@@ -321,6 +332,7 @@
     <MESSAGE value="Improve" />
     <MESSAGE value="Fix syncing issues" />
     <MESSAGE value="Fix id issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix id issue" />
+    <MESSAGE value="Fix some minor exploitable features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix some minor exploitable features" />
   </component>
 </project>

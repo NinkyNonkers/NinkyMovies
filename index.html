@@ -119,7 +119,6 @@
                 <div id='HTML5Area'>
                     <div class="html5player">
                         <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" width="640" height="360" class="video html5video" id="html5src" controls>
-
                         </video>
                     </div>
                 </div>
@@ -228,7 +227,7 @@
         persoff.style.display = "none";
 
         document.onclick = function(e) {
-            if (!e.target.classList.contains('switch') && per == 1) {
+            if (!e.target.classList.contains('switch') && per === 1) {
                 persoff.toggle();
                 per = 0;
             }
@@ -240,7 +239,7 @@
             lightToggle.onclick = function () {
                 persoff.toggle();
                 per += 1;
-                if (per == 2) {
+                if (per === 2) {
                     per = 0;
                 }
             };
@@ -288,7 +287,7 @@
                     console.log("ENTER A PROPER ROOMNUMBER")
                     noname = document.getElementById('missinginfo')
                     noname.innerHTML = ""
-                    var noname2 = document.getElementById('missinginfo2')
+                    const noname2 = document.getElementById('missinginfo2')
                     noname2.innerHTML = "Please enter a room ID without symbols or leading/trailing whitespace!"
                 } else {
                     socket.emit('new user', username.value, function (data) {
@@ -344,7 +343,7 @@
         if (roomnum != null) {
             // Prevent special characters from being typed
             roomnum.onkeypress = function (event) {
-                var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+                const key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
                 console.log(key)
                 console.log(event.keyCode)
                 // Allow enters and spaces to be used still
@@ -410,7 +409,7 @@
     // set id
     socket.on('set id', function(data) {
         // Ensure no valid id too
-        if (data.id != "" && nosymbols.test(data.id)) {
+        if (data.id !== "" && nosymbols.test(data.id)) {
             document.getElementById('roomnum').value = data.id
             // Probably should not force it to be readonly
             // document.getElementById('roomnum').readOnly = true

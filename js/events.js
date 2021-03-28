@@ -17,14 +17,13 @@ socket.on('justPlay', function(data) {
                 player.playVideo()
             }
             break;
-        case 1:
-        case 2:
-            break;
         case 3:
             if (media.paused) {
                 media.play();
             }
             break;
+        default:
+            console.log("Invalid player id");
     }
 });
 

@@ -212,7 +212,7 @@ function changePlayer(playerroom, playerId) {
 // Change a single player
 function changeSinglePlayer(playerId) {
     return new Promise((resolve, reject) => {
-        if (playerId != currPlayer) {
+        if (playerId !== currPlayer) {
             socket.emit('change single player', {
                 playerId: playerId
             });

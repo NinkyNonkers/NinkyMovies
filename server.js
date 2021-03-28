@@ -408,7 +408,6 @@ io.sockets.on('connection', function(socket) {
             const time = data.time
 
             // This changes the room variable to the video id
-            // io.sockets.adapter.rooms['room-' + roomnum].currVideo = videoId
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
                 case 0:
                     // Set prev video before changing
@@ -583,7 +582,7 @@ io.sockets.on('connection', function(socket) {
             //socket.broadcast.to(host).emit('syncVideoClient', { time: time, state: state, videoId: videoId });
             var host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
             // If not host, recall it on host
-            if (socket.id != host) {
+            if (socket.id !== host) {
                 socket.broadcast.to(host).emit('getData')
             } else {
                 socket.emit('syncHost')

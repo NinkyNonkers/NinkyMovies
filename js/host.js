@@ -1,7 +1,10 @@
 //-----------------------------------------------------------------------------
 // Host stuff
-var host = false
-var notifyfix = false
+let host = false
+let notifyfix = false
+
+const hostlabel = document.getElementById('hostlabel')
+
 
 // Sets the host for the room
 socket.on('setHost', function(data) {
@@ -22,7 +25,7 @@ socket.on('getData', function(data) {
 });
 // Calls sync
 socket.on('syncHost', function(data) {
-    syncVideo(roomnum)
+    syncVideo(roomNum)
 });
 
 //Change the host
@@ -33,18 +36,15 @@ function changeHost(roomnum) {
         });
         socket.emit('notify alerts', {
             alert: 1,
-            user: username
+            user: userName
         })
     }
 }
 // Change the host label
 socket.on('changeHostLabel', function(data) {
-    var user = data.username
+    const user = data.username
     // Change label
-    var hostlabel = document.getElementById('hostlabel')
     hostlabel.innerHTML = "<i class=\"fas fa-user\"></i> Current Host: " + user
-
-    // Generate notify alert
 })
 
 // When the host leaves, the server calls this function on the next socket
@@ -72,8 +72,8 @@ function getHostData(roomnum) {
 // Uses the host data to compare
 socket.on('compareHost', function(data) {
     // The host data
-    var hostTime = data.currTime
-    var hostState = data.state
+    const hostTime = data.currTime
+    const hostState = data.state
 
     switch (currPlayer) {
         case 0:
