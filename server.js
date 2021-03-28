@@ -25,7 +25,7 @@ credentials = {
     key: fs.readFileSync(__dirname + "/privkey.pem", "utf8")
 }
 
-const server = https.createServer(credentials)
+const server = https.createServer(credentials, app)
 
 const io = require('socket.io').listen(server);
 
