@@ -5,7 +5,7 @@ tag.src = 'https://www.youtube.com/iframe_api';
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var player;
+let player;
 
 let playerStatus = -1;
 
@@ -91,61 +91,4 @@ function play() {
     }
 }
 
-socket.on('get title', function(data, callback) {
-    //TODO: rework this to use built in requests instead of jquery
-    const videoId = data.videoId
-    const user = data.user
-
-    const request = new XMLHttpRequest();
-    request.open('GET', 'https://www.googleapis.com/youtube/v3/videos', true);
-
-    request.onload = function() {
-        if (this.status >= 200 && this.status < 400) {
-            // Success!
-            var resp = this.response;
-            console.log("Title resolving is currently a WIP!")
-            return;
-            socket.emit('notify alerts', {
-                alert: 0,
-                user: user,
-                title: data.items[0].snippet.title
-            })
-            // Does a callback and returns title
-            callback({
-                videoId: videoId,
-                title: data.items[0].snippet.title
-            })
-        } else {
-            console.log("Could not get yt video title");
-
-        }
-    };
-
-    request.onerror = function() {
-        console.log("Could not get yt video title");
-    };
-
-    request.send();
-
-    /*$.get(
-        "https://www.googleapis.com/youtube/v3/videos", {
-            part: 'snippet',
-            id: videoId,
-            key: data.api_key
-        },
-        function(data) {
-            // enqueueNotify(user, data.items[0].snippet.title)
-            socket.emit('notify alerts', {
-                alert: 0,
-                user: user,
-                title: data.items[0].snippet.title
-            })
-            // Does a callback and returns title
-            callback({
-                videoId: videoId,
-                title: data.items[0].snippet.title
-            })
-        }
-    ) */
-})
 

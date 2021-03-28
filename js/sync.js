@@ -103,8 +103,6 @@ function idParse(videoId) {
 }
 
 
-
-
 function changeVideoParse(rmid) {
     const videoId = document.getElementById("inputVideoId").value
     changeVideo(rmid, videoId)
@@ -124,7 +122,6 @@ function changeVideo(roomid, rawId) {
         });
     } else {
         console.log("User entered an invalid video url :(")
-        invalidURL()
     }
 }
 

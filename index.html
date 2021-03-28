@@ -330,11 +330,7 @@
             users.innerHTML += html;
         });
 
-        // Updates the queue
-        // Parameters - vidlist, currPlayer, videoId
-        socket.on('get vidlist', function(data) {
-            console.log("Queue has been deprecated in this version of NinkyMovies")
-        });
+
 
 
         const nosymbols = new RegExp("^[a-zA-Z0-9\s]+$");
@@ -434,7 +430,6 @@
 <script src="js/player.js"></script>
 <script src="js/host.js"></script>
 <script src="js/events.js"></script>
-<script src="js/notify.js"></script>
 <script src="js/styling.js"></script>
 
 <!-- Youtube -->

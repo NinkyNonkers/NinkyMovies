@@ -97,8 +97,7 @@ function playNext(roomnum) {
                 videoId: videoId,
                 time: 0
             })
-        } else {
-            playNextAlert()
         }
+
     })
 }

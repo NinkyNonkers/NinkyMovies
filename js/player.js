@@ -71,15 +71,6 @@ socket.on('createYoutube', function(data) {
     }
 });
 
-// Create Daily Motion Player
-socket.on('createDaily', function(data) {
-    console.log("Error: DailyMotion player has been deprecated in the latest release of NinkyMovies!")
-});
-
-// Create Vimeo Player
-socket.on('createVimeo', function(data) {
-    console.log("Error: Vimeo player has been deprecated in the latest release of NinkyMovies!")
-});
 
 // Create HTML5 Player
 socket.on('createHTML5', function(data) {

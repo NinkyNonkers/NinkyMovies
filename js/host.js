@@ -55,7 +55,6 @@ socket.on('autoHost', function(data) {
 function disconnected() {
     // boolean to prevent alert on join
     if (notifyfix) {
-        disconnectedAlert()
     } else {
         notifyfix = true
     }
@@ -101,7 +100,4 @@ function test() {
 }
 
 
-socket.on('hostControls', function(data) {
-
-});
 
