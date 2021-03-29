@@ -27,15 +27,26 @@ app.get('/:room', function(req, res) {
 });
 
 
-const server = https.createServer({key:  fs.readFileSync(__dirname + "/key.pem", "utf8"), cert: fs.readFileSync(__dirname + "/server.crt", "utf8")}
-, app)
+const options = {
+    key: fs.readFileSync(__dirname + 'privkey.pem'),
+    cert: fs.readFileSync(__dirname + 'fullchain.pem'),
+    ca: fs.readFileSync(__dirname + 'chain.pem')
+};
+
+const origins = 'https://ninkynonk.co.uk:*';
+const server = https.createServer(options,function(req,res){
+    res.setHeader('Access-Control-Allow-Origin', origins);
+    res.setHeader('Access-Control-Request-Method', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+});
 
 const io = require('socket.io').listen(server);
 
 app.use(express.static(__dirname + '/'));
 app.use(compression());
 
-server.listen(80, function () {
+server.listen(3000, function () {
     console.log("Now listening on port 80")
 });
 
