@@ -28,9 +28,9 @@ app.get('/:room', function(req, res) {
 
 
 const options = {
-    key: fs.readFileSync(__dirname + 'privkey.pem'),
-    cert: fs.readFileSync(__dirname + 'fullchain.pem'),
-    ca: fs.readFileSync(__dirname + 'chain.pem')
+    key: fs.readFileSync(__dirname + '/privkey.pem'),
+    cert: fs.readFileSync(__dirname + '/fullchain.pem'),
+    ca: fs.readFileSync(__dirname + '/chain.pem')
 };
 
 const origins = 'https://ninkynonk.co.uk:*';
