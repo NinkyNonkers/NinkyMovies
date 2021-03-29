@@ -145,8 +145,10 @@ io.sockets.on('connection', function(socket) {
         // Sets the default values when first initializing
         if (init) {
             // Sets the host
-            if (io.sockets.adapter.rooms['room-' + socket.roomnum] === undefined)
+            if (io.sockets.adapter.rooms['room-' + socket.roomnum] === undefined) {
+                console.log("Error: Room has not been created!")
                 return;
+            }
             io.sockets.adapter.rooms['room-' + socket.roomnum].host = host
             // Default Player
             io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer = 0
@@ -155,34 +157,16 @@ io.sockets.on('connection', function(socket) {
                 yt: 'M7lc1UVf-VE',
                 html5: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
             }
-            // Previous Video
-            io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo = {
-                yt: {
-                    id: 'M7lc1UVf-VE',
-                    time: 0
-                },
-                html5: {
-                    id: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-                    time: 0
-                }
-            }
             // Host username
             io.sockets.adapter.rooms['room-' + socket.roomnum].hostName = socket.username
             // Keep list of online users
             io.sockets.adapter.rooms['room-' + socket.roomnum].users = [socket.username]
-            // Set an empty queue
-            io.sockets.adapter.rooms['room-' + socket.roomnum].queue = {
-                yt: [],
-                html5: []
-            }
         }
 
         // Set Host label
         io.sockets.in("room-" + socket.roomnum).emit('changeHostLabel', {
             username: io.sockets.adapter.rooms['room-' + socket.roomnum].hostName
         })
-
-        // Set Queue
 
         // Gets current video from room variable
         switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
