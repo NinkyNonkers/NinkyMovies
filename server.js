@@ -20,19 +20,24 @@ let roomnum = 0;
 
 console.log("Preparing certificate and express")
 
-credentials = {
-    cert: fs.readFileSync(__dirname + "/fullchain.pem", "utf8"),
-    key: fs.readFileSync(__dirname + "/privkey.pem", "utf8")
-}
 
-const server = https.createServer(credentials, app)
+app.get('/:room', function(req, res) {
+    given_room = req.params.room
+    res.sendFile(__dirname + '/index.html');
+});
+
+
+const server = https.createServer({key:  fs.readFileSync(__dirname + "/fullchain.pem", "utf8"), cert: fs.readFileSync(__dirname + "/fullchain.pem", "utf8")}
+, app)
 
 const io = require('socket.io').listen(server);
 
 app.use(express.static(__dirname + '/'));
 app.use(compression());
 
-server.listen(process.env.PORT || 80);
+server.listen(80, function () {
+    console.log("Now listening on port 80")
+});
 
 console.log('Server Starting . . .');
 
@@ -44,10 +49,7 @@ console.log('Server Starting . . .');
 // });
 
 
-app.get('/:room', function(req, res) {
-    given_room = req.params.room
-    res.sendFile(__dirname + '/index.html');
-});
+
 
 
 io.sockets.on('connection', function(socket) {

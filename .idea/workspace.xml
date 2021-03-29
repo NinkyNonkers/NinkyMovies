@@ -64,7 +64,8 @@
       <workItem from="1615648288515" duration="7063000" />
       <workItem from="1616877794126" duration="4770000" />
       <workItem from="1616919037212" duration="11407000" />
-      <workItem from="1616931132471" duration="4283000" />
+      <workItem from="1616931132471" duration="4897000" />
+      <workItem from="1617010374516" duration="168000" />
     </task>
     <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
       <created>1615133427346</created>
@@ -395,14 +396,20 @@
       <option name="project" value="LOCAL" />
       <updated>1616936577008</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Pass app -careless">
+      <created>1616937722415</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1616937722415</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add custom dropdown + complete stripping&#10;Completely eliminate jquery usage, started phasing out bootstrap JS (not css portion though)" />
     <MESSAGE value="hmm" />
     <MESSAGE value="Remove dd from master click event" />
     <MESSAGE value="Correct README.md and optimise other stuff" />
@@ -427,6 +434,7 @@
     <MESSAGE value="LOL" />
     <MESSAGE value="Use https" />
     <MESSAGE value="Pretty cringe" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pretty cringe" />
+    <MESSAGE value="Pass app -careless" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pass app -careless" />
   </component>
 </project>
