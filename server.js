@@ -28,6 +28,7 @@ app.get('/:room', function(req, res) {
 
 
 const options = {
+    port: 443,
     key: fs.readFileSync(__dirname + '/privkey.pem'),
     cert: fs.readFileSync(__dirname + '/fullchain.pem'),
     ca: fs.readFileSync(__dirname + '/chain.pem')
@@ -46,7 +47,7 @@ const io = require('socket.io').listen(server);
 app.use(express.static(__dirname + '/'));
 app.use(compression());
 
-server.listen(3000, function () {
+server.listen(443, function () {
     console.log("Now listening on port 80")
 });
 

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,14 +65,7 @@
       <workItem from="1616877794126" duration="4770000" />
       <workItem from="1616919037212" duration="11407000" />
       <workItem from="1616931132471" duration="4897000" />
-      <workItem from="1617010374516" duration="961000" />
-    </task>
-    <task id="LOCAL-00003" summary="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT">
-      <created>1615137150455</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1615137150455</updated>
+      <workItem from="1617010374516" duration="1238000" />
     </task>
     <task id="LOCAL-00004" summary="FIX I GUESS?????">
       <created>1615138305381</created>
@@ -409,14 +403,20 @@
       <option name="project" value="LOCAL" />
       <updated>1617011267771</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="woops">
+      <created>1617011351309</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1617011351309</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="HMMPHH" />
     <MESSAGE value="Add more verbose logging" />
     <MESSAGE value="Pull from stable so master now works 1!1!1!!!!!" />
     <MESSAGE value="Improve" />
@@ -441,6 +441,7 @@
     <MESSAGE value="Fix https" />
     <MESSAGE value="Wrong key" />
     <MESSAGE value="Fix access headers and redo https server creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix access headers and redo https server creation" />
+    <MESSAGE value="woops" />
+    <option name="LAST_COMMIT_MESSAGE" value="woops" />
   </component>
 </project>
