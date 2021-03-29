@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="" />
+    <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -69,13 +71,6 @@
       <workItem from="1616919037212" duration="11407000" />
       <workItem from="1616931132471" duration="4897000" />
       <workItem from="1617010374516" duration="1238000" />
-    </task>
-    <task id="LOCAL-00013" summary="Hahaaaa">
-      <created>1615202582907</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1615202582907</updated>
     </task>
     <task id="LOCAL-00014" summary="Remove unused username asignment">
       <created>1615202682267</created>
@@ -413,14 +408,20 @@
       <option name="project" value="LOCAL" />
       <updated>1617022022492</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Don't change player if id not defined">
+      <created>1617022985899</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1617022985899</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix using element instead of value" />
     <MESSAGE value="CAR ON A TRAIN" />
     <MESSAGE value="Remove old jquery notify stuff" />
     <MESSAGE value="Self implement toggle()" />
@@ -445,6 +446,7 @@
     <MESSAGE value="aaaa" />
     <MESSAGE value="Add async package" />
     <MESSAGE value="Few fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Few fixes" />
+    <MESSAGE value="Don't change player if id not defined" />
+    <option name="LAST_COMMIT_MESSAGE" value="Don't change player if id not defined" />
   </component>
 </project>

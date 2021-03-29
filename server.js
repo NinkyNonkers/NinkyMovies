@@ -270,9 +270,9 @@ io.sockets.on('connection', function(socket) {
             const currTime = data.time
             const state = data.state
             const videoId = data.videoId
-            let playerId = room.currPlayer
+            const playerId = room.currPlayer
             if (playerId === undefined) {
-                playerId = 0;
+                return;
             }
             io.sockets.in("room-" + room).emit('syncVideoClient', {
                 time: currTime,
