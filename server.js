@@ -27,7 +27,7 @@ app.get('/:room', function(req, res) {
 });
 
 
-const server = https.createServer({key:  fs.readFileSync(__dirname + "/fullchain.pem", "utf8"), cert: fs.readFileSync(__dirname + "/fullchain.pem", "utf8")}
+const server = https.createServer({key:  fs.readFileSync(__dirname + "/key.pem", "utf8"), cert: fs.readFileSync(__dirname + "/server.crt", "utf8")}
 , app)
 
 const io = require('socket.io').listen(server);
