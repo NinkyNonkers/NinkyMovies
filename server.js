@@ -181,7 +181,7 @@ io.sockets.on('connection', function(socket) {
                 var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                 break;
             case undefined:
-                console.log("Player has not been defined!");
+                console.log("Error: Player has not been defined! Could not get current video");
                 io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer = 0;
                 break;
             default:
@@ -197,7 +197,7 @@ io.sockets.on('connection', function(socket) {
                 io.sockets.in("room-" + socket.roomnum).emit('createHTML5', {});
                 break;
             case undefined:
-                console.log("Player has not been defined!");
+                console.log("Error: Player has not been defined! Could not sync video player");
                 io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer = 0;
                 break;
             default:
@@ -354,7 +354,7 @@ io.sockets.on('connection', function(socket) {
                     io.sockets.in("room-" + roomnum).emit('createHTML5', {});
                     break;
                 case undefined:
-                    console.log("Player has not been defined!");
+                    console.log("Error: Sent player has not been defined!");
                     break;
                 default:
                     console.log("Error: invalid player id")
@@ -383,7 +383,7 @@ io.sockets.on('connection', function(socket) {
                     socket.emit('createHTML5', {});
                     break;
                 case undefined:
-                    console.log("Player has not been defined!");
+                    console.log("Error: Invalid player id sent!");
                     break;
                 default:
                     console.log("Error: invalid player id")
