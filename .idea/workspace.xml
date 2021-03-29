@@ -73,13 +73,6 @@
       <workItem from="1616931132471" duration="4897000" />
       <workItem from="1617010374516" duration="1238000" />
     </task>
-    <task id="LOCAL-00004" summary="FIX I GUESS?????">
-      <created>1615138305381</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1615138305381</updated>
-    </task>
     <task id="LOCAL-00005" summary="might just hit that suicide wave">
       <created>1615138486287</created>
       <option name="number" value="00005" />
@@ -416,14 +409,20 @@
       <option name="project" value="LOCAL" />
       <updated>1617011351309</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Improve error logging and improve useless stuff">
+      <created>1617019413828</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1617019413828</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add more verbose logging" />
     <MESSAGE value="Pull from stable so master now works 1!1!1!!!!!" />
     <MESSAGE value="Improve" />
     <MESSAGE value="Fix syncing issues" />
@@ -448,6 +447,7 @@
     <MESSAGE value="Wrong key" />
     <MESSAGE value="Fix access headers and redo https server creation" />
     <MESSAGE value="woops" />
-    <option name="LAST_COMMIT_MESSAGE" value="woops" />
+    <MESSAGE value="Improve error logging and improve useless stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve error logging and improve useless stuff" />
   </component>
 </project>

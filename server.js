@@ -132,8 +132,9 @@ io.sockets.on('connection', function(socket) {
 
             // Set the host on the client side
             socket.emit('setHost');
+            console.log("Creating room" + socket.roomnum);
         } else {
-            console.log(socket.roomnum)
+            console.log("New user joining" + socket.roomnum)
             host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
         }
 
@@ -205,7 +206,7 @@ io.sockets.on('connection', function(socket) {
                 io.sockets.in("room-" + socket.roomnum).emit('createHTML5', {});
                 break;
             default:
-                console.log("Error: invalid player id")
+                console.log("Error: invalid player id " + io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
         }
 
         // Change the video to the current one
