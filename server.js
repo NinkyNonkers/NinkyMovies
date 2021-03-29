@@ -133,7 +133,8 @@ io.sockets.on('connection', function(socket) {
             // Set the host on the client side
             socket.emit('setHost');
             console.log("Creating room" + socket.roomnum);
-        } else {
+        }
+        else {
             console.log("New user joining" + socket.roomnum)
             host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
         }
@@ -143,7 +144,8 @@ io.sockets.on('connection', function(socket) {
         socket.join("room-" + socket.roomnum);
 
         // Sets the default values when first initializing
-        if (init) {
+        if (init)
+        {
             // Sets the host
             if (io.sockets.adapter.rooms['room-' + socket.roomnum] === undefined) {
                 console.log("Error: Room has not been created!")
@@ -168,8 +170,10 @@ io.sockets.on('connection', function(socket) {
             username: io.sockets.adapter.rooms['room-' + socket.roomnum].hostName
         })
 
+        const currPl = io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer;
+
         // Gets current video from room variable
-        switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
+        switch (currPl) {
             case 0:
                 var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
                 break;
@@ -178,14 +182,14 @@ io.sockets.on('connection', function(socket) {
                 break;
             case undefined:
                 console.log("Player has not been defined!");
+                io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer = 0;
                 break;
             default:
                 console.log("Error: invalid player id " + io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
         }
-        var currYT = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
 
         // Change the video player to current One
-        switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
+        switch (currPl) {
             case 0:
                 // YouTube is default so do nothing
                 break;
@@ -194,6 +198,7 @@ io.sockets.on('connection', function(socket) {
                 break;
             case undefined:
                 console.log("Player has not been defined!");
+                io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer = 0;
                 break;
             default:
                 console.log("Error: invalid player id " + io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
