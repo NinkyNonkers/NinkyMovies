@@ -262,7 +262,6 @@ io.sockets.on('connection', function(socket) {
     });
 
 
-
     // Sync video
     socket.on('sync video', function(data) {
         const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
@@ -344,7 +343,7 @@ io.sockets.on('connection', function(socket) {
         const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
         if (room !== undefined) {
             const roomnum = data.room
-            const playerId = data.playerId
+            const playerId = data.currPlayer
 
             io.sockets.in("room-" + roomnum).emit('pauseVideoClient');
             switch (playerId) {
@@ -374,7 +373,7 @@ io.sockets.on('connection', function(socket) {
     // Change video player
     socket.on('change single player', function(data) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const playerId = data.playerId
+            const playerId = data.currPlayer
 
             switch (playerId) {
                 case 0:

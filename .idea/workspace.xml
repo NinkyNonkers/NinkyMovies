@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,13 +71,6 @@
       <workItem from="1616919037212" duration="11407000" />
       <workItem from="1616931132471" duration="4897000" />
       <workItem from="1617010374516" duration="1238000" />
-    </task>
-    <task id="LOCAL-00008" summary="Add back HTML5 player CSS">
-      <created>1615201160826</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1615201160826</updated>
     </task>
     <task id="LOCAL-00009" summary="Update socket.io stuff">
       <created>1615201752624</created>
@@ -416,14 +408,20 @@
       <option name="project" value="LOCAL" />
       <updated>1617020503770</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Fix the sieve I suppose">
+      <created>1617020881132</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1617020881132</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix id issue" />
     <MESSAGE value="Fix some minor exploitable features" />
     <MESSAGE value="Fix host not syncing and optimise" />
     <MESSAGE value="Remove unused calls" />
@@ -448,6 +446,7 @@
     <MESSAGE value="Fix a few issues" />
     <MESSAGE value="optimisation!!!!&#10;Remove old notify alerts and strip more queue support" />
     <MESSAGE value="Remove more queue related stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove more queue related stuff" />
+    <MESSAGE value="Fix the sieve I suppose" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix the sieve I suppose" />
   </component>
 </project>
