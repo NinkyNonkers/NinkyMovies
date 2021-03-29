@@ -242,7 +242,7 @@ socket.on('syncVideoClient', function(data) {
     // Current issue: changePlayer is called asynchronously when we need this function to wait for it to finish
 
     // Change the player if necessary
-    if (currPlayer !== playerId) {
+    if (currPlayer !== playerId && playerId !== undefined) {
         // This changes the player then recalls sync afterwards on the host
         changeSinglePlayer(playerId)
     } else {
