@@ -73,13 +73,6 @@
       <workItem from="1616931132471" duration="4897000" />
       <workItem from="1617010374516" duration="1238000" />
     </task>
-    <task id="LOCAL-00005" summary="might just hit that suicide wave">
-      <created>1615138486287</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1615138486287</updated>
-    </task>
     <task id="LOCAL-00006" summary="Begin work on stripping jquery">
       <created>1615196056364</created>
       <option name="number" value="00006" />
@@ -416,14 +409,20 @@
       <option name="project" value="LOCAL" />
       <updated>1617019413828</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Fix a few issues">
+      <created>1617020130521</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1617020130521</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Pull from stable so master now works 1!1!1!!!!!" />
     <MESSAGE value="Improve" />
     <MESSAGE value="Fix syncing issues" />
     <MESSAGE value="Fix id issue" />
@@ -448,6 +447,7 @@
     <MESSAGE value="Fix access headers and redo https server creation" />
     <MESSAGE value="woops" />
     <MESSAGE value="Improve error logging and improve useless stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve error logging and improve useless stuff" />
+    <MESSAGE value="Fix a few issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix a few issues" />
   </component>
 </project>

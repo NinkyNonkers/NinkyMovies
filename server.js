@@ -192,6 +192,9 @@ io.sockets.on('connection', function(socket) {
             case 3:
                 var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                 break;
+            case undefined:
+                console.log("Player has not been defined!");
+                break;
             default:
                 console.log("Error: invalid player id " + io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
         }
@@ -204,6 +207,9 @@ io.sockets.on('connection', function(socket) {
                 break;
             case 3:
                 io.sockets.in("room-" + socket.roomnum).emit('createHTML5', {});
+                break;
+            case undefined:
+                console.log("Player has not been defined!");
                 break;
             default:
                 console.log("Error: invalid player id " + io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
@@ -293,21 +299,14 @@ io.sockets.on('connection', function(socket) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
             const room = data.room
             const videoId = data.videoId
-            const time = data.time
 
             // This changes the room variable to the video id
             switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
                 case 0:
-                    // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.time = time
                     // Set new video id
                     io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt = videoId
                     break;
                 case 3:
-                    // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.time = time
                     // Set new video id
                     io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5 = videoId
                     break;
@@ -340,6 +339,9 @@ io.sockets.on('connection', function(socket) {
                 case 3:
                     var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                     break;
+                case undefined:
+                    console.log("Player has not been defined!");
+                    break;
                 default:
                     console.log("Error: invalid player id")
             }
@@ -362,6 +364,9 @@ io.sockets.on('connection', function(socket) {
                     break;
                 case 3:
                     io.sockets.in("room-" + roomnum).emit('createHTML5', {});
+                    break;
+                case undefined:
+                    console.log("Player has not been defined!");
                     break;
                 default:
                     console.log("Error: invalid player id")
@@ -388,6 +393,9 @@ io.sockets.on('connection', function(socket) {
                     break;
                 case 3:
                     socket.emit('createHTML5', {});
+                    break;
+                case undefined:
+                    console.log("Player has not been defined!");
                     break;
                 default:
                     console.log("Error: invalid player id")
@@ -497,30 +505,6 @@ io.sockets.on('connection', function(socket) {
 
     })
 
-    // Calls notify functions
-    socket.on('notify alerts', function(data) {
-        const alert = data.alert
-        console.log("entered notify alerts")
-        let encodedUser = ""
-        if (data.user) {
-            encodedUser = data.user.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        }
-
-        switch (alert) {
-                // Host Change Alert
-            case 1:
-                io.sockets.in("room-" + socket.roomnum).emit('changeHostNotify', {
-                    user: encodedUser
-                })
-                break;
-                // Beta Message Alert
-            case 3:
-                io.sockets.in("room-" + socket.roomnum).emit('betaNotify', {})
-                break;
-            default:
-                console.log("Invalid alert id")
-        }
-    })
 
     //------------------------------------------------------------------------------
     // Async get current time
