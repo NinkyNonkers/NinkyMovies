@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,13 +72,6 @@
       <workItem from="1616919037212" duration="11407000" />
       <workItem from="1616931132471" duration="4897000" />
       <workItem from="1617010374516" duration="1238000" />
-    </task>
-    <task id="LOCAL-00009" summary="Update socket.io stuff">
-      <created>1615201752624</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1615201752624</updated>
     </task>
     <task id="LOCAL-00010" summary="Remove old show and hide functions">
       <created>1615202057954</created>
@@ -415,14 +409,20 @@
       <option name="project" value="LOCAL" />
       <updated>1617020881132</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Wrong naming facepalm">
+      <created>1617021171492</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1617021171492</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix some minor exploitable features" />
     <MESSAGE value="Fix host not syncing and optimise" />
     <MESSAGE value="Remove unused calls" />
     <MESSAGE value="Dropdowns now close when a button is clicked" />
@@ -447,6 +447,7 @@
     <MESSAGE value="optimisation!!!!&#10;Remove old notify alerts and strip more queue support" />
     <MESSAGE value="Remove more queue related stuff" />
     <MESSAGE value="Fix the sieve I suppose" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix the sieve I suppose" />
+    <MESSAGE value="Wrong naming facepalm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrong naming facepalm" />
   </component>
 </project>

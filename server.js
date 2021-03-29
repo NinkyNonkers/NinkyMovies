@@ -343,7 +343,7 @@ io.sockets.on('connection', function(socket) {
         const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
         if (room !== undefined) {
             const roomnum = data.room
-            const playerId = data.currPlayer
+            const playerId = data.playerId;
 
             io.sockets.in("room-" + roomnum).emit('pauseVideoClient');
             switch (playerId) {
@@ -373,7 +373,7 @@ io.sockets.on('connection', function(socket) {
     // Change video player
     socket.on('change single player', function(data) {
         if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const playerId = data.currPlayer
+            const playerId = data.playerId;
 
             switch (playerId) {
                 case 0:
