@@ -192,7 +192,7 @@ io.sockets.on('connection', function(socket) {
                 var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
                 break;
             default:
-                console.log("Error: invalid player id")
+                console.log("Error: invalid player id " + io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer)
         }
         var currYT = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
 
@@ -215,7 +215,6 @@ io.sockets.on('connection', function(socket) {
 
         // Get time from host which calls change time for that socket
         if (socket.id !== host) {
-            console.log("call the damn host " + host)
 
             // Set a timeout so the video can load before it syncs
             setTimeout(function() {
@@ -287,44 +286,6 @@ io.sockets.on('connection', function(socket) {
     });
 
 
-    // Remove a specific video from queue
-    socket.on('remove at', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const idx = data.idx
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.splice(idx, 1)
-                    break;
-                case 3:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
-                    break;
-                default:
-                    console.log("Error: invalid player id")
-            }
-        }
-    })
-
-    // Play a specific video from queue
-    socket.on('play at', function(data, callback) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const idx = data.idx
-            let videoId = ""
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
-                case 0:
-                    videoId = io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt[idx].videoId
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.yt.splice(idx, 1)
-                    break;
-                case 3:
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].queue.html5.splice(idx, 1)
-                    break;
-                default:
-                    console.log("Error: invalid player id")
-            }
-            callback({
-                videoId: videoId
-            })
-        }
-    })
 
     // Change video
     socket.on('change video', function(data, callback) {
@@ -564,7 +525,6 @@ io.sockets.on('connection', function(socket) {
     // Async get current time
     socket.on('auto sync', function(data) {
         const async = require("async");
-        const http = require("http");
 
         //Delay of 5 seconds
         const delay = 5000;

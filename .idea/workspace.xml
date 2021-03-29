@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="970e67e2-a804-461f-95fc-162d9e536c83" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -37,6 +43,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -63,28 +70,8 @@
       <workItem from="1615648288515" duration="7063000" />
       <workItem from="1616877794126" duration="4770000" />
       <workItem from="1616919037212" duration="11407000" />
-      <workItem from="1616931132471" duration="1499000" />
-    </task>
-    <task id="LOCAL-00001" summary="Remove duplicate lightsoff, turned on by default">
-      <created>1615133427346</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1615133427346</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Strip vimeo and dailymotion">
-      <created>1615136338991</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1615136338991</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Remove a bunch of useless stuff&#10;we need to LOOSE WEIGHT">
-      <created>1615137150455</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1615137150455</updated>
+      <workItem from="1616931132471" duration="4897000" />
+      <workItem from="1617010374516" duration="1238000" />
     </task>
     <task id="LOCAL-00004" summary="FIX I GUESS?????">
       <created>1615138305381</created>
@@ -373,21 +360,69 @@
       <option name="project" value="LOCAL" />
       <updated>1616934083349</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="LOL">
+      <created>1616934439429</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1616934439429</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Use https">
+      <created>1616936359377</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1616936359377</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Pretty cringe">
+      <created>1616936577008</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1616936577008</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Pass app -careless">
+      <created>1616937722415</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1616937722415</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Fix https">
+      <created>1617010555082</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1617010555082</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Wrong key">
+      <created>1617010807478</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1617010807479</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Fix access headers and redo https server creation">
+      <created>1617011267771</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1617011267771</updated>
+    </task>
+    <task id="LOCAL-00052" summary="woops">
+      <created>1617011351309</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1617011351309</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Begin upgrade to http2 and start redoing dropdown" />
-    <MESSAGE value="Fix dropdown stuff" />
-    <MESSAGE value="Update old html() jquery usage" />
-    <MESSAGE value="Add custom dropdown + complete stripping&#10;Completely eliminate jquery usage, started phasing out bootstrap JS (not css portion though)" />
-    <MESSAGE value="hmm" />
-    <MESSAGE value="Remove dd from master click event" />
-    <MESSAGE value="Correct README.md and optimise other stuff" />
-    <MESSAGE value="HMMPHH" />
     <MESSAGE value="Add more verbose logging" />
     <MESSAGE value="Pull from stable so master now works 1!1!1!!!!!" />
     <MESSAGE value="Improve" />
@@ -405,6 +440,14 @@
     <MESSAGE value="Further and hopefully final optimisation&#10;Remove notify stuff especially" />
     <MESSAGE value="Woops" />
     <MESSAGE value="Clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up" />
+    <MESSAGE value="LOL" />
+    <MESSAGE value="Use https" />
+    <MESSAGE value="Pretty cringe" />
+    <MESSAGE value="Pass app -careless" />
+    <MESSAGE value="Fix https" />
+    <MESSAGE value="Wrong key" />
+    <MESSAGE value="Fix access headers and redo https server creation" />
+    <MESSAGE value="woops" />
+    <option name="LAST_COMMIT_MESSAGE" value="woops" />
   </component>
 </project>
