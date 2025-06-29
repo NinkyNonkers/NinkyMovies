@@ -61,7 +61,6 @@ function onPlayerStateChange(event) {
             }
             break;
         case 1:
-            console.log(host)
             if (host) {
                 playOther(roomNum)
             } else {

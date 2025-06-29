@@ -64,10 +64,12 @@
     <div id="userFormArea" class="row">
         <div class="col-md-12">
             <h2>Welcome to Ninky Movies</h2>
-            <p class="lead">Next Film: <span class="font-weight-bold">In the Night Garden</span> and <span class="font-weight-bold">The Curse of the Ware Rabbit</span></p>
-            <p>Showing at <span class="font-weight-bold"> 19:45</span></p>
-            <p><em>The synchronization may not be perfect! It's a work in progress, blame archie if anything breaks&nbsp;</em></p>
+            <div id="currentShowing" style="display: none">
+            <p class="lead">Next Film: <span class="font-weight-bold" id="nextFilmName">In the Night Garden</span></p>
+            <p>Showing at <span class="font-weight-bold" id="nextFilmTime">19:45</span></p>
 <hr style="height:20pt; visibility:hidden;" />
+            </div>
+            <p><em>The synchronization may not be perfect! It's a work in progress, blame archie if anything breaks&nbsp;</em></p>
             <h2> Join a Room! </h2>
             <form id="userForm">
                 <div class="form-group">
@@ -77,7 +79,7 @@
                     <br />
                     <p style="color:red; margin-bottom: 0" id="missinginfo2"></p>
                     <label>Enter Room ID (Default 1)</label>
-                    <button type="button" style="margin-top: 2px; margin-bottom: 2px" onClick="getMainRoom()"  class="btn btn-primary btn-dark-new">Find current room</button>
+                    <button type="button" style="margin-top: 2px; margin-bottom: 2px" id="findRoomBtn" class="btn btn-primary btn-dark-new">Find current room</button>
                     <br/>
                     <input class="form-control" id="roomnum" />
                     <br/>
@@ -123,10 +125,7 @@
                 </div>
                 <div>
                     <button id="playButton" onclick="playVideo(roomNum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fa fa-play"></i> Play / <i class="fa fa-pause"></i> Pause</button>
-
                     <button id="syncbutton" onclick="syncVideo(roomNum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fa fa-sync"></i> Sync</button>
-
-                    <button id="loveButton" onclick="loveLive(roomNum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="far fa-heart"></i> Random K-pop</button>
 
                     <!--<button id="hostbutton" onclick="changeHost(roomNum)" style="margin-top:.5rem" class="btn btn-primary btn-dark-new"><i class="fas fa-users"></i> Make me the host!</button>-->
 
@@ -183,7 +182,7 @@
 <footer id="footer" class="py-5 bg-dark-back footer footer-down">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright 2020 &copy; NinkyNonk, under exclusive license to In the Night Garden, a division of Rosen.&nbsp;&nbsp;</p>
-        <p class="m-0 text-center text-white">Visit our <a href="https://ninknonk.co.uk"> main website</a> for more</p>
+        <p class="m-0 text-center text-white">Visit our <a href="https://nonk.uk"> main website</a> for more</p>
     </div>
 </footer>
 
@@ -210,10 +209,28 @@
         const username = document.getElementById("username");
         const roomnum = document.getElementById("roomnum");
         const persoff = document.getElementById("persoff");
+        const currentShowing = document.getElementById("currentShowing")
+        const nextFilmName = document.getElementById("nextFilmName");
+        const nextFilmTime  = document.getElementById("nextFilmTime");
+        const findRoomBtn = document.getElementById("findRoomBtn");
+        let currentRoom = "main";
 
 
         //Lights off
         let per = 0;
+
+        findRoomBtn.onclick = function getMainRoom() {
+            roomnum.value = currentRoom;
+        }
+
+        socket.emit('get currentShowing', function(data) {
+            if (data.roomName === undefined)
+                return;
+            currentRoom = data.roomName;
+            nextFilmName.innerHTML = data.filmName;
+            nextFilmTime.innerHTML = data.filmTime;
+            currentShowing.style.display = "block";
+        });
 
 
         persoff.style.height = document.body.style.height;
@@ -238,9 +255,8 @@
             };
         }
 
-
         socket.on('new message', function(data) {
-            console.log("Chat has been deprecated in the latest version of NinkyMovies")
+            console.error("Chat has been deprecated in the latest version of NinkyMovies")
         });
 
         if (userForm != null) {
@@ -322,7 +338,6 @@
 
             users.innerHTML += html;
         });
-
 
 
 
@@ -410,11 +425,6 @@
         socket.emit('reset url')
     });
 
-
-    function getMainRoom() {
-        document.getElementById('roomnum').value = "main"
-    }
-
 </script>
 
 
@@ -431,6 +441,4 @@
 <script src="js/html5.js"></script>
 
 </body>
-
 </html>
-

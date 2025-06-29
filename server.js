@@ -1,57 +1,55 @@
 //TODO: upgrade to http2 electric boogaloo
 
 const express = require('express');
-const app = express();
 const https = require('https');
+const http = require('http');
 const compression = require('compression');
 const spdy = require('spdy');
 const fs = require('fs');
+const readline = require('node:readline');
 
 users = [];
 connections = [];
 rooms = [];
 // Store all of the sockets and their respective room numbers
-userrooms = {}
+userRooms = {}
 
 // Set given room for url parameter
 let given_room = ""
+let roomNum = 0;
+let currentShowing = {roomName: undefined, filmTime: undefined, filmName: undefined};
 
-let roomnum = 0;
+console.log("Preparing express HTTP server...")
 
-console.log("Preparing certificate and express")
-
-
-app.get('/:room', function(req, res) {
-    given_room = req.params.room
-    res.sendFile(__dirname + '/index.html');
-});
-
-
-const options = {
-    port: 443,
-    key: fs.readFileSync(__dirname + '/privkey.pem'),
-    cert: fs.readFileSync(__dirname + '/fullchain.pem'),
-    ca: fs.readFileSync(__dirname + '/chain.pem')
-};
-
-const origins = 'https://ninkynonk.co.uk:*';
-const server = https.createServer(options,function(req,res){
-    res.setHeader('Access-Control-Allow-Origin', origins);
-    res.setHeader('Access-Control-Request-Method', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-});
-
-const io = require('socket.io').listen(server);
+const app = express();
+const PORT = 3000;
+const httpServer = http.createServer(app);
 
 app.use(express.static(__dirname + '/'));
 app.use(compression());
 
-server.listen(443, function () {
-    console.log("Now listening on port 80")
+// CORS middleware
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://nonk.uk');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    next();
 });
 
-console.log('Server Starting . . .');
+// Route for /:room to serve index.html
+app.get('/:room', function(req, res) {
+    // You can access the room with req.params.room if needed
+    given_room = req.params.room;
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Start the server
+httpServer.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
+
+console.log('Server starting...');
+const io = require('socket.io').listen(httpServer);
 
 // app.param('room', function(req,res, next, room){
 //     console.log("testing")
@@ -59,10 +57,6 @@ console.log('Server Starting . . .');
 //     given_room = room
 // res.sendFile(__dirname + '/index.html');
 // });
-
-
-
-
 
 io.sockets.on('connection', function(socket) {
     // Connect Socket
@@ -99,8 +93,8 @@ io.sockets.on('connection', function(socket) {
 
         // Grabs room from userrooms data structure
         const id = socket.id;
-        const rm = userrooms[id];
-        const room = io.sockets.adapter.rooms['room-' + rm];
+        const rm = userRooms[id];
+        const room = rooms[rm];
 
         // If you are not the last socket to leave
         if (room !== undefined) {
@@ -108,7 +102,7 @@ io.sockets.on('connection', function(socket) {
             if (socket.id === room.host) {
                 // Reassign
                 io.to(Object.keys(room.sockets)[0]).emit('autoHost', {
-                    roomnum: rm
+                    roomName: rm
                 })
             }
 
@@ -121,34 +115,34 @@ io.sockets.on('connection', function(socket) {
         }
 
         // Delete socket from userrooms
-        delete userrooms[id]
+        delete userRooms[id]
 
     });
 
     // New room
     socket.on('new room', function(data, callback) {
         // Roomnum passed through
-        socket.roomnum = data;
+        socket.roomName = data;
 
         // This stores the room data for all sockets
-        userrooms[socket.id] = data
+        userRooms[socket.id] = data
 
         let host = null
         let init = false
 
         // Sets default room value to 1
-        if (socket.roomnum == null || socket.roomnum === "") {
-            socket.roomnum = '1'
-            userrooms[socket.id] = '1'
+        if (socket.roomName == null || socket.roomName === "") {
+            socket.roomName = '1'
+            userRooms[socket.id] = '1'
         }
 
         // Adds the room to a global array
-        if (!rooms.includes(socket.roomnum)) {
-            rooms.push(socket.roomnum);
+        if (!rooms.includes(socket.roomName)) {
+            rooms.push(socket.roomName);
         }
 
         // Checks if the room exists or not
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] === undefined) {
+        if (io.sockets.adapter.rooms[socket.roomName] === undefined) {
             socket.send(socket.id)
             // Sets the first socket to join as the host
             host = socket.id
@@ -156,30 +150,30 @@ io.sockets.on('connection', function(socket) {
 
             // Set the host on the client side
             socket.emit('setHost');
+            console.log(socket.username + " created room " + socket.roomName)
         } else {
-            console.log(socket.roomnum)
-            host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
+            host = io.sockets.adapter.rooms[socket.roomName].host
         }
 
         // Actually join the room
-        console.log(socket.username + " connected to room-" + socket.roomnum)
-        socket.join("room-" + socket.roomnum);
+        console.log(socket.username + " connected to room-" + socket.roomName)
+        socket.join(socket.roomName);
 
         // Sets the default values when first initializing
         if (init) {
             // Sets the host
-            if (io.sockets.adapter.rooms['room-' + socket.roomnum] === undefined)
+            if (io.sockets.adapter.rooms[socket.roomName] === undefined)
                 return;
-            io.sockets.adapter.rooms['room-' + socket.roomnum].host = host
+            io.sockets.adapter.rooms[socket.roomName].host = host
             // Default Player
-            io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer = 0
+            io.sockets.adapter.rooms[socket.roomName].currPlayer = 0
             // Default video
-            io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo = {
+            io.sockets.adapter.rooms[socket.roomName].currVideo = {
                 yt: 'M7lc1UVf-VE',
                 html5: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
             }
             // Previous Video
-            io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo = {
+            io.sockets.adapter.rooms[socket.roomName].prevVideo = {
                 yt: {
                     id: 'M7lc1UVf-VE',
                     time: 0
@@ -190,43 +184,43 @@ io.sockets.on('connection', function(socket) {
                 }
             }
             // Host username
-            io.sockets.adapter.rooms['room-' + socket.roomnum].hostName = socket.username
+            io.sockets.adapter.rooms[socket.roomName].hostName = socket.username
             // Keep list of online users
-            io.sockets.adapter.rooms['room-' + socket.roomnum].users = [socket.username]
+            io.sockets.adapter.rooms[socket.roomName].users = [socket.username]
             // Set an empty queue
-            io.sockets.adapter.rooms['room-' + socket.roomnum].queue = {
+            io.sockets.adapter.rooms[socket.roomName].queue = {
                 yt: [],
                 html5: []
             }
         }
 
         // Set Host label
-        io.sockets.in("room-" + socket.roomnum).emit('changeHostLabel', {
-            username: io.sockets.adapter.rooms['room-' + socket.roomnum].hostName
+        io.sockets.in(socket.roomName).emit('changeHostLabel', {
+            username: io.sockets.adapter.rooms[socket.roomName].hostName
         })
 
         // Gets current video from room variable
-        switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
+        switch (io.sockets.adapter.rooms[socket.roomName].currPlayer) {
             case 0:
-                var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
+                var currVideo = io.sockets.adapter.rooms[socket.roomName].currVideo.yt
                 break;
             case 3:
-                var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
+                var currVideo = io.sockets.adapter.rooms[socket.roomName].currVideo.html5
                 break;
             default:
-                console.log("Error: invalid player id")
+                console.error("invalid player id")
         }
 
         // Change the video player to current One
-        switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
+        switch (io.sockets.adapter.rooms[socket.roomName].currPlayer) {
             case 0:
                 // YouTube is default so do nothing
                 break;
             case 3:
-                io.sockets.in("room-" + socket.roomnum).emit('createHTML5', {});
+                io.sockets.in(socket.roomName).emit('createHTML5', {});
                 break;
             default:
-                console.log("Error: invalid player id")
+                console.error("invalid player id")
         }
 
         // Change the video to the current one
@@ -236,22 +230,22 @@ io.sockets.on('connection', function(socket) {
 
         // Get time from host which calls change time for that socket
         if (socket.id !== host) {
-            console.log("call the damn host " + host)
-
             // Set a timeout so the video can load before it syncs
             setTimeout(function() {
                 socket.broadcast.to(host).emit('getData');
             }, 1000);
 
             // Push to users in the room
-            io.sockets.adapter.rooms['room-' + socket.roomnum].users.push(socket.username)
+            io.sockets.adapter.rooms[socket.roomName].users.push(socket.username)
 
         }
 
         // Update online users
-        updateRoomUsers(socket.roomnum)
+        updateRoomUsers(socket.roomName)
 
     });
+
+    socket.on('get currentShowing', function(callback) {callback(currentShowing)})
 
     // ------------------------------------------------------------------------
     // ------------------------- Socket Functions -----------------------------
@@ -260,25 +254,25 @@ io.sockets.on('connection', function(socket) {
     // Play video
     socket.on('play video', function(data) {
         const roomnum = data.room
-        io.sockets.in("room-" + roomnum).emit('playVideoClient');
+        io.sockets.in(roomnum).emit('playVideoClient');
     });
 
     // Event Listener Functions
     // Broadcast so host doesn't continuously call it on itself!
     socket.on('play other', function(data) {
         const roomnum = data.room
-        socket.broadcast.to("room-" + roomnum).emit('justPlay');
+        socket.broadcast.to(roomnum).emit('justPlay');
     });
 
     socket.on('pause other', function(data) {
         const roomnum = data.room
-        socket.broadcast.to("room-" + roomnum).emit('justPause');
+        socket.broadcast.to(roomnum).emit('justPause');
     });
 
     socket.on('seek other', function(data) {
         const roomnum = data.room
         const currTime = data.time
-        socket.broadcast.to("room-" + roomnum).emit('justSeek', {
+        socket.broadcast.to(roomnum).emit('justSeek', {
             time: currTime
         });
 
@@ -286,14 +280,14 @@ io.sockets.on('connection', function(socket) {
 
     // Sync video
     socket.on('sync video', function(data) {
-        const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
+        const room = io.sockets.adapter.rooms[socket.roomName];
         if (room !== undefined) {
             const room = data.room
             const currTime = data.time
             const state = data.state
             const videoId = data.videoId
-            const playerId = room.currPlayer
-            io.sockets.in("room-" + room).emit('syncVideoClient', {
+            const playerId = room.currPlayer ?? data.playerId
+            io.sockets.in(room).emit('syncVideoClient', {
                 time: currTime,
                 state: state,
                 videoId: videoId,
@@ -305,32 +299,32 @@ io.sockets.on('connection', function(socket) {
 
     // Change video
     socket.on('change video', function(data, callback) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
+        if (io.sockets.adapter.rooms[socket.roomName] !== undefined) {
             const room = data.room
             const videoId = data.videoId
             const time = data.time
 
             // This changes the room variable to the video id
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
+            switch (io.sockets.adapter.rooms[socket.roomName].currPlayer) {
                 case 0:
                     // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.yt.time = time
+                    io.sockets.adapter.rooms[socket.roomName].prevVideo.yt.id = io.sockets.adapter.rooms[socket.roomName].currVideo.yt
+                    io.sockets.adapter.rooms[socket.roomName].prevVideo.yt.time = time
                     // Set new video id
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt = videoId
+                    io.sockets.adapter.rooms[socket.roomName].currVideo.yt = videoId
                     break;
                 case 3:
                     // Set prev video before changing
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.id = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].prevVideo.html5.time = time
+                    io.sockets.adapter.rooms[socket.roomName].prevVideo.html5.id = io.sockets.adapter.rooms[socket.roomName].currVideo.html5
+                    io.sockets.adapter.rooms[socket.roomName].prevVideo.html5.time = time
                     // Set new video id
-                    io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5 = videoId
+                    io.sockets.adapter.rooms[socket.roomName].currVideo.html5 = videoId
                     break;
                 default:
-                    console.log("Error: invalid player id")
+                    console.error("invalid player id")
             }
 
-            io.sockets.in("room-" + room).emit('changeVideoClient', {
+            io.sockets.in(room).emit('changeVideoClient', {
                 videoId: videoId
             });
 
@@ -344,17 +338,17 @@ io.sockets.on('connection', function(socket) {
 
     // Get video id based on player
     socket.on('get video', function(callback) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
+        if (io.sockets.adapter.rooms[socket.roomName] !== undefined) {
             // Gets current video from room variable
-            switch (io.sockets.adapter.rooms['room-' + socket.roomnum].currPlayer) {
+            switch (io.sockets.adapter.rooms[socket.roomName].currPlayer) {
                 case 0:
-                    var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.yt
+                    var currVideo = io.sockets.adapter.rooms[socket.roomName].currVideo.yt
                     break;
                 case 3:
-                    var currVideo = io.sockets.adapter.rooms['room-' + socket.roomnum].currVideo.html5
+                    var currVideo = io.sockets.adapter.rooms[socket.roomName].currVideo.html5
                     break;
                 default:
-                    console.log("Error: invalid player id")
+                    console.error("invalid player id")
             }
             // Call back to return the video id
             callback(currVideo)
@@ -363,21 +357,21 @@ io.sockets.on('connection', function(socket) {
 
     // Change video player
     socket.on('change player', function(data) {
-        const room = io.sockets.adapter.rooms['room-' + socket.roomnum];
+        const room = io.sockets.adapter.rooms[socket.roomName];
         if (room !== undefined) {
             const roomnum = data.room
             const playerId = data.playerId
 
-            io.sockets.in("room-" + roomnum).emit('pauseVideoClient');
+            io.sockets.in(roomnum).emit('pauseVideoClient');
             switch (playerId) {
                 case 0:
-                    io.sockets.in("room-" + roomnum).emit('createYoutube', {});
+                    io.sockets.in(roomnum).emit('createYoutube', {});
                     break;
                 case 3:
-                    io.sockets.in("room-" + roomnum).emit('createHTML5', {});
+                    io.sockets.in(roomnum).emit('createHTML5', {});
                     break;
                 default:
-                    console.log("Error: invalid player id")
+                    console.error("invalid player id")
             }
 
             // This changes the room variable to the player id
@@ -392,7 +386,7 @@ io.sockets.on('connection', function(socket) {
 
     // Change video player
     socket.on('change single player', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
+        if (io.sockets.adapter.rooms[socket.roomName] !== undefined) {
             const playerId = data.playerId
 
             switch (playerId) {
@@ -403,10 +397,10 @@ io.sockets.on('connection', function(socket) {
                     socket.emit('createHTML5', {});
                     break;
                 default:
-                    console.log("Error: invalid player id")
+                    console.error("invalid player id")
             }
             // After changing the player, resync with the host
-            host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
+            host = io.sockets.adapter.rooms[socket.roomName].host
             socket.broadcast.to(host).emit('getData')
         }
     })
@@ -433,8 +427,8 @@ io.sockets.on('connection', function(socket) {
 
     // This just calls the syncHost function
     socket.on('sync host', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const host = io.sockets.adapter.rooms['room-' + socket.roomnum].host
+        if (io.sockets.adapter.rooms[socket.roomName] !== undefined) {
+            const host = io.sockets.adapter.rooms[socket.roomName].host
             // If not host, recall it on host
             if (socket.id !== host) {
                 socket.broadcast.to(host).emit('getData')
@@ -446,26 +440,25 @@ io.sockets.on('connection', function(socket) {
 
     // Change host
     socket.on('change host', function(data) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            console.log(io.sockets.adapter.rooms['room-' + socket.roomnum])
+        if (io.sockets.adapter.rooms[socket.roomName] !== undefined) {
             const roomnum = data.room
             const newHost = socket.id
-            const currHost = io.sockets.adapter.rooms['room-' + socket.roomnum].host
+            const currHost = io.sockets.adapter.rooms[socket.roomName].host
 
             // If socket is already the host!
             if (newHost !== currHost) {
-                console.log("I want to be the host and my socket id is: " + newHost);
+                console.log("Host for " + roomnum + " changed to " + newHost);
 
                 // Broadcast to current host and set false
                 socket.broadcast.to(currHost).emit('unSetHost')
                 // Reset host
-                io.sockets.adapter.rooms['room-' + socket.roomnum].host = newHost
+                io.sockets.adapter.rooms[socket.roomName].host = newHost
                 // Broadcast to new host and set true
                 socket.emit('setHost')
 
-                io.sockets.adapter.rooms['room-' + socket.roomnum].hostName = socket.username
+                io.sockets.adapter.rooms[socket.roomName].hostName = socket.username
                 // Update host label in all sockets
-                io.sockets.in("room-" + roomnum).emit('changeHostLabel', {
+                io.sockets.in(roomnum).emit('changeHostLabel', {
                     username: socket.username
                 })
             }
@@ -475,9 +468,9 @@ io.sockets.on('connection', function(socket) {
     // Get host data
     socket.on('get host data', function(data) {
         try {
-            if (roomnum === undefined)
+            if (roomNum === undefined)
                 return;
-            const room = io.sockets.adapter.rooms['room-' + roomnum];
+            const room = io.sockets.adapter.rooms[roomNum];
             if (room !== undefined) {
                 const roomnum = data.room;
                 const host = room.host;
@@ -535,12 +528,28 @@ io.sockets.on('connection', function(socket) {
 
     // Update the room usernames
     function updateRoomUsers(rm) {
-        if (io.sockets.adapter.rooms['room-' + socket.roomnum] !== undefined) {
-            const roomUsers = io.sockets.adapter.rooms['room-' + socket.roomnum].users
-            io.sockets.in("room-" + rm).emit('get users', roomUsers)
+        if (io.sockets.adapter.rooms[socket.roomName] !== undefined) {
+            const roomUsers = io.sockets.adapter.rooms[socket.roomName].users
+            io.sockets.in(rm).emit('get users', roomUsers)
         }
     }
 
 })
 
 console.log("Server started");
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+
+rl.question("Enter command:", (response) => {
+    const cmd = response.split(" ");
+    switch (cmd[0]) {
+        case "update_current_showing":
+            currentShowing.roomName = cmd[1];
+            currentShowing.filmName = cmd[2];
+            currentShowing.filmTime = cmd[3];
+            break;
+    }
+});

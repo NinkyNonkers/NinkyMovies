@@ -1,7 +1,6 @@
 const media = document.querySelector('video');
 
 let currentMode = 1;
-
 let roomNumber = 0;
 
 let videoModes = {

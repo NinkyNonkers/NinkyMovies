@@ -8,7 +8,6 @@ function playOther(roomnum) {
 }
 
 socket.on('justPlay', function(data) {
-    console.log("currPlayer")
     switch (currPlayer) {
         case 0:
             if (playerStatus === -1 || playerStatus === 2) {
@@ -21,7 +20,7 @@ socket.on('justPlay', function(data) {
             }
             break;
         default:
-            console.log("Invalid player id");
+            console.error("invalid player id");
     }
 });
 
@@ -32,7 +31,6 @@ function pauseOther(roomnum) {
 }
 
 socket.on('justPause', function(data) {
-    console.log("hiIamPausing!")
     switch (currPlayer) {
         case 0:
             player.pauseVideo()
@@ -41,7 +39,7 @@ socket.on('justPause', function(data) {
             media.pause()
             break;
         default:
-            console.log("Invalid player id")
+            console.error("invalid player id")
     }
     player.pauseVideo()
 });
@@ -76,7 +74,7 @@ socket.on('justSeek', function(data) {
             }
             break;
         default:
-            console.log("Invalid player id")
+            console.error("invalid player id")
     }
 });
 

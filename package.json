@@ -15,11 +15,11 @@
   "dependencies": {
     "compression": "^1.7.4",
     "dotenv": "8.1.0",
-    "express": "4.16.2",
+    "express": "^4.21.2",
     "lodash": "^4.17.21",
-    "socket.io": "2.0.3",
-    "ws": ">=3.3.1",
-    "spdy": "^3.3.3"
+    "socket.io": "^2.5.1",
+    "spdy": "^3.3.3",
+    "ws": ">=3.3.1"
   },
   "bugs": {
     "url": "https://github.com/NinkyNonkers/NinkyMovies/issues"

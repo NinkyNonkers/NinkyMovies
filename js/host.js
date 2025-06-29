@@ -46,7 +46,7 @@ socket.on('changeHostLabel', function(data) {
 
 // When the host leaves, the server calls this function on the next socket
 socket.on('autoHost', function(data) {
-    changeHost(data.roomnum)
+    changeHost(data.roomName)
 })
 
 // If user gets disconnected from the host, give warning!
@@ -92,10 +92,3 @@ socket.on('compareHost', function(data) {
             console.log("Error invalid player id")
     }
 });
-
-function test() {
-    playerElement.src = playerElement.src + '&controls=0'
-}
-
-
-

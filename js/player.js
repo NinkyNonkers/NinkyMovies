@@ -2,9 +2,7 @@ let currPlayer = 0
 
 const html5 = document.getElementById('HTML5Area');
 const you = document.getElementById('playerArea');
-const loveButton = document.getElementById('loveButton');
 const videoTxt = document.getElementById('inputVideoId');
-
 
 // 0 - YouTube
 // 1 - Daily Motion (Deprecated)
@@ -45,13 +43,9 @@ socket.on('getPlayerData', function(data) {
 // Create Youtube Player
 socket.on('createYoutube', function(data) {
     if (currPlayer !== 0) {
-
         html5.style.display = 'none';
-
         you.style.display = 'block';
         currPlayer = 0
-
-        loveButton.style.display = 'inline-block'
         videoTxt.placeholder = 'Video ID / URL'
 
         console.log("Player state: " + playerStatus)
@@ -72,13 +66,9 @@ socket.on('createYoutube', function(data) {
 // Create HTML5 Player
 socket.on('createHTML5', function(data) {
     if (currPlayer !== 3) {
-
         you.style.display = 'none';
         html5.style.display = 'block';
-
         currPlayer = 3
-
-        loveButton.style.display = 'none'
         videoTxt.placeholder = 'Direct mp4/webm URL'
     }
     else
