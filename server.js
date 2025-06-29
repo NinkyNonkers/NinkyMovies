@@ -7,6 +7,7 @@ const compression = require('compression');
 const spdy = require('spdy');
 const fs = require('fs');
 const readline = require('node:readline');
+const path = require('path');
 
 users = [];
 connections = [];
